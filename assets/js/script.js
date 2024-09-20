@@ -10,8 +10,10 @@ let gridSize = 3;  //later: get from user with getGridSize()
 for (let tile of gridTiles) {
   tile.addEventListener("click", function() {
     this.style.backgroundColor="red";
-    console.log(this);
-    let isNeighbour = isNeighbourEmpty(this);
+    let currentTile = getTile(gridTiles, this);
+    let tilesObjectArray = getTilesObjectArray(gridTiles);
+    console.log(currentTile);
+    // let isNeighbour = isNeighbourEmpty(currentTile);
     // let emptyTile = document.getElementsByClassName("empty-tile");
     // if (isNeighbourEmpty(this)){
     //   moveTile(this);
@@ -76,14 +78,23 @@ function isSolvable() {
 
 }
 
-function getTile() {
-
+/**
+ * This function takes the HTML collection of tiles and the currently clicked tile 
+ * and returns the current tile as an object with position and number
+ * @param {*} gridTiles 
+ * @param {*} tileHTML 
+ */
+function getTile(gridTiles, tileHTML) {
+  let currentTileText = tileHTML.textContent;
+  let currentTileIndex = getTilesArray(gridTiles).indexOf(currentTileText);
+  let currentTile = getTilesObjectArray(gridTiles)[currentTileIndex];
+  console.log(currentTile);
 }
 
-function isNeighbourEmpty(tile) {
-  let pos = tile.position;
-  console.log(pos);
-}
+// function isNeighbourEmpty(tilesObjectArray, currentTile) {
+//   let pos = tile.position;
+//   console.log(pos);
+// }
 
 function moveTile() {
 
