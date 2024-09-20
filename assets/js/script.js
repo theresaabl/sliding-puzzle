@@ -120,10 +120,20 @@ function getNeighbours(currentTile){
   return neighbours;
 }
 
-// function isNeighbourEmpty(tilesObjectArray, neighbours) {
-//   let emptyTilePosition = tilesObjectArray.indexOf("0");
-//   console.log(emptyTilePosition);
-// }
+function getEmptyTileIndex(tilesObjectArray) {
+  for (let i = 0; i < tilesObjectArray.length; i++) {
+    let number = tilesObjectArray[i].number;
+    if (number === "0"){
+    console.log(i);
+    // return empty tile index
+    return i;
+    }
+  }
+}
+
+function isNeighbourEmpty(tilesObjectArray, neighbours) {
+
+}
 
 function moveTile() {
 
