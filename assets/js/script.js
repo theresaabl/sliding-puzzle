@@ -16,23 +16,27 @@ console.log(tilesArray1d);
 // grid coordinates for gridSize
 let coordinates = [];
 for (let i = 0; i < gridSize; i ++){
-  coordinates.push([]);
-
+  for (let j = 0; j < gridSize; j++){
+    coordinates.push([i, j]);
+  }
 }
+console.log(coordinates);
 
-// // object of tiles
-// let tilesObject = {};
-// for (let tile of gridPositions){
-//   tilesObject["position"] = [ , ];
-//   tilesObject["number"] = tile.textContent;
-// }
-// console.log(tilesObject);
+// array of tiles objects to save grid position and assigned number
+let tilesObjectArray = [];
+for (let i = 0; i < gridPositions.length; i++){
+  let tilesObject = {};
+  tilesObject.position = coordinates[i];
+  tilesObject.number = gridPositions[i].textContent;
+  tilesObjectArray.push(tilesObject);
+}
+console.log(tilesObjectArray);
 
 for (let tile of gridPositions) {
   tile.addEventListener("click", function() {
     this.style.backgroundColor="red";
     console.log(this);
-    // let isNeighbour = isNeighbourEmpty(this);
+    let isNeighbour = isNeighbourEmpty(this);
     // let emptyTile = document.getElementsByClassName("empty-tile");
     // if (isNeighbourEmpty(this)){
     //   moveTile(this);
@@ -62,8 +66,9 @@ function getTile() {
 
 }
 
-function isNeighbourEmpty() {
-
+function isNeighbourEmpty(tile) {
+  let pos = tile.position;
+  console.log(pos);
 }
 
 function moveTile() {
