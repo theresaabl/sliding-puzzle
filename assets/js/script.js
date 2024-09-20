@@ -13,7 +13,8 @@ for (let tile of gridTiles) {
     let currentTile = getTile(gridTiles, this);
     let tilesObjectArray = getTilesObjectArray(gridTiles);
     console.log(currentTile);
-    // let isNeighbour = isNeighbourEmpty(currentTile);
+    let neighbours = getNeighbours(currentTile);
+    // let isNeighbour = isNeighbourEmpty(tilesObjectArray, neighbours);
     // let emptyTile = document.getElementsByClassName("empty-tile");
     // if (isNeighbourEmpty(this)){
     //   moveTile(this);
@@ -30,12 +31,7 @@ for (let tile of gridTiles) {
  */
 function getTilesObjectArray(gridTiles){
   // grid coordinates for gridSize
-  let coordinates = [];
-  for (let i = 0; i < gridSize; i ++){
-    for (let j = 0; j < gridSize; j++){
-      coordinates.push([i, j]);
-    }
-  }
+  let coordinates = getCoordinates(gridSize);
   // array of tiles objects to save grid position and assigned number
   let tilesObjectArray = [];
   for (let i = 0; i < gridTiles.length; i++){
@@ -45,6 +41,16 @@ function getTilesObjectArray(gridTiles){
     tilesObjectArray.push(tilesObject);
   }
   return tilesObjectArray;
+}
+
+function getCoordinates(size) {
+  let coordinates = [];
+  for (let i = 0; i < size; i ++){
+    for (let j = 0; j < size; j++){
+      coordinates.push([i, j]);
+    }
+  }
+  return coordinates;
 }
 
 /**
@@ -89,11 +95,34 @@ function getTile(gridTiles, tileHTML) {
   let currentTileIndex = getTilesArray(gridTiles).indexOf(currentTileText);
   let currentTile = getTilesObjectArray(gridTiles)[currentTileIndex];
   console.log(currentTile);
+  return currentTile;
 }
 
-// function isNeighbourEmpty(tilesObjectArray, currentTile) {
-//   let pos = tile.position;
-//   console.log(pos);
+function getNeighbours(currentTile){
+  let position = currentTile.position;
+  let X = position[0];
+  let Y = position[1];
+  console.log(position);
+  let coordinates = getCoordinates(gridSize);
+  // array of possible neighbouring positions
+  let newPositions = [[X-1, Y], [X, Y-1], [X+1, Y], [X, Y+1]];
+  console.log(coordinates, newPositions);
+  // check wether positions are within the grid, if yes push to neighbours array
+  let neighbours = [];
+  for (let newPosition of newPositions){
+    let newX = newPosition[0];
+    let newY = newPosition[1];
+    if (newX >= 0 && newX < gridSize && newY >= 0 && newY < gridSize) {
+      neighbours.push(newPosition);
+    }
+  }
+  console.log(neighbours);
+  return neighbours;
+}
+
+// function isNeighbourEmpty(tilesObjectArray, neighbours) {
+//   let emptyTilePosition = tilesObjectArray.indexOf("0");
+//   console.log(emptyTilePosition);
 // }
 
 function moveTile() {
