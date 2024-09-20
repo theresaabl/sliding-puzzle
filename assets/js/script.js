@@ -6,12 +6,6 @@ let gridSize = 3;  //later: get from user with getGridSize()
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
 
-// // 1d array of tiles
-// let tilesArray = [];
-// for (let tile of gridTiles){
-//   tilesArray.push(tile.textContent);
-// }
-
 // Add event listeners for tiles
 for (let tile of gridTiles) {
   tile.addEventListener("click", function() {
@@ -29,7 +23,7 @@ for (let tile of gridTiles) {
  * This function takes the HTML collection of tiles in the puzzle grid
  * and returns an array of tile objects which contain the coordinates 
  * as well as displayed numbers of the tiles
- * @param {*} gridTiles HTML collection of puzzle tiles
+ * @param {*} gridTiles (HTML collection of puzzle tiles)
  * @returns array of tile objects
  */
 function getTilesObjectArray(gridTiles){
@@ -48,11 +42,23 @@ function getTilesObjectArray(gridTiles){
     tilesObject.number = gridTiles[i].textContent;
     tilesObjectArray.push(tilesObject);
   }
-  console.log(tilesObjectArray);
   return tilesObjectArray;
 }
 
-getTilesObjectArray(gridTiles);
+/**
+ * This function takes the HTML collection of puzzle tiles and
+ * returns a 1d array of the numbers on the tiles
+ * @param {*} gridTiles (HTML collection of puzzle tiles)
+ * @returns 1d array of numbers on tiles
+ */
+function getTilesArray(gridTiles){
+  // 1d array of tiles
+  let tilesArray = [];
+  for (let tile of gridTiles){
+    tilesArray.push(tile.textContent);
+  }
+  return tilesArray;
+}
 
 function runGame() {
 
