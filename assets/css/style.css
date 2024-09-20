@@ -1,0 +1,68 @@
+/* Asterisk wildcard selector to override default styles added by the browser */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+
+body {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    color: #3c5a14;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+
+header {
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    background-color: #598b2c;
+    padding: 1.5rem;
+    z-index: 3;
+}
+
+header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Main Content */
+
+main {
+    /* Let main take up any surplus space */
+    flex: 1 0 auto;
+    /* Account for fixed header and footer */
+    margin-top: 86px;
+    margin-bottom: 51px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Game Area */
+
+#game-area {
+    margin: 2rem;
+    width: 80%;
+    flex: 1 0;
+    max-height: 60vh;
+    background-color: #669d31;
+    padding: 1rem;
+}
+
+/* Footer */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    background-color: #598b2c;
+    z-index: 3;
+}
