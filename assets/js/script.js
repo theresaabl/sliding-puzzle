@@ -13,9 +13,11 @@ for (let tile of gridTiles) {
     let currentTile = getTile(gridTiles, this);
     let tilesObjectArray = getTilesObjectArray(gridTiles);
     console.log(currentTile);
-    let neighbours = getNeighbours(currentTile);
-    // let isNeighbour = isNeighbourEmpty(tilesObjectArray, neighbours);
-    // let emptyTile = document.getElementsByClassName("empty-tile");
+    if (isNeighbourEmpty(gridTiles, currentTile)){
+      console.log("neighbour empty " + getEmptyTile(gridTiles)[1]);
+    } else {
+      console.log("neighbour not empty " + getEmptyTile(gridTiles)[1]);
+    }
     // if (isNeighbourEmpty(this)){
     //   moveTile(this);
     // }
@@ -132,29 +134,26 @@ function getTile(gridTiles, tileHTML) {
 //   }
 // }
 
-function getEmptyTile(tilesObjectArray, gridTiles) {
+function getEmptyTile(gridTiles) {
+  let tilesObjectArray = getTilesObjectArray(gridTiles);
   let tilesArray = getTilesArray(gridTiles);
-  let emptyTilesIndex = tilesArray.indexOf("0");
-  let emptyTile = tilesObjectArray[emptyTilesIndex];
-  return emptyTile;
+  let emptyTileIndex = tilesArray.indexOf("0");
+  let emptyTile = tilesObjectArray[emptyTileIndex];
+  return [emptyTileIndex, emptyTile];
 }
 
-console.log(getEmptyTile(getTilesObjectArray(gridTiles), gridTiles));
-
-// function isNeighbourEmpty(tilesObjectArray, currentTile) {
-//   let emptyTile = getEmptyTilePosition(tilesObjectArray);
-//   let emptyTilePosition = [1];
-//   let currentTilePosition = currentTile.position;
-//   // check if currentTile and emptyTile are neighbours
-//   let neighbourDifferenceArray = [[-1, 0], [0, -1], [1, 0], [0, 1]];
-//   let currentEmptyDiffX = (currentTilePosition - emptyTilePosition)[0];
-//   let currentEmptyDiffY = (currentTilePosition - emptyTilePosition)[1];
-//   if (()||()||()||()) {
-//     return emptyTilePosition;
-//   } else {
-//     return false;
-//   }
-// }
+function isNeighbourEmpty(gridTiles, currentTile) {
+  let emptyTilePosition = getEmptyTile(gridTiles)[1].position;
+  let currentTilePosition = currentTile.position;
+  // check if currentTile and emptyTile are neighbours
+  let DiffX = (currentTilePosition[0] - emptyTilePosition[0]);
+  let DiffY = (currentTilePosition[1] - emptyTilePosition[1]);
+  if ((DiffX === -1 && DiffY === 0)||(DiffX === 0 && DiffY === -1)||(DiffX === 1 && DiffY === 0)||(DiffX === 0 && DiffY === 1)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 function moveTile() {
 
