@@ -70,10 +70,23 @@ main {
     align-items: center;
 }
 
+#game-buttons-container {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
 .game-button {
-    margin: 1rem 2rem;
     padding: .5rem;
     border-radius: 5px;
+    margin-bottom: 1rem;
+    font-family: "Fredoka", sans-serif;
+}
+
+#new-game {
+    margin-right: 1rem;
 }
 
 /* Puzzle container */
