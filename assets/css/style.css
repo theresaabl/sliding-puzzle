@@ -22,6 +22,7 @@ body {
 /* Header */
 
 header {
+    background-color: #f5f5f5;
     position: fixed;
     width: 100%;
     text-align: center;
@@ -49,7 +50,7 @@ main {
     flex: 1 0 auto;
     /* Account for fixed header and footer */
     margin-top: 103px;
-    margin-bottom: 51px;
+    margin-bottom: 76px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,7 +61,7 @@ main {
 #game-area {
     margin: 2rem;
     width: 80%;
-    flex: 1 0;
+    height: 100%;
     background-color: #669d31;
     padding: 1rem;
     display: flex;
@@ -70,7 +71,7 @@ main {
 }
 
 .game-button {
-    margin: 0 2rem;
+    margin: 1rem 2rem;
     padding: .5rem;
     border-radius: 5px;
 }
@@ -112,12 +113,29 @@ main {
     display: none;
 }
 
-.score-text {
-    margin: 0 2rem;
+#game-stats-display {
+    width: 80%;
+    padding-top: 1rem;
+}
+
+#score-stats {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.game-stats-text {
+    padding-bottom: .5rem;
+}
+
+#moves {
+    padding-right: 1rem;
 }
 
 /* Footer */
 footer {
+    background-color: #f5f5f5;
     position: fixed;
     bottom: 0;
     width: 100%;
