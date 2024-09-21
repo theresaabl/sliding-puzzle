@@ -2,12 +2,15 @@
 
 let gridSize = 3;  //later: get from user with getGridSize()
 
-
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
+  createGrid(gridSize);
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
+  console.log(gridTiles);
+  console.log(getTilesArray(gridTiles));
   for (let tile of gridTiles) {
+    console.log(tile);
     tile.addEventListener("click", handleTileClick);
   }
 });
@@ -27,6 +30,15 @@ function handleTileClick(event) {
       tile.addEventListener("click", handleTileClick);
     }
   }
+}
+
+function createGrid(gridSize){
+  let puzzleHTML = document.getElementById("puzzle").innerHTML;
+  for (let i = 1; i < gridSize * gridSize; i++) {
+    puzzleHTML += `<div class="tile-style tile-js"><p>${i}</p></div>`;
+  }
+  puzzleHTML += '<div class="empty-tile tile-js"><p>0</p></div>';
+  document.getElementById("puzzle").innerHTML = puzzleHTML;
 }
   
 /**
