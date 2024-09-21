@@ -1,12 +1,13 @@
 /* jshint esversion: 11 */
 
-let gridSize = 5;  //later: get from user with getGridSize()
+let gridSize = 3;  //later: get from user with getGridSize()
 
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
   createGrid(gridSize);
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
+  randomShuffle(gridTiles);
   for (let tile of gridTiles) {
     tile.addEventListener("click", handleTileClick);
   }
@@ -97,8 +98,23 @@ function getGridSize() {
 
 }
 
-function shuffle() {
-
+// Code inspiration from: https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/
+//Using Fisher-Yates shuffle algorithm
+function randomShuffle(gridTiles) {
+  const tilesOrdered = getTilesArray(gridTiles);
+  let tilesArray = getTilesArray(gridTiles);
+  for (let i = tilesArray.length - 1; i > 0; i--) { 
+    const j = Math.floor(Math.random() * (i + 1)); 
+    [tilesArray[i], tilesArray[j]] = [tilesArray[j], tilesArray[i]]; 
+  }
+  console.log(tilesOrdered);  
+  console.log(tilesArray);
+  //swap tiles based on 1d tilesArray
+  // for (let i = 0; i < tilesOrdered.length; i++){
+  //   let newHTML = gridTiles[tilesArray[i]].outerHTML;
+  //   document.getElementsByClassName("tile-js")[[tilesOrdered[i]]].outerHTML = newHTML;
+  //   console.log(newHTML);
+  // }
 }
 
 function isSolvable() {
