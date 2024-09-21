@@ -8,22 +8,18 @@ document.addEventListener("DOMContentLoaded", function() {
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
   for (let tile of gridTiles) {
-    tile.addEventListener("click", handleClick);
+    tile.addEventListener("click", handleTileClick);
   }
 });
 
-function handleClick(event) {
-  console.log("click");
+function handleTileClick(event) {
   let gridTiles = document.getElementsByClassName("tile-js");
   let currentTile = getTile(gridTiles, this);
-  console.log(currentTile);
   if (isNeighbourEmpty(gridTiles, currentTile)){
-    console.log(getTilesArray(gridTiles));
     moveTile(gridTiles, currentTile);
-    console.log(getTilesArray(gridTiles));
     // After rearranging the tiles need to add event listener again
     for (let tile of gridTiles) {
-      tile.addEventListener("click", handleClick);
+      tile.addEventListener("click", handleTileClick);
     }
   }
 }
