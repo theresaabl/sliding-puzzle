@@ -82,16 +82,12 @@ main {
     /* width and height for development purpose only, not responsive yet */
     width: 420px;
     height: 420px;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
 }
 
 .tile-style {
-    width: 140px;
-    height: 140px;
     border: 2px solid black;
-    /* background-color: #71b340; */
-    background-color: green;
+    background-color: #71b340;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,15 +95,13 @@ main {
 }
 
 .empty-tile {
-    width: 140px;
-    height: 140px;
     border: 2px solid black;
     background-color: gray;
 }
 
-.empty-tile p {
+/* .empty-tile p {
     display: none;
-}
+} */
 
 .score-text {
     margin: 0 2rem;

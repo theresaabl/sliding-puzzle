@@ -1,6 +1,6 @@
 /* jshint esversion: 11 */
 
-let gridSize = 3;  //later: get from user with getGridSize()
+let gridSize = 6;  //later: get from user with getGridSize()
 
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
@@ -33,12 +33,16 @@ function handleTileClick(event) {
 }
 
 function createGrid(gridSize){
-  let puzzleHTML = document.getElementById("puzzle").innerHTML;
+  let puzzle = document.getElementById("puzzle");
+  let puzzleHTML = puzzle.innerHTML;
   for (let i = 1; i < gridSize * gridSize; i++) {
     puzzleHTML += `<div class="tile-style tile-js"><p>${i}</p></div>`;
   }
   puzzleHTML += '<div class="empty-tile tile-js"><p>0</p></div>';
   document.getElementById("puzzle").innerHTML = puzzleHTML;
+  //set styles for grid
+  puzzle.style.gridTemplateColumns = "auto ".repeat(gridSize - 1) + "auto";
+  console.log(`this is the gridtemplatecolumns style: ${puzzle.style.gridTemplateColumns}`)
 }
   
 /**
