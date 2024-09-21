@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function() {
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
   randomShuffle(gridTiles);
+  //still need to check it is solvable!!!
+  isSolvable(gridTiles, gridSize);
   for (let tile of gridTiles) {
     tile.addEventListener("click", handleTileClick);
   }
@@ -107,23 +109,42 @@ function randomShuffle(gridTiles) {
     const j = Math.floor(Math.random() * (i + 1)); 
     [tilesArray[i], tilesArray[j]] = [tilesArray[j], tilesArray[i]]; 
   }
-  console.log(tilesOrdered);  
-  console.log(tilesArray);
-    //save HTML of ordered tiles in a new array
-    let tilesOrderedHTML = [];
-    for (let tile of gridTiles) {
-      tilesOrderedHTML.push(tile.outerHTML);
-    }  
+  //save HTML of ordered tiles in a new array
+  let tilesOrderedHTML = [];
+  for (let tile of gridTiles) {
+    tilesOrderedHTML.push(tile.outerHTML);
+  }  
   //swap tiles based on shuffled 1d tilesArray
   for (let i = 0; i < tilesOrdered.length; i++){
     let newHTML = tilesOrderedHTML[tilesArray[i]];
     document.getElementsByClassName("tile-js")[[tilesOrdered[i]]].outerHTML = newHTML;
-    console.log(newHTML);
   }
 }
 
-function isSolvable() {
+//need inversion counter for isSolvable
+function countInversions(gridTiles) {
+  let tilesArray = getTilesArray(gridTiles);
+  // need array without empty tile
+  tilesArray.splice(tilesArray.indexOf("0"), 1);
+  let invCounter = 0;
+  for (let i = 0; i < tilesArray.length - 1; i++){
+    for (let j = i + 1; j < tilesArray.length; j++){
+      if (tilesArray[i] > tilesArray[j]) {
+        invCounter++;
+      }
+    }
+  }
+  console.log(`Number of inversions: ${invCounter}.`);
+  return invCounter;
+}
 
+//check whether is solvable
+//code inspiration: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+function isSolvable(gridTiles, gridSize) {
+  //need index of row with empty tile from bottom (starting at 1)
+  let emptyTileRow = getEmptyTile(gridTiles)[1].position[0];
+  let emptyTileRowBottom = gridSize - emptyTileRow;
+  countInversions(gridTiles);
 }
 
 /**
