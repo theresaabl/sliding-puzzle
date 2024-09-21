@@ -1,6 +1,6 @@
 /* jshint esversion: 11 */
 
-let gridSize = 3;  //later: get from user with getGridSize()
+let gridSize = 2;  //later: get from user with getGridSize()
 
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
@@ -9,7 +9,11 @@ document.addEventListener("DOMContentLoaded", function() {
   let gridTiles = document.getElementsByClassName("tile-js");
   randomShuffle(gridTiles);
   //still need to check it is solvable!!!
-  isSolvable(gridTiles, gridSize);
+  if (isSolvable(gridTiles, gridSize)){
+    console.log("puzzle solvable");
+  } else {
+    console.log("puzzle is not solvable");
+  }
   for (let tile of gridTiles) {
     tile.addEventListener("click", handleTileClick);
   }
@@ -124,7 +128,7 @@ function randomShuffle(gridTiles) {
 //need inversion counter for isSolvable
 function countInversions(gridTiles) {
   let tilesArray = getTilesArray(gridTiles);
-  // need array without empty tile
+  //need array without empty tile
   tilesArray.splice(tilesArray.indexOf("0"), 1);
   let invCounter = 0;
   for (let i = 0; i < tilesArray.length - 1; i++){
@@ -144,7 +148,27 @@ function isSolvable(gridTiles, gridSize) {
   //need index of row with empty tile from bottom (starting at 1)
   let emptyTileRow = getEmptyTile(gridTiles)[1].position[0];
   let emptyTileRowBottom = gridSize - emptyTileRow;
-  countInversions(gridTiles);
+  //number of inversions in the puzzle
+  let invCount = countInversions(gridTiles);
+  //conditions for puzzle to be solvable
+  //gridSize is odd
+  if (gridSize % 2) {
+    console.log(`grid size ${gridSize} is odd and puzzle solvable if inversions ${invCount} is even.`);
+    return (!(invCount % 2));
+  } else {
+    //gridSize is even
+    //empty tile row index from bottom is even
+    if (!(emptyTileRowBottom % 2)){
+      console.log(`grid size ${gridSize} is even, empty tile row index from bottom ${emptyTileRowBottom} is even and puzzle solvable if inversions ${invCount} is odd.`);
+      //true if invCount odd
+      return (invCount % 2); 
+    } else {
+      //empty tile row index from bottom is odd
+      //true if invCount even
+      console.log(`grid size ${gridSize} is even, empty tile row index from bottom ${emptyTileRowBottom} is odd and puzzle solvable if inversions ${invCount} is even.`);
+      return (!(invCount % 2));
+    }
+  }
 }
 
 /**
