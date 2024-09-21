@@ -1,16 +1,13 @@
 /* jshint esversion: 11 */
 
-let gridSize = 4;  //later: get from user with getGridSize()
+let gridSize = 5;  //later: get from user with getGridSize()
 
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
   createGrid(gridSize);
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
-  console.log(gridTiles);
-  console.log(getTilesArray(gridTiles));
   for (let tile of gridTiles) {
-    console.log(tile);
     tile.addEventListener("click", handleTileClick);
   }
 });
@@ -42,7 +39,8 @@ function createGrid(gridSize){
   document.getElementById("puzzle").innerHTML = puzzleHTML;
   //set styles for grid
   puzzle.style.gridTemplateColumns = "auto ".repeat(gridSize - 1) + "auto";
-  console.log(`this is the gridtemplatecolumns style: ${puzzle.style.gridTemplateColumns}`)
+  // display grid size
+  document.getElementById("grid-size-display").textContent = `Grid: ${gridSize} x ${gridSize}`;
 }
   
 /**
@@ -159,15 +157,11 @@ function isPuzzleSolved(gridTiles) {
   let tilesArray = getTilesArray(gridTiles);
   //check empty tile is in correct place
   if (tilesArray[tilesArray.length - 1] === "0") {
-    console.log("empty correct");
     //check for each tile whether they are in correct position
     for (let i = 1; i < tilesArray.length; i++) {
-      console.log(tilesArray[i - 1], i);
       if (tilesArray[i - 1] !== `${i}`){
-        console.log(i + "tile not correct");
         return false;
       } else {
-        console.log(i + "tile correct");
       }
     }
     return true;
@@ -177,6 +171,6 @@ function isPuzzleSolved(gridTiles) {
 }
 
 function winMessage() {
-  console.log("You win"); //make dialoque later!
+  console.log("You win !!!"); //make dialoque later!
 }
 

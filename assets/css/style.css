@@ -99,6 +99,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* need to make font size responsive (to screen size and to number of tiles) */
     font-size: 200%;
 }
 
