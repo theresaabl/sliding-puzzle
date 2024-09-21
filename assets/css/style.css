@@ -61,7 +61,7 @@ main {
 #game-area {
     margin: 2rem;
     width: 80%;
-    height: 100%;
+    height: 80vh;
     background-color: #669d31;
     padding: 1rem;
     display: flex;
@@ -70,6 +70,7 @@ main {
     align-items: center;
 }
 
+/* Game buttons */
 #game-buttons-container {
     width: 80%;
     display: flex;
@@ -104,7 +105,7 @@ main {
     /* Code inspiration for responsive square from: https://hojelse.medium.com/make-a-truly-responsive-square-in-css-d917f5ef286d */
     aspect-ratio: 1 / 1;
     max-height: 100%;
-    width: 100%;
+    max-width: 100%;
 }
 
 .tile-style {
@@ -126,6 +127,7 @@ main {
     display: none;
 }
 
+/* Game statistics */
 #game-stats-display {
     width: 80%;
     padding-top: 1rem;
