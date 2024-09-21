@@ -3,25 +3,34 @@
 let gridSize = 3;  //later: get from user with getGridSize()
 
 
-// Add event listeners for tiles
+// Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
   for (let tile of gridTiles) {
-    tile.addEventListener("click", function() {
-      console.log("click");
-      let currentTile = getTile(gridTiles, this);
-      console.log(currentTile);
-      if (isNeighbourEmpty(gridTiles, currentTile)){
-        console.log(getTilesArray(gridTiles));
-        moveTile(gridTiles, currentTile);
-        console.log(getTilesArray(gridTiles));
-      } else {
-        console.log("neighbour not empty " + getEmptyTile(gridTiles)[1]);
-      }
-    });
+    tile.addEventListener("click", handleClick);
   }
 });
+
+function handleClick(event) {
+  console.log("click");
+  let gridTiles = document.getElementsByClassName("tile-js");
+  let currentTile = getTile(gridTiles, this);
+  console.log(currentTile);
+  if (isNeighbourEmpty(gridTiles, currentTile)){
+    console.log(getTilesArray(gridTiles));
+    moveTile(gridTiles, currentTile);
+    console.log(getTilesArray(gridTiles));
+    // After rearranging the tiles need to add event listener again
+    for (let tile of gridTiles) {
+      tile.addEventListener("click", handleClick);
+    }
+  } else {
+    console.log("neighbour not empty " + getEmptyTile(gridTiles)[1]);
+  }
+}
+  
+ 
 
 /**
  * This function takes the HTML collection of tiles in the puzzle grid
