@@ -109,12 +109,17 @@ function randomShuffle(gridTiles) {
   }
   console.log(tilesOrdered);  
   console.log(tilesArray);
-  //swap tiles based on 1d tilesArray
-  // for (let i = 0; i < tilesOrdered.length; i++){
-  //   let newHTML = gridTiles[tilesArray[i]].outerHTML;
-  //   document.getElementsByClassName("tile-js")[[tilesOrdered[i]]].outerHTML = newHTML;
-  //   console.log(newHTML);
-  // }
+    //save HTML of ordered tiles in a new array
+    let tilesOrderedHTML = [];
+    for (let tile of gridTiles) {
+      tilesOrderedHTML.push(tile.outerHTML);
+    }  
+  //swap tiles based on shuffled 1d tilesArray
+  for (let i = 0; i < tilesOrdered.length; i++){
+    let newHTML = tilesOrderedHTML[tilesArray[i]];
+    document.getElementsByClassName("tile-js")[[tilesOrdered[i]]].outerHTML = newHTML;
+    console.log(newHTML);
+  }
 }
 
 function isSolvable() {
