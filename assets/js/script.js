@@ -3,26 +3,25 @@
 let gridSize = 3;  //later: get from user with getGridSize()
 
 
+// Add event listeners for tiles
+document.addEventListener("DOMContentLoaded", function() {
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
-
-// Add event listeners for tiles
-for (let tile of gridTiles) {
-  tile.addEventListener("click", function() {
-    this.style.backgroundColor="red";
-    let currentTile = getTile(gridTiles, this);
-    let tilesObjectArray = getTilesObjectArray(gridTiles);
-    console.log(currentTile);
-    if (isNeighbourEmpty(gridTiles, currentTile)){
-      console.log("neighbour empty " + getEmptyTile(gridTiles)[1]);
-    } else {
-      console.log("neighbour not empty " + getEmptyTile(gridTiles)[1]);
-    }
-    // if (isNeighbourEmpty(this)){
-    //   moveTile(this);
-    // }
-  });
-}
+  for (let tile of gridTiles) {
+    tile.addEventListener("click", function() {
+      console.log("click");
+      let currentTile = getTile(gridTiles, this);
+      console.log(currentTile);
+      if (isNeighbourEmpty(gridTiles, currentTile)){
+        console.log(getTilesArray(gridTiles));
+        moveTile(gridTiles, currentTile);
+        console.log(getTilesArray(gridTiles));
+      } else {
+        console.log("neighbour not empty " + getEmptyTile(gridTiles)[1]);
+      }
+    });
+  }
+});
 
 /**
  * This function takes the HTML collection of tiles in the puzzle grid
@@ -96,7 +95,6 @@ function getTile(gridTiles, tileHTML) {
   let currentTileText = tileHTML.textContent;
   let currentTileIndex = getTilesArray(gridTiles).indexOf(currentTileText);
   let currentTile = getTilesObjectArray(gridTiles)[currentTileIndex];
-  console.log(currentTile);
   return currentTile;
 }
 
@@ -155,8 +153,14 @@ function isNeighbourEmpty(gridTiles, currentTile) {
   }
 }
 
-function moveTile() {
-
+function moveTile(gridTiles, currentTile) {
+  let currentTileIndex = getTilesArray(gridTiles).indexOf(currentTile.number);
+  let emptyTileIndex = getEmptyTile(gridTiles)[0];
+  let emptyTileHTML = gridTiles[emptyTileIndex].outerHTML;
+  let currentTileHTML = gridTiles[currentTileIndex].outerHTML;
+  //swap HTML of the two tiles
+  document.getElementsByClassName("tile-js")[emptyTileIndex].outerHTML = currentTileHTML;
+  document.getElementsByClassName("tile-js")[currentTileIndex].outerHTML = emptyTileHTML;
 }
 
 function incrementMoveCounter() {
