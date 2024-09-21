@@ -1,6 +1,6 @@
 /* jshint esversion: 11 */
 
-let gridSize = 6;  //later: get from user with getGridSize()
+let gridSize = 4;  //later: get from user with getGridSize()
 
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
