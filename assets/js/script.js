@@ -25,8 +25,6 @@ function handleClick(event) {
     for (let tile of gridTiles) {
       tile.addEventListener("click", handleClick);
     }
-  } else {
-    console.log("neighbour not empty " + getEmptyTile(gridTiles)[1]);
   }
 }
   
