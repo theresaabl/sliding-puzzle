@@ -1,19 +1,13 @@
 /* jshint esversion: 11 */
 
-let gridSize = 4;  //later: get from user with getGridSize()
+let gridSize = 3;  //later: get from user with getGridSize()
 
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
   createGrid(gridSize);
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
-  randomShuffle(gridTiles);
-  //still need to check it is solvable!!!
-  if (isSolvable(gridTiles, gridSize)){
-    console.log("puzzle solvable");
-  } else {
-    console.log("puzzle is not solvable");
-  }
+  randomShuffle(gridTiles, gridSize);
   for (let tile of gridTiles) {
     tile.addEventListener("click", handleTileClick);
   }
@@ -106,7 +100,7 @@ function getGridSize() {
 
 // Code inspiration from: https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/
 //Using Fisher-Yates shuffle algorithm
-function randomShuffle(gridTiles) {
+function randomShuffle(gridTiles, gridSize) {
   const tilesOrdered = getTilesArray(gridTiles);
   let tilesArray = getTilesArray(gridTiles);
   for (let i = tilesArray.length - 1; i > 0; i--) { 
@@ -122,6 +116,13 @@ function randomShuffle(gridTiles) {
   for (let i = 0; i < tilesOrdered.length; i++){
     let newHTML = tilesOrderedHTML[tilesArray[i]];
     document.getElementsByClassName("tile-js")[[tilesOrdered[i]]].outerHTML = newHTML;
+  }
+  //check that puzzle is solvable (or shuffle again)
+  if (!isSolvable(gridTiles, gridSize)){
+    console.log("puzzle not solvable.")
+    randomShuffle(gridTiles,gridSize);
+  } else {
+    console.log("puzzle is solvable");
   }
 }
 
