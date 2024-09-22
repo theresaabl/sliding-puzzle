@@ -24,10 +24,48 @@
     <!-- Main Content -->
     <main>
 
+        <!-- <dialog data-modal class="modal" id="landing-page-dialog">
+            <div>
+                <h2>Start a new game:</h2>
+                <label for="player-name">Your name: </label>
+                <input type="text" id="player-name">
+                <br>
+                <label for = "grid-size-input">Choose your grid size: </label>
+                <select type="select" id="grid-size-input">
+                    <option value="2x2">2 x 2</option>
+                    <option value="3x3">3 x 3</option>
+                    <option value="4x4">4 x 4</option>
+                    <option value="5x5">5 x 5</option>
+                    <option value="6x6">6 x 6</option>
+                    <option value="7x7">7 x 7</option>
+                </select>
+                <br>
+                <button data-close-modal>Start game</button>
+            </div>
+        </dialog> -->
+
+        <dialog data-modal class="modal" id="new-game-dialog">
+            <form method="dialog">
+                <h2>Start a new game:</h2>
+                <label for = "grid-size-input">Choose your grid size: </label>
+                <select type="select" id="grid-size-input">
+                    <option value="2x2">2 x 2</option>
+                    <option value="3x3">3 x 3</option>
+                    <option value="4x4">4 x 4</option>
+                    <option value="5x5">5 x 5</option>
+                    <option value="6x6">6 x 6</option>
+                    <option value="7x7">7 x 7</option>
+                </select>
+                <br>
+                <button type="submit">Start game</button>
+                <button type="submit" formmethod="dialog">Close</button>
+            </form>
+        </dialog>
+
         <!-- Game area -->
         <section id="game-area">
             <div id="game-buttons-container">
-                <button class="game-button" id="new-game">New Game</button>
+                <button data-open-modal class = "game-button" id = "new-game">New game</button>
                 <button class="game-button" id="reshuffle">Reshuffle</button>
             </div>
             <div id="puzzle-container">

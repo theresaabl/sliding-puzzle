@@ -1,5 +1,33 @@
 /* jshint esversion: 11 */
 
+//code for the new game modal
+//https://blog.webdevsimplified.com/2023-04/html-dialog/
+const openButton = document.querySelector("[data-open-modal]");
+const newGameModal = document.querySelector("[data-modal]");
+
+openButton.addEventListener("click", function() {
+  newGameModal.showModal()
+});
+
+//https://blog.webdevsimplified.com/2023-04/html-dialog/
+newGameModal.addEventListener("click", e => {
+  //get position and dimensions of the modal relative to viewport
+  //backdrop is child element of modal, so if backdrop clicked, evenListener works
+  const newGameModalDimensions = newGameModal.getBoundingClientRect()
+  //if click inside modal nothing happens
+  if (
+    e.clientX < newGameModalDimensions.left ||
+    e.clientX > newGameModalDimensions.right ||
+    e.clientY < newGameModalDimensions.top ||
+    e.clientY > newGameModalDimensions.bottom
+  ) {
+    //click outside: modal closes
+    newGameModal.close()
+  }
+})
+
+
+
 let gridSize = 3;  //later: get from user with getGridSize()
 
 // Add event listeners for tiles once Dom content is loaded
