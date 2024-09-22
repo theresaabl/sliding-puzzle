@@ -2,10 +2,10 @@
 
 //code for the new game modal
 //https://blog.webdevsimplified.com/2023-04/html-dialog/
-const openButton = document.querySelector("[data-open-modal]");
-const newGameModal = document.querySelector("[data-modal]");
+const newGameButton = document.getElementById("new-game-button");
+const newGameModal = document.getElementById("new-game-modal");
 
-openButton.addEventListener("click", function() {
+newGameButton.addEventListener("click", function() {
   newGameModal.showModal()
 });
 
@@ -26,12 +26,39 @@ newGameModal.addEventListener("click", e => {
   }
 })
 
+//set default grid size
+//let gridSize = 3;  //later: get from user with getGridSize()
 
-
-let gridSize = 3;  //later: get from user with getGridSize()
 
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
+  //show modal on first page load
+  document.getElementById("landing-modal").showModal();
+  //handle form in landing modal to get player name and grid size
+  let landingForm = document.getElementById("landing-form");
+  landingForm.addEventListener("submit", handleLandingFormSubmit);
+});
+
+
+function handleLandingFormSubmit(event) {
+  event.preventDefault();
+  let playerName = this.elements["player-name-input"].value;
+  let gridSize = this.elements["grid-size-input"].value;
+  // display grid size
+  document.getElementById("grid-size-display").textContent = `${gridSize}`;
+  //save playername
+  document.getElementsByClassName("player-name").textContent = `Player name: ${playerName}`;
+  this.submit();
+  //run game when landing form is submitted
+  runGame();
+}
+
+function runGame() {
+  console.log("rungame");
+  let gridSize = document.getElementById("grid-size-display").textContent;
+  gridSize = parseInt(gridSize[0]);
+  console.log(document.getElementById("grid-size-display").textContent);
+  console.log(gridSize);
   createGrid(gridSize);
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
@@ -39,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
   for (let tile of gridTiles) {
     tile.addEventListener("click", handleTileClick);
   }
-});
+}
 
 function handleTileClick(event) {
   let gridTiles = document.getElementsByClassName("tile-js");
@@ -68,8 +95,6 @@ function createGrid(gridSize){
   document.getElementById("puzzle").innerHTML = puzzleHTML;
   //set styles for grid
   puzzle.style.gridTemplateColumns = "auto ".repeat(gridSize - 1) + "auto";
-  // display grid size
-  document.getElementById("grid-size-display").textContent = `Grid: ${gridSize} x ${gridSize}`;
 }
   
 /**
@@ -116,10 +141,6 @@ function getTilesArray(gridTiles){
     tilesArray.push(tile.textContent);
   }
   return tilesArray;
-}
-
-function runGame() {
-
 }
 
 function getGridSize() {

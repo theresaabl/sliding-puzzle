@@ -23,12 +23,13 @@
 
     <!-- Main Content -->
     <main>
-
-        <!-- <dialog data-modal class="modal" id="landing-page-dialog">
+        <!-- Modal shows upon loading the page -->
+        <dialog data-modal class="modal" id="landing-modal">
             <div>
+            <form method="dialog" id="landing-form">
                 <h2>Start a new game:</h2>
-                <label for="player-name">Your name: </label>
-                <input type="text" id="player-name">
+                <label for="player-name-input">Your name: </label>
+                <input type="text" id="player-name-input" required>
                 <br>
                 <label for = "grid-size-input">Choose your grid size: </label>
                 <select type="select" id="grid-size-input">
@@ -40,11 +41,12 @@
                     <option value="7x7">7 x 7</option>
                 </select>
                 <br>
-                <button data-close-modal>Start game</button>
-            </div>
-        </dialog> -->
+                <button type="submit">Start game</button>
+            </form>
+        </dialog>
 
-        <dialog data-modal class="modal" id="new-game-dialog">
+        <!-- Modal shows when new game button is clicked -->
+        <dialog data-modal class="modal" id="new-game-modal">
             <form method="dialog">
                 <h2>Start a new game:</h2>
                 <label for = "grid-size-input">Choose your grid size: </label>
@@ -59,14 +61,35 @@
                 <br>
                 <button type="submit">Start game</button>
                 <button type="submit" formmethod="dialog">Close</button>
+                <!-- <button data-close-modal id="close-landing-modal">Close</button> -->
+            </form>
+        </dialog>
+
+        <!-- Modal shows when leaderboard button is clicked -->
+        <dialog data-modal class="modal" id="leaderboard-modal">
+            <p class="player-name"></p>
+                <!-- <button data-close-modal id="close-landing-modal">Close</button> -->
+            </form>
+        </dialog>
+
+        <!-- Win message modal -->
+        <dialog data-modal class="modal" id="win-message-modal">
+            <p class="player-name"></p>
+                <!-- <button data-close-modal id="close-landing-modal">Close</button> -->
+            </form>
+        </dialog>
+
+        <!-- Rules modal -->
+        <dialog data-modal class="modal" id="rules-modal">
+                <!-- <button data-close-modal id="close-landing-modal">Close</button> -->
             </form>
         </dialog>
 
         <!-- Game area -->
         <section id="game-area">
             <div id="game-buttons-container">
-                <button data-open-modal class = "game-button" id = "new-game">New game</button>
-                <button class="game-button" id="reshuffle">Reshuffle</button>
+                <button data-open-modal class = "game-button" id = "new-game-button">New game</button>
+                <button class="game-button" id="reshuffle-button">Reshuffle</button>
             </div>
             <div id="puzzle-container">
                 <div id="puzzle">
@@ -78,7 +101,7 @@
                     <p class="game-stats-text" id="moves">Moves: 0</p>
                     <p class="game-stats-text" id="timer">Timer: 00:00</p>
                 </div>
-                <p class="game-stats-text" id="grid-size-display">Grid: 0 x 0</p>
+                <p class="game-stats-text">Grid: <span id="grid-size-display">0 x 0</span></p>
             </div>
         </section>
 
