@@ -69,9 +69,12 @@ function runGame() {
 }
 
 function handleTileClick(event) {
+  let gridSize = document.getElementById("grid-size-display").textContent;
+  gridSize = parseInt(gridSize[0]);
+  console.log(`grid size inside click event handler is ${gridSize}`);
   let gridTiles = document.getElementsByClassName("tile-js");
-  let currentTile = getTile(gridTiles, this);
-  if (isNeighbourEmpty(gridTiles, currentTile)){
+  let currentTile = getTile(gridTiles, gridSize, this);
+  if (isNeighbourEmpty(gridTiles, gridSize, currentTile)){
     moveTile(gridTiles, currentTile);
     //check whether puzzle is solved
     if (isPuzzleSolved(gridTiles)){
@@ -104,7 +107,7 @@ function createGrid(gridSize){
  * @param {*} gridTiles (HTML collection of puzzle tiles)
  * @returns array of tile objects
  */
-function getTilesObjectArray(gridTiles){
+function getTilesObjectArray(gridTiles, gridSize){
   // grid coordinates for gridSize
   let coordinates = getCoordinates(gridSize);
   // array of tiles objects to save grid position and assigned number
@@ -143,9 +146,9 @@ function getTilesArray(gridTiles){
   return tilesArray;
 }
 
-function getGridSize() {
+// function getGridSize() {
 
-}
+// }
 
 // Code inspiration from: https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/
 //Using Fisher-Yates shuffle algorithm
@@ -196,7 +199,7 @@ function countInversions(gridTiles) {
 //code inspiration: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
 function isSolvable(gridTiles, gridSize) {
   //need index of row with empty tile from bottom (starting at 1)
-  let emptyTileRow = getEmptyTile(gridTiles)[1].position[0];
+  let emptyTileRow = getEmptyTile(gridTiles, gridSize)[1].position[0];
   let emptyTileRowBottom = gridSize - emptyTileRow;
   //number of inversions in the puzzle
   let invCount = countInversions(gridTiles);
@@ -227,23 +230,23 @@ function isSolvable(gridTiles, gridSize) {
  * @param {*} gridTiles 
  * @param {*} tileHTML 
  */
-function getTile(gridTiles, tileHTML) {
+function getTile(gridTiles, gridSize, tileHTML) {
   let currentTileText = tileHTML.textContent;
   let currentTileIndex = getTilesArray(gridTiles).indexOf(currentTileText);
-  let currentTile = getTilesObjectArray(gridTiles)[currentTileIndex];
+  let currentTile = getTilesObjectArray(gridTiles, gridSize)[currentTileIndex];
   return currentTile;
 }
 
-function getEmptyTile(gridTiles) {
-  let tilesObjectArray = getTilesObjectArray(gridTiles);
+function getEmptyTile(gridTiles, gridSize) {
+  let tilesObjectArray = getTilesObjectArray(gridTiles, gridSize);
   let tilesArray = getTilesArray(gridTiles);
   let emptyTileIndex = tilesArray.indexOf("0");
   let emptyTile = tilesObjectArray[emptyTileIndex];
   return [emptyTileIndex, emptyTile];
 }
 
-function isNeighbourEmpty(gridTiles, currentTile) {
-  let emptyTilePosition = getEmptyTile(gridTiles)[1].position;
+function isNeighbourEmpty(gridTiles, gridSize, currentTile) {
+  let emptyTilePosition = getEmptyTile(gridTiles, gridSize)[1].position;
   let currentTilePosition = currentTile.position;
   // check if currentTile and emptyTile are neighbours
   let DiffX = (currentTilePosition[0] - emptyTilePosition[0]);
