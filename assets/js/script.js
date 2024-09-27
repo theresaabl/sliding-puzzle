@@ -1,8 +1,8 @@
 /* jshint esversion: 11 */
 
-//code inspiration for modals
-//https://blog.webdevsimplified.com/2023-04/html-dialog/
+//Event Listeners
 
+//code inspiration for modals: https://blog.webdevsimplified.com/2023-04/html-dialog/
 //Add event listeners to buttons to show and call further functions
 document.getElementById("new-game-button").addEventListener("click", function() {
   document.getElementById("new-game-modal").showModal();
@@ -29,7 +29,8 @@ document.getElementById("close-rules-modal").addEventListener("click", function(
 
 //Add event listeners to modals to close them when clicked outside of it
 document.getElementById("new-game-modal").addEventListener("click", handleModalClick);
-
+document.getElementById("leaderboard-modal").addEventListener("click", handleModalClick);
+document.getElementById("rules-modal").addEventListener("click", handleModalClick);
 
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
