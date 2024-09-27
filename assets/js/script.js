@@ -73,16 +73,68 @@ function handleNewGameFormSubmit(event) {
   runGame();
 }
 
+
+// ///////////////////////////////////////////////
+// code inspiration for timer from: https://dev.to/walternascimentobarroso/creating-a-timer-with-javascript-8b7
+//figure out how to do without global variables
+let second = 0;
+let minute = 0;
+let hour = 0;
+let timerInterval;
+
+function startTimer() {
+  //call function timer every 1000ms
+  timerInterval = setInterval(timer, 1000);
+}
+
+function timer() {
+  second++
+
+  if (second == 60) {
+    second = 0;
+    minute++;
+  }
+  if (minute == 60) {
+    minute = 0;
+    hour++;
+  }
+
+  // check how to display time, depending on number of digits
+  //seconds
+  let secondString = second < 10 ? `0${second}` : `${second}`;
+  document.getElementById("seconds-display").textContent = secondString;
+  //minutes
+  let minuteString = minute < 10 ? `0${minute}` : `${minute}`;
+  //if minutes more than 60:
+  if (hour > 0) {
+    hourString = hour < 10 ? `0${hour}` : `${hour}`;
+    minuteString = `${hourString}:${minuteString}`;
+  } 
+  document.getElementById("minutes-display").textContent = minuteString;
+}
+
+function stopTimer() { 
+   clearInterval(timerInterval); //stops timer 
+}
+// /////////////////////////////////////////////////////////
+
+
 function runGame() {
   //reset grid every time game is run
   document.getElementById("puzzle").innerHTML = "";
   //reset move counter and timer
   document.getElementById("moves-display").textContent = "0";
-  document.getElementById("timer-display").textContent = "00:00";
+  second = 0;
+  minute = 0;
+  hour = 0;
+  document.getElementById("minutes-display").textContent = "00";
+  document.getElementById("seconds-display").textContent = "00";
   //create puzzle grid
   let gridSize = document.getElementById("grid-size-display").textContent;
   gridSize = parseInt(gridSize[0]);
   createGrid(gridSize);
+  //start timer
+  startTimer();
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
   randomShuffle(gridTiles, gridSize);
@@ -333,6 +385,7 @@ function isPuzzleSolved(gridTiles) {
 }
 
 function winMessage() {
+  stopTimer();
   let winModal = document.getElementById("win-modal");
   winModal.showModal();
   let winModalForm = document.getElementById("win-form");
@@ -367,3 +420,4 @@ function handleModalClick(event) {
     this.close()
   }
 }
+
