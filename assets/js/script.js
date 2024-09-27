@@ -16,15 +16,12 @@ document.getElementById("rules-icon").addEventListener("click", function() {
   document.getElementById("rules-modal").showModal();
 });
 
-//buttons to close modals (all except landing modal)
+//buttons to close modals (all except landing modal and win modal)
 document.getElementById("close-new-game-modal").addEventListener("click", function() {
   document.getElementById("new-game-modal").close();
 });
 document.getElementById("close-leaderboard-modal").addEventListener("click", function() {
   document.getElementById("leaderboard-modal").close();
-});
-document.getElementById("close-win-modal").addEventListener("click", function() {
-  document.getElementById("win-modal").close();
 });
 document.getElementById("close-rules-modal").addEventListener("click", function() {
   document.getElementById("rules-modal").close();
@@ -93,8 +90,8 @@ function handleTileClick(event) {
     moveTile(gridTiles, currentTile);
     //check whether puzzle is solved
     if (isPuzzleSolved(gridTiles)){
+      //show win message and start new game with user input grid size
       winMessage();
-      //newgame
     }
     // After rearranging the tiles need to add event listener again
     for (let tile of gridTiles) {
@@ -299,7 +296,21 @@ function isPuzzleSolved(gridTiles) {
 }
 
 function winMessage() {
-  console.log("You win !!!"); //make dialoque later!
+  let winModal = document.getElementById("win-modal");
+  winModal.showModal();
+  let winModalForm = document.getElementById("win-form");
+  winModalForm.addEventListener("submit", handleWinFormSubmit);
+}
+
+function handleWinFormSubmit(event) {
+  event.preventDefault();
+  //get grid size user input
+  let gridSize = this.elements["grid-size-input-win"].value;
+  // display grid size
+  document.getElementById("grid-size-display").textContent = `${gridSize}`;
+  this.submit();
+  //run game when new game form is submitted
+  runGame();
 }
 
 //Modal is closed when click outside of it, use for most modals (not landing modal)

@@ -83,10 +83,21 @@
 
         <!-- Win message modal -->
         <dialog data-modal class="modal" id="win-modal">
-            <button data-close-modal id="close-win-modal">x</button>
             <p class="player-name"></p>
             <h2>You won!</h2>
-            <h3>Start a new game</h3>
+            <form method="dialog" id="win-form">
+                <h3>Start a new game:</h3>
+                <label for = "grid-size-input-win">Choose puzzle size: </label>
+                <select type="select" id="grid-size-input-win">
+                    <option value="2x2">2 x 2</option>
+                    <option value="3x3">3 x 3</option>
+                    <option value="4x4">4 x 4</option>
+                    <option value="5x5">5 x 5</option>
+                    <option value="6x6">6 x 6</option>
+                    <option value="7x7">7 x 7</option>
+                </select>
+                <br>
+                <button type="submit" id = "submit-win-form">Start game</button>
             </form>
         </dialog>
 
