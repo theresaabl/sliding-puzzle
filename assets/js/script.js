@@ -26,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("landing-form").addEventListener("submit", handleLandingFormSubmit);
 });
 
+//Add event listener to reshuffle button
+//starts a new game but not changing the grid size, allows the user to quickly reshuffle the puzzle
+document.getElementById("reshuffle-button").addEventListener("click", runGame);
 
 function handleLandingFormSubmit(event) {
   event.preventDefault();
@@ -42,8 +45,6 @@ function handleLandingFormSubmit(event) {
 
 function handleNewGameFormSubmit(event) {
   event.preventDefault();
-  //reset grid
-  document.getElementById("puzzle").innerHTML = "";
   //get grid size user input
   let gridSize = this.elements["grid-size-input-new-game"].value;
   // display grid size
@@ -54,6 +55,8 @@ function handleNewGameFormSubmit(event) {
 }
 
 function runGame() {
+  //reset grid every time game is run
+  document.getElementById("puzzle").innerHTML = "";
   let gridSize = document.getElementById("grid-size-display").textContent;
   gridSize = parseInt(gridSize[0]);
   createGrid(gridSize);
