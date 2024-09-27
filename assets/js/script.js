@@ -5,14 +5,20 @@
 //code inspiration for modals: https://blog.webdevsimplified.com/2023-04/html-dialog/
 //Add event listeners to buttons to show and call further functions
 document.getElementById("new-game-button").addEventListener("click", function() {
+  //pause timer when modal open
+  stopTimer();
   document.getElementById("new-game-modal").showModal();
   //handle form in new game modal to get grid size
   document.getElementById("new-game-form").addEventListener("submit", handleNewGameFormSubmit);
 });
 document.getElementById("leaderboard-icon").addEventListener("click", function() {
+  //pause timer when modal open
+  stopTimer();
   document.getElementById("leaderboard-modal").showModal();
 });
 document.getElementById("rules-icon").addEventListener("click", function() {
+  //pause timer when modal open
+  stopTimer();
   document.getElementById("rules-modal").showModal();
 });
 
@@ -35,6 +41,12 @@ document.getElementById("new-game-modal").addEventListener("click", handleModalC
 document.getElementById("win-modal").addEventListener("click", handleModalClick);
 document.getElementById("leaderboard-modal").addEventListener("click", handleModalClick);
 document.getElementById("rules-modal").addEventListener("click", handleModalClick);
+
+//Add event listeners when modals closed to start timer again
+document.getElementById("new-game-modal").addEventListener("close", startTimer);
+document.getElementById("win-modal").addEventListener("close", startTimer);
+document.getElementById("leaderboard-modal").addEventListener("close", startTimer);
+document.getElementById("rules-modal").addEventListener("close", startTimer);
 
 
 // Add event listeners for tiles once Dom content is loaded
