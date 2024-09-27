@@ -23,17 +23,23 @@
 
     <!-- Main Content -->
     <main>
+        <!-- Code for modals inspired by https://blog.webdevsimplified.com/2023-04/html-dialog/ -->
         <!-- Modal shows upon loading the page -->
         <dialog data-modal class="modal" id="landing-modal">
             <div>
             <form method="dialog" id="landing-form">
-                <h2>Start a new game:</h2>
-                <label for="player-name-input">Your name: </label>
+                <h2>Welcome to the sliding puzzle game</h2>
+                <p>Where you can play classic sliding puzzles in many different sizes.
+                    <br>
+                    The goal is to sort the numbers into ascending order by clicking on the tiles to move them.
+                    <br>
+                    Before starting the game please fill in the following:</p>
+                <label for="player-name-input">Enter player name: </label>
                 <!-- add required, once development is done! -->
                 <input type="text" id="player-name-input">
                 <br>
-                <label for = "grid-size-input">Choose your grid size: </label>
-                <select type="select" id="grid-size-input">
+                <label for = "grid-size-input-landing">Choose puzzle size: </label>
+                <select type="select" id="grid-size-input-landing">
                     <option value="2x2">2 x 2</option>
                     <option value="3x3">3 x 3</option>
                     <option value="4x4">4 x 4</option>
@@ -48,10 +54,11 @@
 
         <!-- Modal shows when new game button is clicked -->
         <dialog data-modal class="modal" id="new-game-modal">
-            <form method="dialog">
+            <button data-close-modal id="close-new-game-modal">x</button>
+            <form method="dialog" id="new-game-form">
                 <h2>Start a new game:</h2>
-                <label for = "grid-size-input">Choose your grid size: </label>
-                <select type="select" id="grid-size-input">
+                <label for = "grid-size-input-new-game">Choose puzzle size: </label>
+                <select type="select" id="grid-size-input-new-game">
                     <option value="2x2">2 x 2</option>
                     <option value="3x3">3 x 3</option>
                     <option value="4x4">4 x 4</option>
@@ -60,9 +67,7 @@
                     <option value="7x7">7 x 7</option>
                 </select>
                 <br>
-                <button type="submit">Start game</button>
-                <button type="submit" formmethod="dialog">Close</button>
-                <!-- <button data-close-modal id="close-landing-modal">Close</button> -->
+                <button type="submit" id = "submit-new-game-form">Start game</button>
             </form>
         </dialog>
 

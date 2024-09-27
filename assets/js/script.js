@@ -1,33 +1,21 @@
 /* jshint esversion: 11 */
 
-//code for the new game modal
+//code inspiration for modals
 //https://blog.webdevsimplified.com/2023-04/html-dialog/
-const newGameButton = document.getElementById("new-game-button");
-const newGameModal = document.getElementById("new-game-modal");
 
-newGameButton.addEventListener("click", function() {
-  newGameModal.showModal()
+//Add event listeners to buttons to show and close modals and call further functions
+document.getElementById("new-game-button").addEventListener("click", function() {
+  document.getElementById("new-game-modal").showModal();
+  //handle form in new game modal to get grid size
+  document.getElementById("new-game-form").addEventListener("submit", handleNewGameFormSubmit);
+});
+document.getElementById("close-new-game-modal").addEventListener("click", function() {
+  document.getElementById("new-game-modal").close();
 });
 
-//https://blog.webdevsimplified.com/2023-04/html-dialog/
-newGameModal.addEventListener("click", e => {
-  //get position and dimensions of the modal relative to viewport
-  //backdrop is child element of modal, so if backdrop clicked, evenListener works
-  const newGameModalDimensions = newGameModal.getBoundingClientRect()
-  //if click inside modal nothing happens
-  if (
-    e.clientX < newGameModalDimensions.left ||
-    e.clientX > newGameModalDimensions.right ||
-    e.clientY < newGameModalDimensions.top ||
-    e.clientY > newGameModalDimensions.bottom
-  ) {
-    //click outside: modal closes
-    newGameModal.close()
-  }
-})
 
-//set default grid size
-//let gridSize = 3;  //later: get from user with getGridSize()
+//Add event listeners to modals to close them when clicked outside of it
+document.getElementById("new-game-modal").addEventListener("click", handleModalClick);
 
 
 // Add event listeners for tiles once Dom content is loaded
@@ -35,15 +23,14 @@ document.addEventListener("DOMContentLoaded", function() {
   //show modal on first page load
   document.getElementById("landing-modal").showModal();
   //handle form in landing modal to get player name and grid size
-  let landingForm = document.getElementById("landing-form");
-  landingForm.addEventListener("submit", handleLandingFormSubmit);
+  document.getElementById("landing-form").addEventListener("submit", handleLandingFormSubmit);
 });
 
 
 function handleLandingFormSubmit(event) {
   event.preventDefault();
   let playerName = this.elements["player-name-input"].value;
-  let gridSize = this.elements["grid-size-input"].value;
+  let gridSize = this.elements["grid-size-input-landing"].value;
   // display grid size
   document.getElementById("grid-size-display").textContent = `${gridSize}`;
   //save playername
@@ -53,12 +40,22 @@ function handleLandingFormSubmit(event) {
   runGame();
 }
 
+function handleNewGameFormSubmit(event) {
+  event.preventDefault();
+  //reset grid
+  document.getElementById("puzzle").innerHTML = "";
+  //get grid size user input
+  let gridSize = this.elements["grid-size-input-new-game"].value;
+  // display grid size
+  document.getElementById("grid-size-display").textContent = `${gridSize}`;
+  this.submit();
+  //run game when new game form is submitted
+  runGame();
+}
+
 function runGame() {
-  console.log("rungame");
   let gridSize = document.getElementById("grid-size-display").textContent;
   gridSize = parseInt(gridSize[0]);
-  console.log(document.getElementById("grid-size-display").textContent);
-  console.log(gridSize);
   createGrid(gridSize);
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
@@ -71,7 +68,6 @@ function runGame() {
 function handleTileClick(event) {
   let gridSize = document.getElementById("grid-size-display").textContent;
   gridSize = parseInt(gridSize[0]);
-  console.log(`grid size inside click event handler is ${gridSize}`);
   let gridTiles = document.getElementsByClassName("tile-js");
   let currentTile = getTile(gridTiles, gridSize, this);
   if (isNeighbourEmpty(gridTiles, gridSize, currentTile)){
@@ -172,10 +168,7 @@ function randomShuffle(gridTiles, gridSize) {
   }
   //check that puzzle is solvable (or shuffle again)
   if (!isSolvable(gridTiles, gridSize)){
-    console.log("puzzle not solvable.")
     randomShuffle(gridTiles,gridSize);
-  } else {
-    console.log("puzzle is solvable");
   }
 }
 
@@ -192,7 +185,6 @@ function countInversions(gridTiles) {
       }
     }
   }
-  console.log(`Number of inversions: ${invCounter}.`);
   return invCounter;
 }
 
@@ -207,19 +199,16 @@ function isSolvable(gridTiles, gridSize) {
   //conditions for puzzle to be solvable
   //gridSize is odd
   if (gridSize % 2) {
-    console.log(`grid size ${gridSize} is odd and puzzle solvable if inversions ${invCount} is even.`);
     return (!(invCount % 2));
   } else {
     //gridSize is even
     //empty tile row index from bottom is even
     if (!(emptyTileRowBottom % 2)){
-      console.log(`grid size ${gridSize} is even, empty tile row index from bottom ${emptyTileRowBottom} is even and puzzle solvable if inversions ${invCount} is odd.`);
       //true if invCount odd
       return (invCount % 2); 
     } else {
       //empty tile row index from bottom is odd
       //true if invCount even
-      console.log(`grid size ${gridSize} is even, empty tile row index from bottom ${emptyTileRowBottom} is odd and puzzle solvable if inversions ${invCount} is even.`);
       return (!(invCount % 2));
     }
   }
@@ -294,3 +283,20 @@ function winMessage() {
   console.log("You win !!!"); //make dialoque later!
 }
 
+//Modal is closed when click outside of it, use for most modals (not landing modal)
+//https://blog.webdevsimplified.com/2023-04/html-dialog/
+function handleModalClick(event) {
+  //get position and dimensions of the modal relative to viewport
+  //backdrop is child element of modal, so if backdrop clicked, evenListener works
+  const modalDimensions = this.getBoundingClientRect()
+  //if click inside modal nothing happens
+  if (
+    event.clientX < modalDimensions.left ||
+    event.clientX > modalDimensions.right ||
+    event.clientY < modalDimensions.top ||
+    event.clientY > modalDimensions.bottom
+  ) {
+    //click outside: modal closes
+    this.close()
+  }
+}
