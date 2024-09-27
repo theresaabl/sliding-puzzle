@@ -15,8 +15,8 @@
         <h1 id="logo">
             <a href="index.html">Sliding Puzzle</a>
             <span id="header-icons">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-circle-info"></i>
+                <i class="fa-solid fa-star" id = "leaderboard-icon"></i>
+                <i class="fa-solid fa-circle-info" id = "rules-icon"></i>
             </span>
         </h1>
     </header>
@@ -73,21 +73,31 @@
 
         <!-- Leaderboard modal -->
         <dialog data-modal class="modal" id="leaderboard-modal">
+            <button data-close-modal id="close-leaderboard-modal">x</button>
+            <h2>Leaderboard</h2>
             <p class="player-name"></p>
-                <!-- <button data-close-modal id="close-landing-modal">Close</button> -->
+            <h3>Least Moves:</h3>
+            <h3>Best Time:</h3>
             </form>
         </dialog>
 
         <!-- Win message modal -->
-        <dialog data-modal class="modal" id="win-message-modal">
+        <dialog data-modal class="modal" id="win-modal">
+            <button data-close-modal id="close-win-modal">x</button>
             <p class="player-name"></p>
-                <!-- <button data-close-modal id="close-landing-modal">Close</button> -->
+            <h2>You won!</h2>
+            <h3>Start a new game</h3>
             </form>
         </dialog>
 
         <!-- Rules modal -->
         <dialog data-modal class="modal" id="rules-modal">
-                <!-- <button data-close-modal id="close-landing-modal">Close</button> -->
+            <button data-close-modal id="close-rules-modal">x</button>
+            <h2>Sliding Game puzzle</h2>
+            <p>What it is</p>
+            <p>How it works</p>
+            <p>Controls</p>
+            <p>Score</p>
             </form>
         </dialog>
 

@@ -3,16 +3,32 @@
 //code inspiration for modals
 //https://blog.webdevsimplified.com/2023-04/html-dialog/
 
-//Add event listeners to buttons to show and close modals and call further functions
+//Add event listeners to buttons to show and call further functions
 document.getElementById("new-game-button").addEventListener("click", function() {
   document.getElementById("new-game-modal").showModal();
   //handle form in new game modal to get grid size
   document.getElementById("new-game-form").addEventListener("submit", handleNewGameFormSubmit);
 });
+document.getElementById("leaderboard-icon").addEventListener("click", function() {
+  document.getElementById("leaderboard-modal").showModal();
+});
+document.getElementById("rules-icon").addEventListener("click", function() {
+  document.getElementById("rules-modal").showModal();
+});
+
+//buttons to close modals (all except landing modal)
 document.getElementById("close-new-game-modal").addEventListener("click", function() {
   document.getElementById("new-game-modal").close();
 });
-
+document.getElementById("close-leaderboard-modal").addEventListener("click", function() {
+  document.getElementById("leaderboard-modal").close();
+});
+document.getElementById("close-win-modal").addEventListener("click", function() {
+  document.getElementById("win-modal").close();
+});
+document.getElementById("close-rules-modal").addEventListener("click", function() {
+  document.getElementById("rules-modal").close();
+});
 
 //Add event listeners to modals to close them when clicked outside of it
 document.getElementById("new-game-modal").addEventListener("click", handleModalClick);
