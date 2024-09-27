@@ -76,6 +76,10 @@ function handleNewGameFormSubmit(event) {
 function runGame() {
   //reset grid every time game is run
   document.getElementById("puzzle").innerHTML = "";
+  //reset move counter and timer
+  document.getElementById("moves-display").textContent = "0";
+  document.getElementById("timer-display").textContent = "00:00";
+  //create puzzle grid
   let gridSize = document.getElementById("grid-size-display").textContent;
   gridSize = parseInt(gridSize[0]);
   createGrid(gridSize);
@@ -94,6 +98,7 @@ function handleTileClick(event) {
   let currentTile = getTile(gridTiles, gridSize, this);
   if (isNeighbourEmpty(gridTiles, gridSize, currentTile)){
     moveTile(gridTiles, currentTile);
+    incrementMoveCounter();
     //check whether puzzle is solved
     if (isPuzzleSolved(gridTiles)){
       //show win message and start new game with user input grid size
@@ -217,8 +222,6 @@ function randomShuffle(gridTiles, gridSize) {
   } while (!solvable || ordered);
 }
 
-
-
 //need inversion counter for isSolvable
 function countInversions(gridTiles) {
   let tilesArray = getTilesArray(gridTiles);
@@ -306,7 +309,10 @@ function moveTile(gridTiles, currentTile) {
 }
 
 function incrementMoveCounter() {
-
+  let moveCount = document.getElementById("moves-display");
+  let moveCountInt = parseInt(moveCount.textContent);
+  moveCountInt++
+  document.getElementById("moves-display").textContent = `${moveCountInt}`;
 }
 
 function isPuzzleSolved(gridTiles) {
