@@ -48,13 +48,13 @@
                     <option value="7x7">7 x 7</option>
                 </select>
                 <br>
-                <button type="submit">Start game</button>
+                <button type="submit" class="submit-button">Play</button>
             </form>
         </dialog>
 
         <!-- Modal shows when new game button is clicked -->
         <dialog data-modal class="modal" id="new-game-modal">
-            <button data-close-modal id="close-new-game-modal">x</button>
+            <button data-close-modal id="close-new-game-modal" class="close-button"><i class="fa-solid fa-x"></i></button>
             <form method="dialog" id="new-game-form">
                 <h2>Start a new game:</h2>
                 <label for = "grid-size-input-new-game">Choose puzzle size: </label>
@@ -67,13 +67,13 @@
                     <option value="7x7">7 x 7</option>
                 </select>
                 <br>
-                <button type="submit" id = "submit-new-game-form">Start game</button>
+                <button type="submit" id = "submit-new-game-form" class="submit-button">Play</button>
             </form>
         </dialog>
 
         <!-- Leaderboard modal -->
         <dialog data-modal class="modal" id="leaderboard-modal">
-            <button data-close-modal id="close-leaderboard-modal">x</button>
+            <button data-close-modal id="close-leaderboard-modal" class="close-button"><i class="fa-solid fa-x"></i></button>
             <h2>Leaderboard</h2>
             <p class="player-name"></p>
             <h3>Least Moves:</h3>
@@ -83,7 +83,7 @@
 
         <!-- Win message modal -->
         <dialog data-modal class="modal" id="win-modal">
-            <button data-close-modal id="close-win-modal">x</button>
+            <button data-close-modal id="close-win-modal" class="close-button"><i class="fa-solid fa-x"></i></button>
             <p class="player-name"></p>
             <h2>You won!</h2>
             <form method="dialog" id="win-form">
@@ -98,13 +98,13 @@
                     <option value="7x7">7 x 7</option>
                 </select>
                 <br>
-                <button type="submit" id = "submit-win-form">Start game</button>
+                <button type="submit" id="submit-win-form" class="submit-button">Play</button>
             </form>
         </dialog>
 
         <!-- Rules modal -->
         <dialog data-modal class="modal" id="rules-modal">
-            <button data-close-modal id="close-rules-modal">x</button>
+            <button data-close-modal id="close-rules-modal" class="close-button"><i class="fa-solid fa-x"></i></button>
             <h2>Sliding Game puzzle</h2>
             <p>What it is</p>
             <p>How it works</p>
