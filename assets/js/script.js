@@ -20,6 +20,9 @@ document.getElementById("rules-icon").addEventListener("click", function() {
 document.getElementById("close-new-game-modal").addEventListener("click", function() {
   document.getElementById("new-game-modal").close();
 });
+document.getElementById("close-win-modal").addEventListener("click", function() {
+  document.getElementById("win-modal").close();
+});
 document.getElementById("close-leaderboard-modal").addEventListener("click", function() {
   document.getElementById("leaderboard-modal").close();
 });
@@ -29,8 +32,10 @@ document.getElementById("close-rules-modal").addEventListener("click", function(
 
 //Add event listeners to modals to close them when clicked outside of it
 document.getElementById("new-game-modal").addEventListener("click", handleModalClick);
+document.getElementById("win-modal").addEventListener("click", handleModalClick);
 document.getElementById("leaderboard-modal").addEventListener("click", handleModalClick);
 document.getElementById("rules-modal").addEventListener("click", handleModalClick);
+
 
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
