@@ -97,7 +97,8 @@ function createGrid(gridSize){
   puzzleHTML += '<div class="empty-tile tile-js"><p>0</p></div>';
   document.getElementById("puzzle").innerHTML = puzzleHTML;
   //set styles for grid
-  puzzle.style.gridTemplateColumns = "auto ".repeat(gridSize - 1) + "auto";
+  //calculate column-width depending on gridSize as a percentage
+  puzzle.style.gridTemplateColumns = `${100 / gridSize}%`.repeat(gridSize);
 }
   
 /**
