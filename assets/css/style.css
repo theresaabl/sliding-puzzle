@@ -207,3 +207,12 @@ footer {
 footer i {
     margin-left: 1rem;
 }
+
+footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer a:active, footer a:hover {
+    color: #71b340;
+}
