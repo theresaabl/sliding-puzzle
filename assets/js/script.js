@@ -56,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function() {
   if (playerName) {
     document.getElementById("player-name-input").value = playerName;
   }
+  //initialize the leaderboard (in case data is stored in local storage)
+  showLeaderboard();
   //show modal on first page load
   document.getElementById("landing-modal").showModal();
   //handle form in landing modal to get player name and grid size
@@ -434,7 +436,7 @@ function handleWin(gridSize) {
   localStorage.setItem("last-win-time", time);
   localStorage.setItem("last-win-grid-size", `${gridSize}`);
   //check leaderboard
-  // checkLeaderBoard();
+  updateLeaderboard();
   //display in win modal together with gridSize
   document.getElementById("grid-size-display-win").textContent = `${gridSize} x ${gridSize}`;
   document.getElementById("moves-win-display").textContent = moves;
@@ -459,25 +461,72 @@ function handleWinFormSubmit(event) {
   runGame();
 }
 
-// function checkLeaderBoard() {
-//   let playerName = localStorage.getItem("player-name");
-//   let gridSize = localStorage.getItem("last-win-grid-size");
-//   let moves = localStorage.getItem("last-win-moves");
-//   let time = localStorage.getItem("last-win-time");
-  
-//   let bestTime = localStorage.getItem(`size-${gridSize}-best-time`);
-//   let leastMoves = localStorage.getItem(`size-${gridSize}-least-moves`);
+function showLeaderboard() {
+  //reset leaderboard html before updating
+  document.getElementById("leaderboard-entries").innerHTML = "";
+  let leaderboardDiv = "";
 
-//   document.getElementsById("leaderboard-entries").innerHTML = `
-//     <div>
-//       best time: ${bestTime}
-//       <br> least moves: ${least moves}$
-//     </div>
-//   `
-//   // <p class="player-name"></p>
-//   // <h3>Least Moves:</h3>
-//   // <h3>Best Time:</h3>
-// }
+  //loop through each available grid size
+  let maxSize = 7;
+  for (let i = 2; i < maxSize; i++) {
+    //check whether leaderboard entry exists for gridSize i in local storage
+    let moves = localStorage.getItem(`size-${i}-least-moves`);
+    console.log(moves);
+    if (moves) {
+      let time = localStorage.getItem(`size-${i}-best-time`);
+      let movesPlayer = localStorage.getItem(`size-${i}-least-moves-player`);
+      let timePlayer = localStorage.getItem(`size-${i}-best-time-player`);
+      let moveOrMoves = parseInt(moves) === 1 ? "move" : "moves";
+      leaderboardDiv += `
+      <div id="leaderboard-size-${i}">
+        <h3>Puzzle size: ${i} x ${i}</h3>
+        <div class="least-moves">
+          Least moves: ${movesPlayer} with ${moves} ${moveOrMoves}
+        </div>
+        <div class="best-time">
+          Best time: ${timePlayer} with ${time} 
+        </div>
+      </div>
+    `;
+    }
+  }
+  console.log(leaderboardDiv);
+  document.getElementById("leaderboard-entries").innerHTML = leaderboardDiv;
+}
+
+function updateLeaderboard() {
+  //get data from current win from local storage
+  let playerName = localStorage.getItem("player-name");
+  let gridSize = localStorage.getItem("last-win-grid-size");
+  let moves = localStorage.getItem("last-win-moves");
+  let time = localStorage.getItem("last-win-time");
+  //get data from leaderboard from local storage
+  let bestTime = localStorage.getItem(`size-${gridSize}-best-time`);
+  let leastMoves = localStorage.getItem(`size-${gridSize}-least-moves`);
+  // check if these entries exist in local storage
+  if (!leastMoves) {
+    //if no entries yet, set new least moves entry
+    localStorage.setItem(`size-${gridSize}-least-moves`, moves);
+    localStorage.setItem(`size-${gridSize}-least-moves-player`, playerName);
+    //set new best time entry
+    localStorage.setItem(`size-${gridSize}-best-time`, time);
+    localStorage.setItem(`size-${gridSize}-best-time-player`, playerName);
+    //show new leaderboard
+    showLeaderboard();
+  } else {
+    //if entry already exists, compare current win moves and update if better
+    if (parseInt(moves) < parseInt(leastMoves)) {
+      //replace entry in local storage
+      localStorage.setItem(`size-${gridSize}-least-moves`, moves);
+      localStorage.setItem(`size-${gridSize}-least-moves-player`, playerName);
+      //show new leaderboard
+      showLeaderboard();
+    }
+    //compare time to best time
+    //convert time to integer seconds
+    // if ()
+  }
+}
 
 //Modal is closed when click outside of it, use for most modals (not landing modal)
 //https://blog.webdevsimplified.com/2023-04/html-dialog/
