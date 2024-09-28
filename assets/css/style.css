@@ -155,14 +155,6 @@ main {
     justify-content: space-between;
 }
 
-/* #timer-text {
-    align-self: flex-start;
-}
-
-#timer-display {
-    align-self: flex-end;
-} */
-
 #minutes-display {
     padding-right: .1rem;
 }
@@ -212,6 +204,13 @@ dialog::backdrop {
     position: absolute;
     top: 1.3rem;
     right: 1.3rem;    
+}
+
+/* Leaderboard */
+
+#leaderboard-entries {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 /* Footer */

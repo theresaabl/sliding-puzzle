@@ -48,13 +48,20 @@ document.getElementById("leaderboard-modal").addEventListener("close", startTime
 document.getElementById("rules-modal").addEventListener("close", startTimer);
 //not for win modal since game is finished
 
+////////////////////////////////////////////////////////////////////////////////
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
+  //check whether a player name is already in storage and if so, prepopulate the field in win modal
+  let playerName = localStorage.getItem("player-name");
+  if (playerName) {
+    document.getElementById("player-name-input").value = playerName;
+  }
   //show modal on first page load
   document.getElementById("landing-modal").showModal();
   //handle form in landing modal to get player name and grid size
   document.getElementById("landing-form").addEventListener("submit", handleLandingFormSubmit);
 });
+/////////////////////////////////////////////////////////////////////////////
 
 //Add event listener to reshuffle button
 //starts a new game but not changing the grid size, allows the user to quickly reshuffle the puzzle
@@ -68,6 +75,8 @@ function handleLandingFormSubmit(event) {
   document.getElementById("grid-size-display").textContent = `${gridSize} x ${gridSize}`;
   //save playername
   document.getElementsByClassName("player-name").textContent = `Player name: ${playerName}`;
+  //save to local storage
+  localStorage.setItem("player-name", playerName);
   this.submit();
   //run game when landing form is submitted
   runGame();
@@ -181,7 +190,7 @@ function handleTileClick(event) {
       if (isPuzzleSolved(gridTiles)){
         gameWon = true;
         //show win message and start new game
-        winMessage(gridSize);
+        handleWin(gridSize);
       }
       // After rearranging the tiles need to add event listener again
       for (let tile of gridTiles) {
@@ -255,8 +264,6 @@ function getTilesArray(gridTiles){
 // }
 
 function randomShuffle(gridTiles, gridSize) {
-  console.log(" ");
-  console.log("in randomShuffle function");
   //create array of ordered tiles
   let tilesOrdered = [];
   for (let i = 0; i < gridSize * gridSize; i++) {
@@ -269,8 +276,6 @@ function randomShuffle(gridTiles, gridSize) {
     //reset ordered and solvable for each loop
     ordered = true;
     solvable = false;
-    console.log(" ");
-    console.log(`start new shuffle loop, ordered = ${ordered} and solvable = ${solvable}`);
     //create copy of array of tiles to shuffle
     let tilesArray = tilesOrdered.slice();
     //random shuffle using Fisher-Yates shuffle algorithm
@@ -279,7 +284,6 @@ function randomShuffle(gridTiles, gridSize) {
       const j = Math.floor(Math.random() * (i + 1)); 
       [tilesArray[i], tilesArray[j]] = [tilesArray[j], tilesArray[i]]; 
     }
-    console.log(`tiles shuffled are: ${tilesArray}`);
     //check that shuffled puzzle is not accidentally ordered
     for (let i = 0; i < tilesArray.length; i++) {
       //compare ordered and shuffled arrays
@@ -289,7 +293,6 @@ function randomShuffle(gridTiles, gridSize) {
         break;
       } 
     }
-    console.log(`ordered after checking: ${ordered}`);
     //save HTML of ordered tiles in a new array
     let tilesOrderedHTML = [];
     for (let tile of gridTiles) {
@@ -305,9 +308,7 @@ function randomShuffle(gridTiles, gridSize) {
     if (isSolvable(gridTiles, gridSize)){
       solvable = true;
     }
-    console.log(`At end of loop still inside: ordered = ${ordered} and solvable = ${solvable}`);
   } while (!solvable || ordered);
-  console.log(`Outside of loop: ordered = ${ordered} and solvable = ${solvable}`);
 }
 
 //need inversion counter for isSolvable
@@ -420,11 +421,20 @@ function isPuzzleSolved(gridTiles) {
   }
 }
 
-function winMessage(gridSize) {
+function handleWin(gridSize) {
   stopTimer();
+  //display player name from local storage in win message
+  let playerName = localStorage.getItem("player-name");
+  document.getElementById("player-name-win-display").textContent = ` ${playerName}`;
   // save movecount and time
   let moves = document.getElementById("moves-display").textContent;
   let time = `${document.getElementById("minutes-display").textContent}:${document.getElementById("seconds-display").textContent}`;
+  //save to local storage
+  localStorage.setItem("last-win-moves", moves);
+  localStorage.setItem("last-win-time", time);
+  localStorage.setItem("last-win-grid-size", `${gridSize}`);
+  //check leaderboard
+  // checkLeaderBoard();
   //display in win modal together with gridSize
   document.getElementById("grid-size-display-win").textContent = `${gridSize} x ${gridSize}`;
   document.getElementById("moves-win-display").textContent = moves;
@@ -448,6 +458,26 @@ function handleWinFormSubmit(event) {
   //run game when new game form is submitted
   runGame();
 }
+
+// function checkLeaderBoard() {
+//   let playerName = localStorage.getItem("player-name");
+//   let gridSize = localStorage.getItem("last-win-grid-size");
+//   let moves = localStorage.getItem("last-win-moves");
+//   let time = localStorage.getItem("last-win-time");
+  
+//   let bestTime = localStorage.getItem(`size-${gridSize}-best-time`);
+//   let leastMoves = localStorage.getItem(`size-${gridSize}-least-moves`);
+
+//   document.getElementsById("leaderboard-entries").innerHTML = `
+//     <div>
+//       best time: ${bestTime}
+//       <br> least moves: ${least moves}$
+//     </div>
+//   `
+//   // <p class="player-name"></p>
+//   // <h3>Least Moves:</h3>
+//   // <h3>Best Time:</h3>
+// }
 
 //Modal is closed when click outside of it, use for most modals (not landing modal)
 //https://blog.webdevsimplified.com/2023-04/html-dialog/
