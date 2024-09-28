@@ -43,11 +43,9 @@ document.getElementById("leaderboard-modal").addEventListener("click", handleMod
 document.getElementById("rules-modal").addEventListener("click", handleModalClick);
 
 //Add event listeners when modals closed to start timer again
-document.getElementById("new-game-modal").addEventListener("close", startTimer);
-document.getElementById("win-modal").addEventListener("close", startTimer);
+//not for new game modal since start new game anyway, nor win modal since game is already finished
 document.getElementById("leaderboard-modal").addEventListener("close", startTimer);
 document.getElementById("rules-modal").addEventListener("close", startTimer);
-
 
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
@@ -126,7 +124,7 @@ function timer() {
 }
 
 function stopTimer() { 
-   clearInterval(timerInterval); //stops timer 
+  clearInterval(timerInterval); //stops timer 
 }
 // /////////////////////////////////////////////////////////
 
@@ -136,6 +134,7 @@ function runGame() {
   document.getElementById("puzzle").innerHTML = "";
   //reset move counter and timer
   document.getElementById("moves-display").textContent = "0";
+  stopTimer(); //clear interval
   second = 0;
   minute = 0;
   hour = 0;
