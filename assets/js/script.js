@@ -148,6 +148,7 @@ function runGame() {
   startTimer();
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
+  //shuffle
   randomShuffle(gridTiles, gridSize);
   for (let tile of gridTiles) {
     tile.addEventListener("click", handleTileClick);
@@ -238,6 +239,8 @@ function getTilesArray(gridTiles){
 // }
 
 function randomShuffle(gridTiles, gridSize) {
+  console.log(" ");
+  console.log("in randomShuffle function");
   //create array of ordered tiles
   let tilesOrdered = [];
   for (let i = 0; i < gridSize * gridSize; i++) {
@@ -247,7 +250,11 @@ function randomShuffle(gridTiles, gridSize) {
   let solvable = false;
   //shuffle again until puzzle is solvable and not accidentally ordered
   do {
-    console.log("start new loop");
+    //reset ordered and solvable for each loop
+    ordered = true;
+    solvable = false;
+    console.log(" ");
+    console.log(`start new shuffle loop, ordered = ${ordered} and solvable = ${solvable}`);
     //create copy of array of tiles to shuffle
     let tilesArray = tilesOrdered.slice();
     //random shuffle using Fisher-Yates shuffle algorithm
@@ -256,7 +263,7 @@ function randomShuffle(gridTiles, gridSize) {
       const j = Math.floor(Math.random() * (i + 1)); 
       [tilesArray[i], tilesArray[j]] = [tilesArray[j], tilesArray[i]]; 
     }
-
+    console.log(`tiles shuffled are: ${tilesArray}`);
     //check that shuffled puzzle is not accidentally ordered
     for (let i = 0; i < tilesArray.length; i++) {
       //compare ordered and shuffled arrays
@@ -266,7 +273,7 @@ function randomShuffle(gridTiles, gridSize) {
         break;
       } 
     }
-    console.log(`ordered: ${ordered}`);
+    console.log(`ordered after checking: ${ordered}`);
     //save HTML of ordered tiles in a new array
     let tilesOrderedHTML = [];
     for (let tile of gridTiles) {
@@ -282,7 +289,9 @@ function randomShuffle(gridTiles, gridSize) {
     if (isSolvable(gridTiles, gridSize)){
       solvable = true;
     }
+    console.log(`At end of loop still inside: ordered = ${ordered} and solvable = ${solvable}`);
   } while (!solvable || ordered);
+  console.log(`Outside of loop: ordered = ${ordered} and solvable = ${solvable}`);
 }
 
 //need inversion counter for isSolvable
