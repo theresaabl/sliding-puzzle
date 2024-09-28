@@ -64,7 +64,7 @@ function handleLandingFormSubmit(event) {
   let playerName = this.elements["player-name-input"].value;
   let gridSize = this.elements["grid-size-input-landing"].value;
   // display grid size
-  document.getElementById("grid-size-display").textContent = `${gridSize}`;
+  document.getElementById("grid-size-display").textContent = `${gridSize} x ${gridSize}`;
   //save playername
   document.getElementsByClassName("player-name").textContent = `Player name: ${playerName}`;
   this.submit();
@@ -77,7 +77,7 @@ function handleNewGameFormSubmit(event) {
   //get grid size user input
   let gridSize = this.elements["grid-size-input-new-game"].value;
   // display grid size
-  document.getElementById("grid-size-display").textContent = `${gridSize}`;
+  document.getElementById("grid-size-display").textContent = `${gridSize} x ${gridSize}`;
   this.submit();
   //run game when new game form is submitted
   runGame();
@@ -165,8 +165,8 @@ function handleTileClick(event) {
     incrementMoveCounter();
     //check whether puzzle is solved
     if (isPuzzleSolved(gridTiles)){
-      //show win message and start new game with user input grid size
-      winMessage();
+      //show win message and start new game
+      winMessage(gridSize);
     }
     // After rearranging the tiles need to add event listener again
     for (let tile of gridTiles) {
@@ -404,14 +404,18 @@ function isPuzzleSolved(gridTiles) {
   }
 }
 
-function winMessage() {
+function winMessage(gridSize) {
   stopTimer();
   // save movecount and time
   let moves = document.getElementById("moves-display").textContent;
   let time = `${document.getElementById("minutes-display").textContent}:${document.getElementById("seconds-display").textContent}`;
-  //display in win modal
+  //display in win modal together with gridSize
+  document.getElementById("grid-size-display-win").textContent = `${gridSize} x ${gridSize}`;
   document.getElementById("moves-win-display").textContent = moves;
   document.getElementById("time-win-display").textContent = time;
+  //preselect the gridsize that was just played
+  document.getElementById("grid-size-input-win").value = `${gridSize}`;
+  //show win message modal
   let winModal = document.getElementById("win-modal");
   winModal.showModal();
   let winModalForm = document.getElementById("win-form");
@@ -423,7 +427,7 @@ function handleWinFormSubmit(event) {
   //get grid size user input
   let gridSize = this.elements["grid-size-input-win"].value;
   // display grid size
-  document.getElementById("grid-size-display").textContent = `${gridSize}`;
+  document.getElementById("grid-size-display").textContent = `${gridSize} x ${gridSize}`;
   this.submit();
   //run game when new game form is submitted
   runGame();
