@@ -191,6 +191,7 @@ function runGame() {
   //create puzzle grid
   let gridSize = document.getElementById("grid-size-display").textContent;
   gridSize = parseInt(gridSize[0]);
+  //create ordered grid
   createGrid(gridSize);
   //start timer
   startTimer();
@@ -227,9 +228,9 @@ function handleTileClick(event) {
   }
 }
 
+//creates ordered grid of gridSize
 function createGrid(gridSize){
-  let puzzle = document.getElementById("puzzle");
-  let puzzleHTML = puzzle.innerHTML;
+  let puzzleHTML = "";
   for (let i = 1; i < gridSize * gridSize; i++) {
     puzzleHTML += `<div class="tile-style tile-js"><p>${i}</p></div>`;
   }
@@ -238,6 +239,15 @@ function createGrid(gridSize){
   //set styles for grid
   //calculate column-width depending on gridSize as a percentage
   puzzle.style.gridTemplateColumns = `${100 / gridSize}%`.repeat(gridSize);
+}
+
+function resetGrid(gridSize) {
+  let puzzleHTML = "";
+  for (let i = 1; i < gridSize * gridSize; i++) {
+    puzzleHTML += `<div class="tile-style tile-js"><p>${i}</p></div>`;
+  }
+  puzzleHTML += '<div class="empty-tile tile-js"><p>0</p></div>';
+  document.getElementById("puzzle").innerHTML = puzzleHTML;
 }
   
 /**
@@ -291,6 +301,8 @@ function getTilesArray(gridTiles){
 // }
 
 function randomShuffle(gridTiles, gridSize) {
+  console.log(" ");
+  console.log("new shuffle");
   //create array of ordered tiles
   let tilesOrdered = [];
   for (let i = 0; i < gridSize * gridSize; i++) {
@@ -303,6 +315,8 @@ function randomShuffle(gridTiles, gridSize) {
     //reset ordered and solvable for each loop
     ordered = true;
     solvable = false;
+    //also reset gridTiles each time
+    resetGrid(gridSize);
     //create copy of array of tiles to shuffle
     let tilesArray = tilesOrdered.slice();
     //random shuffle using Fisher-Yates shuffle algorithm
@@ -321,21 +335,31 @@ function randomShuffle(gridTiles, gridSize) {
       } 
     }
     //save HTML of ordered tiles in a new array
+    //error here: no longer have default ordered grid available!
     let tilesOrderedHTML = [];
     for (let tile of gridTiles) {
       tilesOrderedHTML.push(tile.outerHTML);
     }
+    console.log(" ");
+    console.log("new loop");
+    console.log(tilesOrdered);
+    console.log(gridTiles[0].innerHTML, gridTiles[1].innerHTML, gridTiles[2].innerHTML, gridTiles[3].innerHTML);
     //swap tiles based on shuffled 1d tilesArray
     for (let i = 0; i < tilesOrdered.length; i++){
       let newHTML = tilesOrderedHTML[tilesArray[i] - 1];
       document.getElementsByClassName("tile-js")[[tilesOrdered[i] - 1]].outerHTML = newHTML;
     }
-
+    console.log(tilesArray);
+    console.log(gridTiles[0].innerHTML, gridTiles[1].innerHTML, gridTiles[2].innerHTML, gridTiles[3].innerHTML);
     //check that puzzle is solvable (or shuffle again)
     if (isSolvable(gridTiles, gridSize)){
       solvable = true;
     }
+    console.log(" ");
+    console.log(`solvable is ${solvable} and ordered is ${ordered}`);
   } while (!solvable || ordered);
+  console.log(" ");
+  console.log(`solvable is ${solvable} and ordered is ${ordered}`);
 }
 
 //need inversion counter for isSolvable
