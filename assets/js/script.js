@@ -1,5 +1,30 @@
 /* jshint esversion: 11 */
 
+////////////////////////////////////////////////////
+// for testing purpose only:
+
+localStorage.setItem("size-4-best-time", "13:12");
+localStorage.setItem("size-4-best-time-player", "cari");
+localStorage.setItem("size-4-least-moves", "623");
+localStorage.setItem("size-4-least-moves-player", "bobbie");
+
+localStorage.setItem("size-5-best-time", "13:12");
+localStorage.setItem("size-5-best-time-player", "cari");
+localStorage.setItem("size-5-least-moves", "623");
+localStorage.setItem("size-5-least-moves-player", "bobbie");
+
+localStorage.setItem("size-6-best-time", "13:12");
+localStorage.setItem("size-6-best-time-player", "cari");
+localStorage.setItem("size-6-least-moves", "623");
+localStorage.setItem("size-6-least-moves-player", "bobbie");
+
+localStorage.setItem("size-7-best-time", "13:12");
+localStorage.setItem("size-7-best-time-player", "cari");
+localStorage.setItem("size-7-least-moves", "623");
+localStorage.setItem("size-7-least-moves-player", "bobbie");
+
+////////////////////////////////////////////////////
+
 //Event Listeners
 
 //code inspiration for modals: https://blog.webdevsimplified.com/2023-04/html-dialog/
@@ -477,13 +502,13 @@ function showLeaderboard() {
       let timePlayer = localStorage.getItem(`size-${i}-best-time-player`);
       let moveOrMoves = parseInt(moves) === 1 ? "move" : "moves";
       leaderboardDiv += `
-      <div id="leaderboard-size-${i}">
+      <div class="leaderboard-entries-per-size">
         <h3>Puzzle size: ${i} x ${i}</h3>
-        <div class="least-moves">
-          Least moves: ${movesPlayer} with ${moves} ${moveOrMoves}
+        <div class="leaderboard-score-div">
+          <span class="leaderboard-score-type">Least moves: </span><span class="leaderboard-score-container"><span class="leaderboard-player">${movesPlayer}</span> with ${moves} ${moveOrMoves}</span>
         </div>
-        <div class="best-time">
-          Best time: ${timePlayer} with ${time} 
+        <div class="leaderboard-score-div">
+          <span class="leaderboard-score-type">Best time: </span><span class="leaderboard-score-container"><span class="leaderboard-player">${timePlayer}</span> with ${time}</span>
         </div>
       </div>
     `;

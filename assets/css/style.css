@@ -179,8 +179,13 @@ dialog::backdrop {
     border-radius: 5px;
 }
 
-.modal h2, .modal h3 {
+.modal h2 {
     margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.modal h3 {
+    margin-bottom: 1rem;
     text-align: center;
 }
 
@@ -211,7 +216,43 @@ dialog::backdrop {
 #leaderboard-entries {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
+
+#leaderboard-entries > div {
+    flex-basis: 0 0 45%;
+}
+
+.leaderboard-score-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leaderboard-score-container {
+    margin-left: 1rem;
+    align-self: flex-end;
+}
+
+#leaderboard-entries h3 {
+    margin-top: 1.5rem;
+}
+
+.leaderboard-score-div {
+    margin-bottom: 1rem;
+}
+
+.leaderboard-player {
+    font-weight: bold;
+}
+
+.leaderboard-score-type {
+    color: #3c5a14;
+    font-weight: 500;
+    align-self: flex-start;
+    padding-left: 1rem;
+}
+
 
 /* Footer */
 footer {
