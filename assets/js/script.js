@@ -492,8 +492,11 @@ function showLeaderboard() {
   let leaderboardDiv = "";
 
   //loop through each available grid size
-  let maxSize = 7;
-  for (let i = 2; i < maxSize; i++) {
+  //get select element from landing modal
+  let selectGridSize = document.getElementById("grid-size-input-landing");
+  //value of last element in select element is the largest grid size
+  let maxSize = parseInt(selectGridSize[selectGridSize.length - 1].value);
+  for (let i = 2; i <= maxSize; i++) {
     //check whether leaderboard entry exists for gridSize i in local storage
     let moves = localStorage.getItem(`size-${i}-least-moves`);
     if (moves) {
