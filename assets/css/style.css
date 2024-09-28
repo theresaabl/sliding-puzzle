@@ -149,6 +149,28 @@ main {
     padding-right: 1rem;
 }
 
+#timer {
+    width: 6.2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* #timer-text {
+    align-self: flex-start;
+}
+
+#timer-display {
+    align-self: flex-end;
+} */
+
+#minutes-display {
+    padding-right: .1rem;
+}
+
+#seconds-display {
+    padding-left: .1rem;
+}
+
 /* Modals */
 
 dialog::backdrop {

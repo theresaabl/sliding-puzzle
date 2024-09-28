@@ -43,11 +43,10 @@ document.getElementById("leaderboard-modal").addEventListener("click", handleMod
 document.getElementById("rules-modal").addEventListener("click", handleModalClick);
 
 //Add event listeners when modals closed to start timer again
-//not for new game modal since start new game anyway, nor win modal since game is already finished
 document.getElementById("new-game-modal").addEventListener("close", startTimer);
-document.getElementById("win-modal").addEventListener("close", startTimer);
 document.getElementById("leaderboard-modal").addEventListener("close", startTimer);
 document.getElementById("rules-modal").addEventListener("close", startTimer);
+//not for win modal since game is finished
 
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
@@ -94,6 +93,9 @@ let minute = 0;
 let hour = 0;
 //set timerInterval to false initially to indicate it is not running
 let timerInterval = false;
+//set gameWon to false, need to check this in moveTile function
+//https://stackoverflow.com/a/2679208
+let gameWon = false;
 
 function timer() {
   second++
@@ -139,6 +141,7 @@ function stopTimer() {
 
 
 function runGame() {
+  gameWon = false;
   //reset grid every time game is run
   document.getElementById("puzzle").innerHTML = "";
   //reset move counter and timer
@@ -165,21 +168,25 @@ function runGame() {
 }
 
 function handleTileClick(event) {
-  let gridSize = document.getElementById("grid-size-display").textContent;
-  gridSize = parseInt(gridSize[0]);
-  let gridTiles = document.getElementsByClassName("tile-js");
-  let currentTile = getTile(gridTiles, gridSize, this);
-  if (isNeighbourEmpty(gridTiles, gridSize, currentTile)){
-    moveTile(gridTiles, currentTile);
-    incrementMoveCounter();
-    //check whether puzzle is solved
-    if (isPuzzleSolved(gridTiles)){
-      //show win message and start new game
-      winMessage(gridSize);
-    }
-    // After rearranging the tiles need to add event listener again
-    for (let tile of gridTiles) {
-      tile.addEventListener("click", handleTileClick);
+  //if game already won, nothing happens
+  if (gameWon === false) {
+    let gridSize = document.getElementById("grid-size-display").textContent;
+    gridSize = parseInt(gridSize[0]);
+    let gridTiles = document.getElementsByClassName("tile-js");
+    let currentTile = getTile(gridTiles, gridSize, this);
+    if (isNeighbourEmpty(gridTiles, gridSize, currentTile)){
+      moveTile(gridTiles, currentTile);
+      incrementMoveCounter();
+      //check whether puzzle is solved
+      if (isPuzzleSolved(gridTiles)){
+        gameWon = true;
+        //show win message and start new game
+        winMessage(gridSize);
+      }
+      // After rearranging the tiles need to add event listener again
+      for (let tile of gridTiles) {
+        tile.addEventListener("click", handleTileClick);
+      }
     }
   }
 }
