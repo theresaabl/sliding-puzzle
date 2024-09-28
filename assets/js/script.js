@@ -76,6 +76,8 @@ document.getElementById("rules-modal").addEventListener("close", startTimer);
 ////////////////////////////////////////////////////////////////////////////////
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
+  //show a default grid behind the landing modal
+  createGrid(4);
   //check whether a player name is already in storage and if so, prepopulate the field in win modal
   let playerName = localStorage.getItem("player-name");
   if (playerName) {
@@ -301,8 +303,6 @@ function getTilesArray(gridTiles){
 // }
 
 function randomShuffle(gridTiles, gridSize) {
-  console.log(" ");
-  console.log("new shuffle");
   //create array of ordered tiles
   let tilesOrdered = [];
   for (let i = 0; i < gridSize * gridSize; i++) {
@@ -340,26 +340,16 @@ function randomShuffle(gridTiles, gridSize) {
     for (let tile of gridTiles) {
       tilesOrderedHTML.push(tile.outerHTML);
     }
-    console.log(" ");
-    console.log("new loop");
-    console.log(tilesOrdered);
-    console.log(gridTiles[0].innerHTML, gridTiles[1].innerHTML, gridTiles[2].innerHTML, gridTiles[3].innerHTML);
     //swap tiles based on shuffled 1d tilesArray
     for (let i = 0; i < tilesOrdered.length; i++){
       let newHTML = tilesOrderedHTML[tilesArray[i] - 1];
       document.getElementsByClassName("tile-js")[[tilesOrdered[i] - 1]].outerHTML = newHTML;
     }
-    console.log(tilesArray);
-    console.log(gridTiles[0].innerHTML, gridTiles[1].innerHTML, gridTiles[2].innerHTML, gridTiles[3].innerHTML);
     //check that puzzle is solvable (or shuffle again)
     if (isSolvable(gridTiles, gridSize)){
       solvable = true;
     }
-    console.log(" ");
-    console.log(`solvable is ${solvable} and ordered is ${ordered}`);
   } while (!solvable || ordered);
-  console.log(" ");
-  console.log(`solvable is ${solvable} and ordered is ${ordered}`);
 }
 
 //need inversion counter for isSolvable
