@@ -397,6 +397,12 @@ function isPuzzleSolved(gridTiles) {
 
 function winMessage() {
   stopTimer();
+  // save movecount and time
+  let moves = document.getElementById("moves-display").textContent;
+  let time = `${document.getElementById("minutes-display").textContent}:${document.getElementById("seconds-display").textContent}`;
+  //display in win modal
+  document.getElementById("moves-win-display").textContent = moves;
+  document.getElementById("time-win-display").textContent = time;
   let winModal = document.getElementById("win-modal");
   winModal.showModal();
   let winModalForm = document.getElementById("win-form");

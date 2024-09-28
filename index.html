@@ -88,7 +88,14 @@
         <dialog data-modal class="modal" id="win-modal">
             <button data-close-modal id="close-win-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
             <p class="player-name"></p>
-            <h2>You won!</h2>
+            <h2>
+                Congratulations<span id="player-name-win-display"></span>,
+                <br>
+                you won!
+            </h2>
+            <h3>Your score:</h3>
+            <p>Time: <span id="time-win-display"></span></p>
+            <p>Moves: <span id="moves-win-display"></span></p>
             <form method="dialog" id="win-form">
                 <h3>Start a new game:</h3>
                 <label for = "grid-size-input-win">Choose puzzle size: </label>
