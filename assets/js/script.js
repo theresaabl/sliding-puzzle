@@ -44,6 +44,8 @@ document.getElementById("rules-modal").addEventListener("click", handleModalClic
 
 //Add event listeners when modals closed to start timer again
 //not for new game modal since start new game anyway, nor win modal since game is already finished
+document.getElementById("new-game-modal").addEventListener("close", startTimer);
+document.getElementById("win-modal").addEventListener("close", startTimer);
 document.getElementById("leaderboard-modal").addEventListener("close", startTimer);
 document.getElementById("rules-modal").addEventListener("close", startTimer);
 
@@ -90,12 +92,8 @@ function handleNewGameFormSubmit(event) {
 let second = 0;
 let minute = 0;
 let hour = 0;
-let timerInterval;
-
-function startTimer() {
-  //call function timer every 1000ms
-  timerInterval = setInterval(timer, 1000);
-}
+//set timerInterval to false initially to indicate it is not running
+let timerInterval = false;
 
 function timer() {
   second++
@@ -123,8 +121,19 @@ function timer() {
   document.getElementById("minutes-display").textContent = minuteString;
 }
 
-function stopTimer() { 
-  clearInterval(timerInterval); //stops timer 
+function startTimer() {
+  //start timerInterval only if it is not already running
+  if (timerInterval === false) {
+    //call function timer every 1000ms
+    timerInterval = setInterval(timer, 1000);
+  }
+}
+
+function stopTimer() {
+  //stops timer
+  clearInterval(timerInterval);
+  //set timerInterval to false each time it is stopped, can check whether running or not
+  timerInterval = false; 
 }
 // /////////////////////////////////////////////////////////
 
@@ -134,7 +143,7 @@ function runGame() {
   document.getElementById("puzzle").innerHTML = "";
   //reset move counter and timer
   document.getElementById("moves-display").textContent = "0";
-  stopTimer(); //clear interval
+  stopTimer(); //clear interval and set timer to false
   second = 0;
   minute = 0;
   hour = 0;
