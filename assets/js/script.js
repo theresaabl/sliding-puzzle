@@ -471,7 +471,6 @@ function showLeaderboard() {
   for (let i = 2; i < maxSize; i++) {
     //check whether leaderboard entry exists for gridSize i in local storage
     let moves = localStorage.getItem(`size-${i}-least-moves`);
-    console.log(moves);
     if (moves) {
       let time = localStorage.getItem(`size-${i}-best-time`);
       let movesPlayer = localStorage.getItem(`size-${i}-least-moves-player`);
@@ -490,7 +489,6 @@ function showLeaderboard() {
     `;
     }
   }
-  console.log(leaderboardDiv);
   document.getElementById("leaderboard-entries").innerHTML = leaderboardDiv;
 }
 
@@ -524,8 +522,27 @@ function updateLeaderboard() {
     }
     //compare time to best time
     //convert time to integer seconds
-    // if ()
+    let timeInt = timeToInt(time);
+    let bestTimeInt = timeToInt(bestTime);
+    if (timeInt < bestTimeInt) {
+      //replace entry in local storage
+      localStorage.setItem(`size-${gridSize}-best-time`, time);
+      localStorage.setItem(`size-${gridSize}-best-time-player`, playerName);
+      //show new leaderboard
+      showLeaderboard();
+    }
+    }
   }
+
+function timeToInt(time) {
+  let timeArray = time.split(":");
+  let timeSeconds = parseInt(timeArray[timeArray.length - 1]);
+  let timeMinutes = parseInt(timeArray[timeArray.length - 2]);
+  //in case game is running for long time and includes hours
+  let timeHours = (timeArray.length === 3) ? parseInt(timeArray[timeArray.length - 3]) : 0;
+
+  let timeInt = timeHours * 3600 + timeMinutes * 60 + timeSeconds;
+  return timeInt;
 }
 
 //Modal is closed when click outside of it, use for most modals (not landing modal)
