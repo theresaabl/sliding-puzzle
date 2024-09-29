@@ -181,11 +181,11 @@ function timer() {
   let secondString = second < 10 ? `0${second}` : `${second}`;
   document.getElementById("seconds-display").textContent = secondString;
   //minutes
-  let minuteString = minute < 10 ? `0${minute}` : `${minute}`;
+  let minuteString = minute < 10 ? `0${minute} :` : `${minute} :`;
   //if minutes more than 60:
   if (hour > 0) {
     hourString = hour < 10 ? `0${hour}` : `${hour}`;
-    minuteString = `${hourString}:${minuteString}`;
+    minuteString = `${hourString} : ${minuteString}`;
   } 
   document.getElementById("minutes-display").textContent = minuteString;
 }
@@ -217,7 +217,7 @@ function runGame() {
   second = 0;
   minute = 0;
   hour = 0;
-  document.getElementById("minutes-display").textContent = "00";
+  document.getElementById("minutes-display").textContent = "00 :";
   document.getElementById("seconds-display").textContent = "00";
   //create puzzle grid
   let gridSize = document.getElementById("grid-size-display").textContent;
@@ -503,7 +503,7 @@ function handleWin(gridSize) {
   document.getElementById("player-name-win-display").textContent = ` ${playerName}`;
   // save movecount and time
   let moves = document.getElementById("moves-display").textContent;
-  let time = `${document.getElementById("minutes-display").textContent}:${document.getElementById("seconds-display").textContent}`;
+  let time = `${document.getElementById("minutes-display").textContent} ${document.getElementById("seconds-display").textContent}`;
   //save to local storage
   localStorage.setItem("last-win-moves", moves);
   localStorage.setItem("last-win-time", time);

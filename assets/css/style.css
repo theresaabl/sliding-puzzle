@@ -73,7 +73,7 @@ main {
 
 /* Game Area */
 .game-area {
-    margin: 2rem;
+    margin:1rem;
     width: 95%;
     max-height: 80vh;
     background-color: #77ad78a0;
@@ -173,17 +173,25 @@ main {
 }
 
 #timer {
-    width: 6.2rem;
+    width: 8rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#timer-display {
+    min-width: 3.2rem;
     display: flex;
     justify-content: space-between;
 }
 
 #minutes-display {
     padding-right: .1rem;
+    align-self: flex-start;
 }
 
 #seconds-display {
     padding-left: .1rem;
+    align-self: flex-end;
 }
 
 /* Modals */
@@ -334,6 +342,11 @@ dialog::backdrop {
 
 /* Error page */
 
+#error-message-container {
+    max-width: 70vh;
+    max-height: 70vh;
+}
+
 #error-message a {
     text-decoration: none;
     color: inherit;
@@ -423,10 +436,10 @@ footer a:active, footer a:hover {
     }
 
     .game-buttons-stats-container {
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 100%;
         width: 25%;
         margin: 0 2rem;
     }
@@ -442,6 +455,7 @@ footer a:active, footer a:hover {
 
     #score-stats {
         align-self: flex-sart;
+        flex-direction: column;
     }
 
     #score-puzzle-size {
@@ -449,11 +463,12 @@ footer a:active, footer a:hover {
     }
 
     #game-buttons-container {
-        
+        height: 100%;
+        margin-top: 0;
     }
 
     #game-stats-display {
-
+        padding-top: 0;
     }
 
     /* Puzzle */
