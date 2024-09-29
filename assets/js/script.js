@@ -126,17 +126,22 @@ function checkOrientationChange() {
 
 checkOrientationChange();
 
+function checkIfLandscape() {
+  let portrait = window.matchMedia("(orientation: portrait)").matches;
+  if (portrait === false) {
+    //show the warning modal until device is turned back (orientation change is detected with checkOrientationChange)
+    do {
+      document.getElementById("landscape-modal").showModal();
+    } while (checkOrientationChange());
+  }; 
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
   //check if mobile device in landscape mode when loading page
-  // const portrait = window.matchMedia("(orientation: portrait)").matches;
-  // if (portrait === false) {
-  //   document.getElementById("landscape-modal").showModal();
-  //   checkOrientationChange();
-  // }
-  // checkOrientationChange();
-  //show a default grid behind the landing modal
+  checkIfLandscape();
+  // //show a default grid behind the landing modal
   createGrid(4);
   //check whether a player name is already in storage and if so, prepopulate the field in win modal
   let playerName = localStorage.getItem("player-name");
