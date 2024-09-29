@@ -386,7 +386,7 @@ footer a:active, footer a:hover {
     }
 
     /* Game area */
-    #game-area {
+    .game-area {
         width: 80%;
     }
     /* Puzzle */
@@ -410,9 +410,52 @@ footer a:active, footer a:hover {
     }
 
     /* Game area */
-    #game-area {
-        width: 70%;
+    .game-area {
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
     }
+
+    .puzzle-container {
+        max-width: 70vh;
+        max-height: 70vh;
+    }
+
+    .game-buttons-stats-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        width: 25%;
+        margin: 0 2rem;
+    }
+
+    #new-game-button {
+        align-self: flex-end;
+        margin-right: 0;
+    }
+
+    #reshuffle-button {
+        align-self: flex-end;
+    }
+
+    #score-stats {
+        align-self: flex-sart;
+    }
+
+    #score-puzzle-size {
+        align-self: flex-start;
+    }
+
+    #game-buttons-container {
+        
+    }
+
+    #game-stats-display {
+
+    }
+
     /* Puzzle */
     .tile-style {
         font-size: 200%;
@@ -423,7 +466,16 @@ footer a:active, footer a:hover {
 @media screen and (min-width: 1200px) {
     /* Main content */
     /* Game area */
-    #game-area {
-        width: 60%;
+    .game-area {
+        width: 80%;
+    }
+}
+
+/* Media query: very large desktops(1500px and up) */
+@media screen and (min-width: 1500px) {
+    /* Main content */
+    /* Game area */
+    .game-area {
+        width: 70%;
     }
 }
