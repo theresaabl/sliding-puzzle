@@ -368,6 +368,16 @@ dialog::backdrop {
     background-color: #7dba84;
 }
 
+/* Landscape warning modal */
+
+#landscape-modal {
+    text-align: center;
+}
+
+#landscape-modal i {
+    font-size: 150%;
+}
+
 /* Error page */
 
 #error-message-container {
