@@ -285,6 +285,26 @@ dialog::backdrop {
     align-self: flex-start;
 }
 
+/* Rules modal */
+
+#rules-modal li {
+    margin-bottom: 1.5rem;
+}
+
+.rules-button-style {
+    border: 1px solid #0d1b1e;
+    border-radius: 5px;
+    background-color: #8fd694;
+    font-size: 80%;
+    padding: .5rem;
+    margin: 0 .5rem;
+}
+
+#rules-tile-style {
+    padding: .5rem .8rem;
+    background-color: #7dba84;
+}
+
 /* Error page */
 
 #error-message-area {

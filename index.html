@@ -126,10 +126,14 @@
         <dialog data-modal class="modal" id="rules-modal">
             <button data-close-modal id="close-rules-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
             <h2>Sliding Puzzle</h2>
-            <p>What it is</p>
-            <p>How it works</p>
-            <p>Controls</p>
-            <p>Score</p>
+            <ul>
+                <li>This website provides a classic sliding puzzle game, which can be played with puzzle sizes between 2 x 2 and <span id="rules-max-grid-size"></span>.</li>
+                <li>The goal is to order the tiles in ascending order (1, 2, 3, ...) with the empty tile in the right bottom corner.</li>
+                <li>To move a tile <span class="rules-button-style" id="rules-tile-style">1</span> click on it (or touch it for mobile devices).</li>
+                <li>To start a new game click the <span class="rules-button-style">New Game</span> button.</li>
+                <li>To reshuffle the puzzle click the <span class="rules-button-style">Reshuffle</span> button.</li>
+                <li>The number of moves and the time needed to solve the puzzle are displayed and a leaderboard is available when clicking on the <i class="fa-solid fa-star" title="Star-icon"></i> - icon.</li>
+            </ul>
             </form>
         </dialog>
 

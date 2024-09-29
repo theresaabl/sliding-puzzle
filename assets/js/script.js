@@ -78,6 +78,8 @@ document.getElementById("leaderboard-icon").addEventListener("click", function()
 document.getElementById("rules-icon").addEventListener("click", function() {
   //pause timer when modal open
   stopTimer();
+  //set inner HTML of max grid size
+  document.getElementById("rules-max-grid-size").innerHTML = `${maxGridSize} x ${maxGridSize}`;
   document.getElementById("rules-modal").showModal();
 });
 
