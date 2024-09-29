@@ -109,9 +109,33 @@ document.getElementById("leaderboard-modal").addEventListener("close", startTime
 document.getElementById("rules-modal").addEventListener("close", startTimer);
 //not for win modal since game is finished
 
+// Add event listener for when mobile device is turned into landscape mode
+//page does not work properly in landscape mode for all devices as screen hight too small
+//show a modal that tells the user to go back to portrait mode
+function checkOrientationChange() {
+    window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
+    const portrait = e.matches;
+
+    if (portrait) {
+      document.getElementById("landscape-modal").close();
+    } else {
+      document.getElementById("landscape-modal").showModal();
+    }
+  });
+}
+
+checkOrientationChange();
+
 ////////////////////////////////////////////////////////////////////////////////
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
+  //check if mobile device in landscape mode when loading page
+  // const portrait = window.matchMedia("(orientation: portrait)").matches;
+  // if (portrait === false) {
+  //   document.getElementById("landscape-modal").showModal();
+  //   checkOrientationChange();
+  // }
+  // checkOrientationChange();
   //show a default grid behind the landing modal
   createGrid(4);
   //check whether a player name is already in storage and if so, prepopulate the field in win modal
