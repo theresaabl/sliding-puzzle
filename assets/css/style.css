@@ -196,7 +196,7 @@ dialog::backdrop {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 80%;
+    max-width: 98%;
     padding: 3rem 2rem 1rem 2rem;
     border-radius: 5px;
     color: #0d1b1e;
@@ -218,13 +218,14 @@ dialog::backdrop {
 }
 
 .modal input, .modal select {
-    margin-bottom: 1rem;
-    margin-left: .5rem;
+    width: 100%;
+    margin: .5rem 0;
     padding: .3rem;
     border: .5px solid #0d1b1e;
     border-radius: #0d1b1e;
     font-family: sans-serif;
     background: transparent;
+    display: inline-block;
 }
 
 .modal input:focus, .modal select:focus {
@@ -240,6 +241,7 @@ dialog::backdrop {
     border-color: #0d1b1e;
     background-color: #8fd694;
     padding: .5rem;
+    margin-top: .5rem;
     border-radius: 5px;
     font-family: "Fredoka", sans-serif;
 }
@@ -267,8 +269,8 @@ dialog::backdrop {
 /* Leaderboard */
 
 #leaderboard-modal {
+    /* set larger min width for mobile devices */
     min-width: 80%;
-    max-width: 98%;
 }
 
 #leaderboard-entries {
@@ -310,6 +312,11 @@ dialog::backdrop {
 
 /* Rules modal */
 
+#rules-modal {
+    /* set larger min width for mobile devices */
+    min-width: 80%;
+}
+
 #rules-modal li {
     margin-bottom: 1.5rem;
     margin-left: 1rem;
@@ -321,7 +328,7 @@ dialog::backdrop {
     background-color: #8fd694;
     font-size: 80%;
     padding: .5rem;
-    margin: 0 .5rem;
+    display: inline-block;
 }
 
 #rules-tile-style {
