@@ -3,6 +3,16 @@
 ////////////////////////////////////////////////////
 // for testing purpose only:
 
+localStorage.setItem("size-2-best-time", "13:12");
+localStorage.setItem("size-2-best-time-player", "cari");
+localStorage.setItem("size-2-least-moves", "623");
+localStorage.setItem("size-2-least-moves-player", "bobbie");
+
+localStorage.setItem("size-3-best-time", "13:12");
+localStorage.setItem("size-3-best-time-player", "cari");
+localStorage.setItem("size-3-least-moves", "623");
+localStorage.setItem("size-3-least-moves-player", "bobbie");
+
 localStorage.setItem("size-4-best-time", "13:12");
 localStorage.setItem("size-4-best-time-player", "cari");
 localStorage.setItem("size-4-least-moves", "623");
@@ -23,15 +33,39 @@ localStorage.setItem("size-7-best-time-player", "cari");
 localStorage.setItem("size-7-least-moves", "623");
 localStorage.setItem("size-7-least-moves-player", "bobbie");
 
+localStorage.setItem("size-8-best-time", "13:12");
+localStorage.setItem("size-8-best-time-player", "cari");
+localStorage.setItem("size-8-least-moves", "623");
+localStorage.setItem("size-8-least-moves-player", "bobbie");
+
+localStorage.setItem("size-9-best-time", "13:12");
+localStorage.setItem("size-9-best-time-player", "cari");
+localStorage.setItem("size-9-least-moves", "623");
+localStorage.setItem("size-9-least-moves-player", "bobbie");
+
 ////////////////////////////////////////////////////
+//set the maximum grid size available for the game, set globally so can change in one place
+//can choose any that fits the page, possibly need to change font size of tile numbers (class="tile-style")
+const maxGridSize = 9;
+//initialize global variables
+let second = 0;
+let minute = 0;
+let hour = 0;
+//set timerInterval to false initially to indicate it is not running
+let timerInterval = false;
+//set gameWon to false, need to check this in moveTile function
+//https://stackoverflow.com/a/2679208
+let gameWon = false;
 
 //Event Listeners
 
 //code inspiration for modals: https://blog.webdevsimplified.com/2023-04/html-dialog/
-//Add event listeners to buttons to show and call further functions
+//Add event listeners to buttons to show modals and call further functions
 document.getElementById("new-game-button").addEventListener("click", function() {
   //pause timer when modal open
   stopTimer();
+  //set innerHTML of select element based on maxGridSize
+  document.getElementById("grid-size-input-new-game").innerHTML = createSelect();
   document.getElementById("new-game-modal").showModal();
   //handle form in new game modal to get grid size
   document.getElementById("new-game-form").addEventListener("submit", handleNewGameFormSubmit);
@@ -85,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   //initialize the leaderboard (in case data is stored in local storage)
   showLeaderboard();
+  //set innerHTML of select element based on maxGridSize
+  document.getElementById("grid-size-input-landing").innerHTML = createSelect();
   //show modal on first page load
   document.getElementById("landing-modal").showModal();
   //handle form in landing modal to get player name and grid size
@@ -124,17 +160,8 @@ function handleNewGameFormSubmit(event) {
 
 
 // ///////////////////////////////////////////////
-// code inspiration for timer from: https://dev.to/walternascimentobarroso/creating-a-timer-with-javascript-8b7
-//figure out how to do without global variables
-let second = 0;
-let minute = 0;
-let hour = 0;
-//set timerInterval to false initially to indicate it is not running
-let timerInterval = false;
-//set gameWon to false, need to check this in moveTile function
-//https://stackoverflow.com/a/2679208
-let gameWon = false;
 
+// code inspiration for timer from: https://dev.to/walternascimentobarroso/creating-a-timer-with-javascript-8b7
 function timer() {
   second++
 
@@ -465,6 +492,10 @@ function isPuzzleSolved(gridTiles) {
 
 function handleWin(gridSize) {
   stopTimer();
+  //set innerHTML of select element based on maxGridSize
+  document.getElementById("grid-size-input-win").innerHTML = createSelect();
+  //preselect the gridsize that was just played
+  document.getElementById("grid-size-input-win").value = `${gridSize}`;
   //display player name from local storage in win message
   let playerName = localStorage.getItem("player-name");
   document.getElementById("player-name-win-display").textContent = ` ${playerName}`;
@@ -481,8 +512,6 @@ function handleWin(gridSize) {
   document.getElementById("grid-size-display-win").textContent = `${gridSize} x ${gridSize}`;
   document.getElementById("moves-win-display").textContent = moves;
   document.getElementById("time-win-display").textContent = time;
-  //preselect the gridsize that was just played
-  document.getElementById("grid-size-input-win").value = `${gridSize}`;
   //show win message modal
   let winModal = document.getElementById("win-modal");
   winModal.showModal();
@@ -505,14 +534,9 @@ function showLeaderboard() {
   //reset leaderboard html before updating
   document.getElementById("leaderboard-entries").innerHTML = "";
   let leaderboardDiv = "";
-
-  //loop through each available grid size
-  //get select element from landing modal
-  let selectGridSize = document.getElementById("grid-size-input-landing");
-  //value of last element in select element is the largest grid size
-  let maxSize = parseInt(selectGridSize[selectGridSize.length - 1].value);
-  for (let i = 2; i <= maxSize; i++) {
-    //check whether leaderboard entry exists for gridSize i in local storage
+  //loop through each available grid size and
+  //check whether leaderboard entry exists in local storage
+  for (let i = 2; i <= maxGridSize; i++) {
     let moves = localStorage.getItem(`size-${i}-least-moves`);
     if (moves) {
       let time = localStorage.getItem(`size-${i}-best-time`);
@@ -604,4 +628,13 @@ function handleModalClick(event) {
     //click outside: modal closes
     this.close()
   }
+}
+
+//create select element for landing, new game and win modals depending on maxGridSize
+function createSelect() {
+  let selectHTML = "";
+  for (let i = 2; i <= maxGridSize; i++) {
+    selectHTML += `<option value="${i}">${i} x ${i}</option>`;
+  }
+  return selectHTML;
 }
