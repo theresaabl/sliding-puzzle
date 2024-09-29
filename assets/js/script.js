@@ -52,10 +52,15 @@ let second = 0;
 let minute = 0;
 let hour = 0;
 //set timerInterval to false initially to indicate it is not running
+//https://stackoverflow.com/a/2679208
 let timerInterval = false;
 //set gameWon to false, need to check this in moveTile function
-//https://stackoverflow.com/a/2679208
 let gameWon = false;
+//set modalOpen to false, to track whether a modal (except landscape modal) is currently open or not
+let modalOpen = false;
+//this variable stores whether the page was loaded from landscape mode on mobile devices
+//this influences when the timer should start (only once the phone is in portrait mode)
+let loadedFromLandscape = false;
 
 //Event Listeners
 
@@ -64,6 +69,7 @@ let gameWon = false;
 document.getElementById("new-game-button").addEventListener("click", function() {
   //pause timer when modal open
   stopTimer();
+  modalOpen = true;
   //set innerHTML of select element based on maxGridSize
   document.getElementById("grid-size-input-new-game").innerHTML = createSelect();
   document.getElementById("new-game-modal").showModal();
@@ -73,11 +79,13 @@ document.getElementById("new-game-button").addEventListener("click", function() 
 document.getElementById("leaderboard-icon").addEventListener("click", function() {
   //pause timer when modal open
   stopTimer();
+  modalOpen = true;
   document.getElementById("leaderboard-modal").showModal();
 });
 document.getElementById("rules-icon").addEventListener("click", function() {
   //pause timer when modal open
   stopTimer();
+  modalOpen = true;
   //set inner HTML of max grid size
   document.getElementById("rules-max-grid-size").innerHTML = `${maxGridSize} x ${maxGridSize}`;
   document.getElementById("rules-modal").showModal();
@@ -104,33 +112,56 @@ document.getElementById("leaderboard-modal").addEventListener("click", handleMod
 document.getElementById("rules-modal").addEventListener("click", handleModalClick);
 
 //Add event listeners when modals closed to start timer again
-document.getElementById("new-game-modal").addEventListener("close", startTimer);
-document.getElementById("leaderboard-modal").addEventListener("close", startTimer);
-document.getElementById("rules-modal").addEventListener("close", startTimer);
-//not for win modal since game is finished
+document.getElementById("new-game-modal").addEventListener("close", function () {
+    startTimer();
+    modalOpen = false;
+  }
+);
+document.getElementById("leaderboard-modal").addEventListener("close", function () {
+    startTimer();
+    modalOpen = false;
+  }
+);
+document.getElementById("rules-modal").addEventListener("close", function () {
+  startTimer();
+  modalOpen = false;
+}
+);
+//not for win modal since game is finished or landing modal since start new game anyway
+document.getElementById("win-modal").addEventListener("close", function () {
+  modalOpen = false;
+}
+);
+document.getElementById("landing-modal").addEventListener("close", function () {
+  modalOpen = false;
+}
+);
 
 // Add event listener for when mobile device is turned into landscape mode
 //page does not work properly in landscape mode for all devices as screen hight too small
 //show a modal that tells the user to go back to portrait mode
+//https://dev.to/dcodeyt/the-easiest-way-to-detect-device-orientation-in-javascript-7d7
 function checkOrientationChange() {
-    window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
-      //check these conditions and only if true, show warning when in landscape mode
-      //for small screens or with one side very small
-      if ((screen.width < 767 && screen.height < 767) || (screen.width < 500 || screen.height < 500)){
+  window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
+    //check these conditions and only if true, show warning when in landscape mode
+    //for small screens or with one side very small
+    if ((screen.width < 767 && screen.height < 767) || (screen.width < 500 || screen.height < 500)){
       const portrait = e.matches;
-
       if (portrait) {
-
-          document.getElementById("landscape-modal").close();
-        
+        //check if another modal is open that handles the timer already
+        if (!modalOpen) {
+          startTimer();
+        }
+        document.getElementById("landscape-modal").close();
       } else {
-
-          document.getElementById("landscape-modal").showModal();
-        
+        //check if another modal is open that handles the timer already
+        if (!modalOpen) {
+          stopTimer();
+        }
+        document.getElementById("landscape-modal").showModal();
       }
     }
-    });
-  
+  });
 }
 
 function checkIfLandscape() {
@@ -139,10 +170,11 @@ function checkIfLandscape() {
   if ((screen.width < 767 && screen.height < 767) || (screen.width < 500 || screen.height < 500)){
     let portrait = window.matchMedia("(orientation: portrait)").matches;
     if (portrait === false) {
+      loadedFromLandscape = true;
       //show the warning modal until device is turned back (orientation change is detected with checkOrientationChange)
-        do {
-          document.getElementById("landscape-modal").showModal();
-        } while (checkOrientationChange());
+      do {
+        document.getElementById("landscape-modal").showModal();
+      } while (checkOrientationChange());
     }; 
   }
 }
@@ -150,10 +182,12 @@ function checkIfLandscape() {
 ////////////////////////////////////////////////////////////////////////////////
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
+  //reset loadedFromLandScape to false
+  loadedFromLandscape = false;
   //check if mobile device in landscape mode when loading page
-  checkIfLandscape();
+  checkIfLandscape(); //set loadedFromLandscape to true if is the case
   checkOrientationChange();
-  // //show a default grid behind the landing modal
+  //show a default grid behind the landing modal
   createGrid(4);
   //check whether a player name is already in storage and if so, prepopulate the field in win modal
   let playerName = localStorage.getItem("player-name");
@@ -165,6 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
   //set innerHTML of select element based on maxGridSize
   document.getElementById("grid-size-input-landing").innerHTML = createSelect();
   //show modal on first page load
+  modalOpen = true;
   document.getElementById("landing-modal").showModal();
   //handle form in landing modal to get player name and grid size
   document.getElementById("landing-form").addEventListener("submit", handleLandingFormSubmit);
@@ -265,8 +300,12 @@ function runGame() {
   gridSize = parseInt(gridSize[0]);
   //create ordered grid
   createGrid(gridSize);
-  //start timer
-  startTimer();
+  //start timer (only if page was not loaded in landscape mode on mobile device)
+  if (!loadedFromLandscape) {
+    startTimer();
+  }
+  //set to false since this is only relevant on the very first run
+  loadedFromLandscape = false;
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
   //shuffle
@@ -557,6 +596,7 @@ function handleWin(gridSize) {
   document.getElementById("time-win-display").textContent = time;
   //show win message modal
   let winModal = document.getElementById("win-modal");
+  modalOpen = true;
   winModal.showModal();
   let winModalForm = document.getElementById("win-form");
   winModalForm.addEventListener("submit", handleWinFormSubmit);
