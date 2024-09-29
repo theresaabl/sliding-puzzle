@@ -232,6 +232,7 @@ function handleTileClick(event) {
 
 //creates ordered grid of gridSize
 function createGrid(gridSize){
+  let puzzle = document.getElementById("puzzle");
   let puzzleHTML = "";
   for (let i = 1; i < gridSize * gridSize; i++) {
     puzzleHTML += `<div class="tile-style tile-js"><p>${i}</p></div>`;
@@ -604,4 +605,3 @@ function handleModalClick(event) {
     this.close()
   }
 }
-
