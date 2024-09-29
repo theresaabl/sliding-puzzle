@@ -19,6 +19,10 @@ body {
     font-family: "Fredoka", sans-serif
 }
 
+.uppercase {
+    text-transform: uppercase;
+}
+
 /* Header */
 
 header {
@@ -250,8 +254,11 @@ dialog::backdrop {
     justify-content: space-between;
 }
 
-#leaderboard-entries > div {
+.leaderboard-entries-per-size {
     flex-basis: 0 0 45%;
+    background-color: #77ad7880;
+    margin-top: 1.5rem;
+    padding: 1rem;
 }
 
 .leaderboard-score-div {
@@ -265,10 +272,6 @@ dialog::backdrop {
     align-self: flex-end;
 }
 
-#leaderboard-entries h3 {
-    margin-top: 1.5rem;
-}
-
 .leaderboard-score-div {
     margin-bottom: 1rem;
 }
@@ -280,7 +283,6 @@ dialog::backdrop {
 .leaderboard-score-type {
     font-weight: 500;
     align-self: flex-start;
-    padding-left: 1rem;
 }
 
 /* Error page */

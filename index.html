@@ -31,7 +31,7 @@
         <!-- Game area -->
         <section id="game-area">
             <div id="game-buttons-container">
-                <button data-open-modal class = "game-button" id = "new-game-button">New game</button>
+                <button data-open-modal class = "game-button" id = "new-game-button">New Game</button>
                 <button class="game-button" id="reshuffle-button">Reshuffle</button>
             </div>
             <div id="puzzle-container">
@@ -57,12 +57,11 @@
         <dialog data-modal class="modal" id="landing-modal">
             <div>
             <form method="dialog" id="landing-form">
-                <h2>Welcome to the sliding puzzle game</h2>
+                <h2>Welcome to the Sliding Puzzle Game</h2>
                 <p>Where you can play classic sliding puzzles in many different sizes.
                     <br>
                     The goal is to sort the numbers in ascending order by clicking on the tiles to move them.
-                    <br>
-                    Before starting the game please fill in the following:</p>
+                </p>
                 <label for="player-name-input">Enter player name: </label>
                 <!-- add required, once development is done! -->
                 <input type="text" id="player-name-input" required>
@@ -80,7 +79,7 @@
         <dialog data-modal class="modal" id="new-game-modal">
             <button data-close-modal id="close-new-game-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
             <form method="dialog" id="new-game-form">
-                <h2>Start a new game:</h2>
+                <h2>Start a New Game:</h2>
                 <label for = "grid-size-input-new-game">Choose puzzle size: </label>
                 <select type="select" id="grid-size-input-new-game">
 
@@ -104,16 +103,16 @@
             <button data-close-modal id="close-win-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
             <p class="player-name"></p>
             <h2>
-                Congratulations<span id="player-name-win-display"></span>,
+                Congratulations<span id="player-name-win-display" class="uppercase"></span>,
                 <br>
-                you won!
+                You Won!
             </h2>
-            <h3>Your score:</h3>
+            <h3>Your Score:</h3>
             <p>Puzzle size: <span id="grid-size-display-win"></span></p>
             <p>Time: <span id="time-win-display"></span></p>
             <p>Moves: <span id="moves-win-display"></span></p>
             <form method="dialog" id="win-form">
-                <h3>Start a new game:</h3>
+                <h3>Start a New Game:</h3>
                 <label for = "grid-size-input-win">Choose puzzle size: </label>
                 <select type="select" id="grid-size-input-win">
 
@@ -126,7 +125,7 @@
         <!-- Rules modal -->
         <dialog data-modal class="modal" id="rules-modal">
             <button data-close-modal id="close-rules-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
-            <h2>Sliding Game puzzle</h2>
+            <h2>Sliding Puzzle</h2>
             <p>What it is</p>
             <p>How it works</p>
             <p>Controls</p>
@@ -139,7 +138,7 @@
     <!-- Footer -->
     <footer>
         <p>
-            developed by Theresa Abl 
+            Developed by Theresa Abl 
             <span id="footer-icons">
                 <a href="https://github.com/theresaabl" target="_blank" rel="noopener" aria-label="Visit my GitHub page (opens in a new tab)"><i class="fa-brands fa-github" title="Go to GitHub"></i></a>
                 <a href="https://www.linkedin.com/in/theresa-abl/" target="_blank" rel="noopener" aria-label="Visit my LinkedIn page (opens in a new tab)"><i class="fa-brands fa-linkedin" title="Go to LinkedIn"></i></a>

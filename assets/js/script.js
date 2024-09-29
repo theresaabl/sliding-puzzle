@@ -545,12 +545,12 @@ function showLeaderboard() {
       let moveOrMoves = parseInt(moves) === 1 ? "move" : "moves";
       leaderboardDiv += `
       <div class="leaderboard-entries-per-size">
-        <h3>Puzzle size: ${i} x ${i}</h3>
+        <h3>Puzzle Size: ${i} x ${i}</h3>
         <div class="leaderboard-score-div">
-          <span class="leaderboard-score-type">Least moves: </span><span class="leaderboard-score-container"><span class="leaderboard-player">${movesPlayer}</span> with ${moves} ${moveOrMoves}</span>
+          <span class="leaderboard-score-type">Least moves: </span><span class="leaderboard-score-container"><span class="leaderboard-player uppercase">${movesPlayer}</span> with ${moves} ${moveOrMoves}</span>
         </div>
         <div class="leaderboard-score-div">
-          <span class="leaderboard-score-type">Best time: </span><span class="leaderboard-score-container"><span class="leaderboard-player">${timePlayer}</span> with ${time}</span>
+          <span class="leaderboard-score-type">Best time: </span><span class="leaderboard-score-container"><span class="leaderboard-player uppercase">${timePlayer}</span> with ${time}</span>
         </div>
       </div>
     `;
