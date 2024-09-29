@@ -211,6 +211,12 @@ dialog::backdrop {
     background-color: #f5f5f5;
 }
 
+/* class for modals with more content */
+.large-modal {
+    /* set larger min width for mobile devices */
+    min-width: 80%;
+}
+
 .modal h2 {
     margin-bottom: 1.5rem;
     text-align: center;
@@ -270,11 +276,6 @@ dialog::backdrop {
 
 /* Leaderboard */
 
-#leaderboard-modal {
-    /* set larger min width for mobile devices */
-    min-width: 80%;
-}
-
 #leaderboard-entries {
     display: flex;
     flex-wrap: wrap;
@@ -313,11 +314,6 @@ dialog::backdrop {
 }
 
 /* Rules modal */
-
-#rules-modal {
-    /* set larger min width for mobile devices */
-    min-width: 80%;
-}
 
 #rules-modal li {
     margin-bottom: 1.5rem;
@@ -386,7 +382,6 @@ footer a:active, footer a:hover {
 /* Media query: tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
     /* Header */
-
     header h1 {
         font-size: 180%;
     }
@@ -403,6 +398,16 @@ footer a:active, footer a:hover {
     /* Puzzle */
     .tile-style {
         font-size: 150%;
+    }
+
+    /* Modals */
+    .large-modal {
+        min-width: 70%;
+    }
+
+    /* don't need min width anymore starting from this screen size */
+    #landing-modal {
+        min-width: 0;
     }
 
 }
@@ -475,6 +480,16 @@ footer a:active, footer a:hover {
     .tile-style {
         font-size: 200%;
     }
+
+    /* Modals */
+    /* don't need min width anymore as screen large enough, except for leaderboard */
+    .large-modal {
+        min-width: 0;
+    }
+
+    #leaderboard-modal {
+        min-width: 70%;
+    }
 }
 
 /* Media query: large laptops, desktops and larger (1200px and up) */
@@ -484,6 +499,11 @@ footer a:active, footer a:hover {
     .game-area {
         width: 80%;
     }
+
+    /* Modals */
+    #leaderboard-modal {
+        min-width: 60%;
+    }
 }
 
 /* Media query: very large desktops(1500px and up) */
@@ -492,5 +512,10 @@ footer a:active, footer a:hover {
     /* Game area */
     .game-area {
         width: 70%;
+    }
+
+    /* Modals */
+    #leaderboard-modal {
+        min-width: 0;
     }
 }

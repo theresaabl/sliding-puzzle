@@ -53,14 +53,12 @@
 
         <!-- Code for modals inspired by https://blog.webdevsimplified.com/2023-04/html-dialog/ -->
         <!-- Modal shows upon loading the page -->
-        <dialog data-modal class="modal" id="landing-modal">
+        <dialog data-modal class="modal large-modal" id="landing-modal">
             <div>
             <form method="dialog" id="landing-form">
                 <h2>Welcome to the Sliding Puzzle Game</h2>
-                <p>Where you can play classic sliding puzzles in many different sizes.
-                    <br>
-                    The goal is to sort the numbers in ascending order by clicking on the tiles to move them.
-                </p>
+                <p>Where you can play classic sliding puzzles in many different sizes.</p>
+                <p>The goal is to sort the numbers in ascending order by clicking on the tiles to move them.</p>
                 <label for="player-name-input">Enter player name: </label>
                 <!-- add required, once development is done! -->
                 <input type="text" id="player-name-input" required>
@@ -89,7 +87,7 @@
         </dialog>
 
         <!-- Leaderboard modal -->
-        <dialog data-modal class="modal" id="leaderboard-modal">
+        <dialog data-modal class="modal large-modal" id="leaderboard-modal">
             <button data-close-modal id="close-leaderboard-modal" class="close-button"><i class="fa-solid fa-x"></i></button>
             <h2>Leaderboard</h2>
             <div id="leaderboard-entries">
@@ -122,7 +120,7 @@
         </dialog>
 
         <!-- Rules modal -->
-        <dialog data-modal class="modal" id="rules-modal">
+        <dialog data-modal class="modal large-modal" id="rules-modal">
             <button data-close-modal id="close-rules-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
             <h2>Sliding Puzzle</h2>
             <ul>
