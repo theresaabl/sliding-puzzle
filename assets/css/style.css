@@ -35,6 +35,10 @@ header a {
     color: inherit;
 }
 
+header a:hover, header a:active {
+    color: #0d1b1ea0;
+}
+
 header h1 {
     font-size: 200%;
 }
@@ -298,6 +302,19 @@ dialog::backdrop {
     height: 80%;
     max-width: 50vh;
     max-height: 50vh;
+}
+
+#error-message a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#error-message a:hover, #error-message a:active {
+    color: #0d1b1ea0;
+}
+
+#error-message i {
+    font-size: 120%;
 }
 
 /* Puzzle grid */
