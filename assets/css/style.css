@@ -72,7 +72,7 @@ main {
 }
 
 /* Game Area */
-#game-area {
+.game-area {
     margin: 2rem;
     width: 95%;
     max-height: 80vh;
@@ -113,7 +113,7 @@ main {
 }
 
 /* Puzzle container */
-#puzzle-container {
+.puzzle-container {
     width: 95%;
     height: 95%;
     max-width: 50vh;
@@ -126,7 +126,7 @@ main {
 }
 
 /* Puzzle grid */
-#puzzle {
+.puzzle-style {
     border: 1px solid #0d1b1e;
     border-radius: 5px;
     background-color: #6f8f72a0;
@@ -239,13 +239,7 @@ dialog::backdrop {
 }
 
 .submit-button {
-    color: #0d1b1e;
-    border-color: #0d1b1e;
-    background-color: #8fd694;
-    padding: .5rem;
     margin-top: .5rem;
-    border-radius: 5px;
-    font-family: "Fredoka", sans-serif;
 }
 
 .submit-button:active, .submit-button:hover {
@@ -340,25 +334,6 @@ dialog::backdrop {
 
 /* Error page */
 
-#error-message-area {
-    margin: 2rem;
-    width: 80%;
-    max-height: 70vh;
-    background-color: #77ad78a0;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-#error-message-container {
-    width: 80%;
-    height: 80%;
-    max-width: 50vh;
-    max-height: 50vh;
-}
-
 #error-message a {
     text-decoration: none;
     color: inherit;
@@ -369,19 +344,7 @@ dialog::backdrop {
 }
 
 #error-message i {
-    font-size: 120%;
-}
-
-/* Puzzle grid */
-#error-message {
-    border: 1px solid #0d1b1e;
-    border-radius: 5px;
-    background-color: #6f8f72a0;
-    box-sizing: content-box; 
-    display: grid;
-    aspect-ratio: 1 / 1;
-    max-height: 100%;
-    max-width: 100%;
+    font-size: 100%;
 }
 
 /* Footer */
@@ -418,7 +381,6 @@ footer a:active, footer a:hover {
     }
 
     /* Main content */
-
     main {
         margin-top: 84px;
     }
@@ -443,7 +405,6 @@ footer a:active, footer a:hover {
     }
 
     /* Main content */
-
     main {
         margin-top: 87px;
     }
