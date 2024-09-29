@@ -114,26 +114,37 @@ document.getElementById("rules-modal").addEventListener("close", startTimer);
 //show a modal that tells the user to go back to portrait mode
 function checkOrientationChange() {
     window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
-    const portrait = e.matches;
+      //check these conditions and only if true, show warning when in landscape mode
+      //for small screens or with one side very small
+      if ((screen.width < 767 && screen.height < 767) || (screen.width < 500 || screen.height < 500)){
+      const portrait = e.matches;
 
-    if (portrait) {
-      document.getElementById("landscape-modal").close();
-    } else {
-      document.getElementById("landscape-modal").showModal();
+      if (portrait) {
+
+          document.getElementById("landscape-modal").close();
+        
+      } else {
+
+          document.getElementById("landscape-modal").showModal();
+        
+      }
     }
-  });
+    });
+  
 }
 
-checkOrientationChange();
-
 function checkIfLandscape() {
-  let portrait = window.matchMedia("(orientation: portrait)").matches;
-  if (portrait === false) {
-    //show the warning modal until device is turned back (orientation change is detected with checkOrientationChange)
-    do {
-      document.getElementById("landscape-modal").showModal();
-    } while (checkOrientationChange());
-  }; 
+  //check these conditions and only if true, show warning when in landscape mode
+  //for small screens or with one side very small
+  if ((screen.width < 767 && screen.height < 767) || (screen.width < 500 || screen.height < 500)){
+    let portrait = window.matchMedia("(orientation: portrait)").matches;
+    if (portrait === false) {
+      //show the warning modal until device is turned back (orientation change is detected with checkOrientationChange)
+        do {
+          document.getElementById("landscape-modal").showModal();
+        } while (checkOrientationChange());
+    }; 
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -141,6 +152,7 @@ function checkIfLandscape() {
 document.addEventListener("DOMContentLoaded", function() {
   //check if mobile device in landscape mode when loading page
   checkIfLandscape();
+  checkOrientationChange();
   // //show a default grid behind the landing modal
   createGrid(4);
   //check whether a player name is already in storage and if so, prepopulate the field in win modal
