@@ -6,7 +6,7 @@
 localStorage.setItem("size-2-best-time", "13:12");
 localStorage.setItem("size-2-best-time-player", "cari");
 localStorage.setItem("size-2-least-moves", "623");
-localStorage.setItem("size-2-least-moves-player", "bobbie");
+localStorage.setItem("size-2-least-moves-player", "bobbiiesdafjfeieskdkslldkdk");
 
 localStorage.setItem("size-3-best-time", "13:12");
 localStorage.setItem("size-3-best-time-player", "cari");
@@ -549,10 +549,10 @@ function showLeaderboard() {
       <div class="leaderboard-entries-per-size">
         <h3>Puzzle Size: ${i} x ${i}</h3>
         <div class="leaderboard-score-div">
-          <span class="leaderboard-score-type">Least moves: </span><span class="leaderboard-score-container"><span class="leaderboard-player uppercase">${movesPlayer}</span> with ${moves} ${moveOrMoves}</span>
+          <span class="leaderboard-score-type">Least moves: </span><span class="leaderboard-score-container"><span class="leaderboard-player player-name-style">${movesPlayer}</span> with ${moves} ${moveOrMoves}</span>
         </div>
         <div class="leaderboard-score-div">
-          <span class="leaderboard-score-type">Best time: </span><span class="leaderboard-score-container"><span class="leaderboard-player uppercase">${timePlayer}</span> with ${time}</span>
+          <span class="leaderboard-score-type">Best time: </span><span class="leaderboard-score-container"><span class="leaderboard-player player-name-style">${timePlayer}</span> with ${time}</span>
         </div>
       </div>
     `;

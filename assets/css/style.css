@@ -19,10 +19,6 @@ body {
     font-family: "Fredoka", sans-serif
 }
 
-.uppercase {
-    text-transform: uppercase;
-}
-
 /* Header */
 
 header {
@@ -200,9 +196,11 @@ dialog::backdrop {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 4rem 3rem 2rem 3rem;
+    max-width: 80%;
+    padding: 3rem 2rem 1rem 2rem;
     border-radius: 5px;
     color: #0d1b1e;
+    background-color: #f5f5f5;
 }
 
 .modal h2 {
@@ -215,8 +213,22 @@ dialog::backdrop {
     text-align: center;
 }
 
-.modal p, .modal input, .modal select {
+.modal p {
     margin-bottom: 1rem;
+}
+
+.modal input, .modal select {
+    margin-bottom: 1rem;
+    margin-left: .5rem;
+    padding: .3rem;
+    border: .5px solid #0d1b1e;
+    border-radius: #0d1b1e;
+    font-family: sans-serif;
+    background: transparent;
+}
+
+.modal input:focus, .modal select:focus {
+    background-color: #77ad7850;
 }
 
 .modal button {
@@ -246,7 +258,18 @@ dialog::backdrop {
     right: 1.3rem;    
 }
 
+.player-name-style {
+    text-transform: uppercase;
+    /* needed for long player names */
+    word-break: break-all;
+}
+
 /* Leaderboard */
+
+#leaderboard-modal {
+    min-width: 80%;
+    max-width: 98%;
+}
 
 #leaderboard-entries {
     display: flex;
@@ -255,7 +278,7 @@ dialog::backdrop {
 }
 
 .leaderboard-entries-per-size {
-    flex-basis: 0 0 45%;
+    flex-basis: 1 1 45%;
     background-color: #77ad7880;
     margin-top: 1.5rem;
     padding: 1rem;
@@ -289,6 +312,7 @@ dialog::backdrop {
 
 #rules-modal li {
     margin-bottom: 1.5rem;
+    margin-left: 1rem;
 }
 
 .rules-button-style {
