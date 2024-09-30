@@ -76,8 +76,8 @@ main {
     /* Let main take up any surplus space */
     flex: 1 0 auto;
     /* Account for fixed header and footer */
-    margin-top: 100px;
-    margin-bottom: 52px;
+    margin-top: 6.2rem;
+    margin-bottom: 3.2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -249,7 +249,7 @@ dialog::backdrop {
     margin: .5rem 0;
     padding: .3rem;
     border: .5px solid #0d1b1e;
-    border-radius: #0d1b1e;
+    border-radius: 5px;
     font-family: sans-serif;
     background: transparent;
     display: inline-block;
@@ -296,7 +296,7 @@ dialog::backdrop {
 }
 
 .leaderboard-entries-per-size {
-    flex-basis: 1 1 45%;
+    flex-basis: 45%;
     background-color: #77ad7880;
     margin-top: 1.5rem;
     padding: 1rem;
@@ -433,9 +433,6 @@ footer a:active, footer a:hover {
     } 
     
     /* Main content */
-    main {
-        margin-top: 84px;
-    }
 
     /* Game area */
     .game-area {
@@ -467,9 +464,6 @@ footer a:active, footer a:hover {
     }
 
     /* Main content */
-    main {
-        margin-top: 87px;
-    }
 
     /* Game area */
     .game-area {
@@ -505,7 +499,7 @@ footer a:active, footer a:hover {
     }
 
     #score-stats {
-        align-self: flex-sart;
+        align-self: flex-start;
         flex-direction: column;
         margin-bottom: 2rem;
     }
