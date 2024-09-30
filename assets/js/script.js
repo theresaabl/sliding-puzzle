@@ -1,15 +1,13 @@
 /* jshint esversion: 11 */
 
-////////////////////////////////////////////////////
 //set the maximum grid size available for the game, set globally so can change in one place
-//can choose any that fits the page, possibly need to change font size of tile numbers (class="tile-style")
 const maxGridSize = 9;
 //initialize global variables
 let second = 0;
 let minute = 0;
 let hour = 0;
 //set timerInterval to false initially to indicate it is not running
-//https://stackoverflow.com/a/2679208
+//code inspiration for only starting timer if no interval is set yet https://stackoverflow.com/a/2679208
 let timerInterval = false;
 //set gameWon to false, need to check this in moveTile function
 let gameWon = false;
