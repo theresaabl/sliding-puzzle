@@ -710,8 +710,8 @@ function createSelect() {
 function checkOrientationChange() {
   window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
     //check these conditions and only if true, show warning when in landscape mode
-    //for mobile devices with screens less than 767px
-    if (window.innerWidth < 767 || window.innerHeight < 767){
+    //for mobile devices with screens less than 680px, this is about the min height that need to display game properly
+    if (window.innerWidth < 680 || window.innerHeight < 680){
       const portrait = e.matches;
       if (portrait) {
         //check if another modal is open that handles the timer already
@@ -732,8 +732,8 @@ function checkOrientationChange() {
 
 function checkIfLandscape() {
   //check these conditions and only if true, show warning when in landscape mode
-    //for mobile devices with screens less than 767px
-    if (window.innerWidth < 767 || window.innerHeight < 767){
+    //for mobile devices with screens less than 680px
+    if (window.innerWidth < 680 || window.innerHeight < 680){
     let portrait = window.matchMedia("(orientation: portrait)").matches;
     if (portrait === false) {
       loadedFromLandscape = true;
