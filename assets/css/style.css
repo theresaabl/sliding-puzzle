@@ -116,6 +116,7 @@ main {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    overflow: scroll;
 }
 
 /* Game buttons */
@@ -179,7 +180,6 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* font-size: 130%; */
 }
 
 .empty-tile p {
@@ -462,10 +462,6 @@ footer a:active, footer a:hover {
     .game-area {
         width: 80%;
     }
-    /* Puzzle */
-    .tile-style {
-        font-size: 150%;
-    }
 
     /* Modals */
     .large-modal {
@@ -545,11 +541,6 @@ footer a:active, footer a:hover {
 
     #game-stats-display {
         padding-top: 0;
-    }
-
-    /* Puzzle */
-    .tile-style {
-        font-size: 200%;
     }
 
     /* Modals */
