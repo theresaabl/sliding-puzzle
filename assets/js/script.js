@@ -1,49 +1,6 @@
 /* jshint esversion: 11 */
 
 ////////////////////////////////////////////////////
-// for testing purpose only:
-
-localStorage.setItem("size-2-best-time", "13:12");
-localStorage.setItem("size-2-best-time-player", "cari");
-localStorage.setItem("size-2-least-moves", "623");
-localStorage.setItem("size-2-least-moves-player", "bobbi");
-
-localStorage.setItem("size-3-best-time", "13:12");
-localStorage.setItem("size-3-best-time-player", "cari");
-localStorage.setItem("size-3-least-moves", "623");
-localStorage.setItem("size-3-least-moves-player", "bobbie");
-
-localStorage.setItem("size-4-best-time", "13:12");
-localStorage.setItem("size-4-best-time-player", "cari");
-localStorage.setItem("size-4-least-moves", "623");
-localStorage.setItem("size-4-least-moves-player", "bobbie");
-
-// localStorage.setItem("size-5-best-time", "13:12");
-// localStorage.setItem("size-5-best-time-player", "cari");
-// localStorage.setItem("size-5-least-moves", "623");
-// localStorage.setItem("size-5-least-moves-player", "bobbie");
-
-// localStorage.setItem("size-6-best-time", "13:12");
-// localStorage.setItem("size-6-best-time-player", "cari");
-// localStorage.setItem("size-6-least-moves", "623");
-// localStorage.setItem("size-6-least-moves-player", "bobbie");
-
-// localStorage.setItem("size-7-best-time", "13:12");
-// localStorage.setItem("size-7-best-time-player", "cari");
-// localStorage.setItem("size-7-least-moves", "623");
-// localStorage.setItem("size-7-least-moves-player", "bobbie");
-
-// localStorage.setItem("size-8-best-time", "13:12");
-// localStorage.setItem("size-8-best-time-player", "cari");
-// localStorage.setItem("size-8-least-moves", "623");
-// localStorage.setItem("size-8-least-moves-player", "bobbie");
-
-// localStorage.setItem("size-9-best-time", "13:12");
-// localStorage.setItem("size-9-best-time-player", "cari");
-// localStorage.setItem("size-9-least-moves", "623");
-// localStorage.setItem("size-9-least-moves-player", "bobbie");
-
-////////////////////////////////////////////////////
 //set the maximum grid size available for the game, set globally so can change in one place
 //can choose any that fits the page, possibly need to change font size of tile numbers (class="tile-style")
 const maxGridSize = 9;

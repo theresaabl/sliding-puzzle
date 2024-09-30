@@ -293,9 +293,9 @@ dialog::backdrop {
 }
 
 .leaderboard-entries-per-size {
-    flex-basis: 45%;
+    flex: 1 1 auto;
     background-color: #77ad7880;
-    margin-top: 1.5rem;
+    margin: 1rem 0.5rem;
     padding: 1rem;
 }
 
