@@ -137,47 +137,9 @@ document.getElementById("landing-modal").addEventListener("close", function () {
 }
 );
 
-// Add event listener for when mobile device is turned into landscape mode
-//page does not work properly in landscape mode for all devices as screen hight too small
-//show a modal that tells the user to go back to portrait mode
-//https://dev.to/dcodeyt/the-easiest-way-to-detect-device-orientation-in-javascript-7d7
-function checkOrientationChange() {
-  window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
-    //check these conditions and only if true, show warning when in landscape mode
-    //for small screens or with one side very small
-    if ((screen.width < 767 && screen.height < 767) || (screen.width < 500 || screen.height < 500)){
-      const portrait = e.matches;
-      if (portrait) {
-        //check if another modal is open that handles the timer already
-        if (!modalOpen) {
-          startTimer();
-        }
-        document.getElementById("landscape-modal").close();
-      } else {
-        //check if another modal is open that handles the timer already
-        if (!modalOpen) {
-          stopTimer();
-        }
-        document.getElementById("landscape-modal").showModal();
-      }
-    }
-  });
-}
+//Add eventlistener to dynamically change the font size of the tile numbers when screen width changes
+window.addEventListener("resize", tileFontSize);
 
-function checkIfLandscape() {
-  //check these conditions and only if true, show warning when in landscape mode
-  //for small screens or with one side very small
-  if ((screen.width < 767 && screen.height < 767) || (screen.width < 500 || screen.height < 500)){
-    let portrait = window.matchMedia("(orientation: portrait)").matches;
-    if (portrait === false) {
-      loadedFromLandscape = true;
-      //show the warning modal until device is turned back (orientation change is detected with checkOrientationChange)
-      do {
-        document.getElementById("landscape-modal").showModal();
-      } while (checkOrientationChange());
-    }; 
-  }
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 // Add event listeners for tiles once Dom content is loaded
@@ -285,8 +247,8 @@ function stopTimer() {
 
 function runGame() {
   gameWon = false;
-  //reset grid every time game is run
-  document.getElementById("puzzle").innerHTML = "";
+  // //reset grid every time game is run
+  // document.getElementById("puzzle").innerHTML = "";
   //reset move counter and timer
   document.getElementById("moves-display").textContent = "0";
   stopTimer(); //clear interval and set timer to false
@@ -351,6 +313,22 @@ function createGrid(gridSize){
   //set styles for grid
   //calculate column-width depending on gridSize as a percentage
   puzzle.style.gridTemplateColumns = `${100 / gridSize}%`.repeat(gridSize);
+  //set dynamic fontsize
+  tileFontSize();
+}
+
+//calculate tile number font size from tile width
+function tileFontSize() {
+  //get computed style width of tile (div containing the number)
+  let tileStyleWidth = getComputedStyle(document.getElementsByClassName("tile-style")[0]).width;
+  //get a string "number" + "px", remove "px"
+  tileStyleWidth.slice(-2);
+  let tileStyleWidthInt = parseInt(tileStyleWidth);
+  //set font size to percentage of tile width for each element
+  let styledTiles = document.getElementsByClassName("tile-style");
+  for (let styledTile of styledTiles) {
+    styledTile.style.fontSize = `${tileStyleWidthInt * 0.5}px`;
+  }
 }
 
 function resetGrid(gridSize) {
@@ -360,7 +338,10 @@ function resetGrid(gridSize) {
   }
   puzzleHTML += '<div class="empty-tile tile-js"><p>0</p></div>';
   document.getElementById("puzzle").innerHTML = puzzleHTML;
-}
+  //set dynamic fontsize
+  tileFontSize();
+  }
+    
   
 /**
  * This function takes the HTML collection of tiles in the puzzle grid
@@ -720,4 +701,46 @@ function createSelect() {
     selectHTML += `<option value="${i}">${i} x ${i}</option>`;
   }
   return selectHTML;
+}
+
+// Add event listener for when mobile device is turned into landscape mode
+//page does not work properly in landscape mode for all devices as screen hight too small
+//show a modal that tells the user to go back to portrait mode
+//https://dev.to/dcodeyt/the-easiest-way-to-detect-device-orientation-in-javascript-7d7
+function checkOrientationChange() {
+  window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
+    //check these conditions and only if true, show warning when in landscape mode
+    //for small screens or with one side very small
+    if ((screen.width < 767 && screen.height < 767) || (screen.width < 500 || screen.height < 500)){
+      const portrait = e.matches;
+      if (portrait) {
+        //check if another modal is open that handles the timer already
+        if (!modalOpen) {
+          startTimer();
+        }
+        document.getElementById("landscape-modal").close();
+      } else {
+        //check if another modal is open that handles the timer already
+        if (!modalOpen) {
+          stopTimer();
+        }
+        document.getElementById("landscape-modal").showModal();
+      }
+    }
+  });
+}
+
+function checkIfLandscape() {
+  //check these conditions and only if true, show warning when in landscape mode
+  //for small screens or with one side very small
+  if ((screen.width < 767 && screen.height < 767) || (screen.width < 500 || screen.height < 500)){
+    let portrait = window.matchMedia("(orientation: portrait)").matches;
+    if (portrait === false) {
+      loadedFromLandscape = true;
+      //show the warning modal until device is turned back (orientation change is detected with checkOrientationChange)
+      do {
+        document.getElementById("landscape-modal").showModal();
+      } while (checkOrientationChange());
+    }; 
+  }
 }

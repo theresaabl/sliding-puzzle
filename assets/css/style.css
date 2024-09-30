@@ -110,7 +110,7 @@ main {
     margin:1rem;
     width: 95%;
     max-height: 80vh;
-    background-color: #77ad78a0;
+    background-color: #77ad7870;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -179,7 +179,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 130%;
+    /* font-size: 130%; */
 }
 
 .empty-tile p {
