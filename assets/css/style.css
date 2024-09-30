@@ -48,29 +48,8 @@ header div {
     /* position: absolute; */
 }
 
-/* #header-icons {
-    font-size: 150%;
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translate(-50%, -50%);
-    margin-right: .2rem;
-    margin-top: 0;
-} 
-    
-#leaderboard-icon {
-    margin-left: 2rem;
-}
-*/
-
 #header-icons {
     font-size: 130%;
-    /* position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%); */
-    /* margin-right: .2rem; */
 }
 
 #header-icons i {

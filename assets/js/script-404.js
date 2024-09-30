@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
     errorMessage();
 });
 
+//Add eventlistener to dynamically change the font size of the tile numbers when screen width changes
+window.addEventListener("resize", tileFontSize);
+
 //generate and display error message on 404 page
 function errorMessage(){
     let error = document.getElementById("error-message");
@@ -20,4 +23,19 @@ function errorMessage(){
     //set styles for grid
     //calculate column-width depending on gridSize as a percentage
     error.style.gridTemplateColumns = `${100 / gridSize}%`.repeat(gridSize);
+    tileFontSize();
+}
+
+//calculate tile number font size from tile width
+function tileFontSize() {
+  //get computed style width of tile (div containing the number)
+  let tileStyleWidth = getComputedStyle(document.getElementsByClassName("tile-style")[0]).width;
+  //get a string "number" + "px", remove "px"
+  tileStyleWidth.slice(-2);
+  let tileStyleWidthInt = parseInt(tileStyleWidth);
+  //set font size to percentage of tile width for each element
+  let styledTiles = document.getElementsByClassName("tile-style");
+  for (let styledTile of styledTiles) {
+    styledTile.style.fontSize = `${tileStyleWidthInt * 0.5}px`;
+  }
 }
