@@ -53,64 +53,36 @@ The green color scheme was chosen to give the site a calm and relaxed feel, sinc
 
 ## Wireframes
 
-To follow best practice, wireframes were developed for mobile and desktop sizes.
-I have used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
+To follow best practice, wireframes were developed for mobile (including tablets) and desktop sizes.
+I have used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes. Note that there is only one wireframe per size, since the game is a one page website and the design choices for the error page follow easily. This project was developed using a mobile first approach.
 
-### Mobile Wireframe
-
-![screenshot](documentation/wireframes/mobile.png)
-
-### Desktop Wireframe
-
-![screenshot](documentation/wireframes/desktop.png)
-
-### Desktop Wireframes
-
+| Mobile Wireframe | Desktop Wireframe |
+| --- | --- |
+| ![screenshot](documentation/wireframes/mobile.png) | ![screenshot](documentation/wireframes/desktop.png) | 
 
 ## Features
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
-
-In this section, you should go over the different parts of your project,
-and describe each in a sentence or so.
-
-You will need to explain what value each of the features provides for the user,
-focusing on who this website is for, what it is that they want to achieve,
-and how your project is the best way to help them achieve these things.
-
-For some/all of your features, you may choose to reference the specific project files that implement them.
-
-IMPORTANT: Remember to always include a screenshot of each individual feature!
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 ### Existing Features
 
-- **YOUR-TITLE-FOR-FEATURE-#1**
-
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
-
-![screenshot](documentation/features/feature01.png)
-
-- **YOUR-TITLE-FOR-FEATURE-#2**
-
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
-
-![screenshot](documentation/features/feature02.png)
-
-- **YOUR-TITLE-FOR-FEATURE-#3**
-
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
-
-![screenshot](documentation/features/feature03.png)
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
-
-Repeat as necessary for as many features as your site contains.
-
-Hint: the more, the merrier!
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+| Feature | Description | Screenshot |
+| --- | --- | --- |
+| Logo | The logo appears in the header in fixed position. The goal is for the user to know the site purpose at first sight. It has a playful but very readable look which fits the theme of a sliding puzzle game. Clicking the logo links back to the home page. | ![screenshot](documentation/features/logo.png) |
+| Header icons | Below the logo a star icon and an information icon are shown. Clicking on these icons opens the leaderboard dialog for the star icon and the rules dialog for the information icon. Clicking again closes the dialogs. | ![screenshot](documentation/features/header-icons-mobile.png) |
+| Header icons for desktop devices | The icons appear on the right end of the header and have the same fuctionality as above | ![screenshot](documentation/features/header-icons-desktop.png) |
+| Game area | | ![screenshot](documentation/features/game-area-mobile.png) |
+| Game area for desktop devices | | ![screenshot](documentation/features/game-area-desktop.png) |
+| Sliding puzzle | | ![screenshot](documentation/features/puzzle-2.png) ![screenshot](documentation/features/puzzle-2.png) ![screenshot](documentation/features/puzzle-2.png) ![screenshot](documentation/features/puzzle-3.png) ![screenshot](documentation/features/puzzle-4.png) ![screenshot](documentation/features/puzzle-5.png) ![screenshot](documentation/features/puzzle-6.png) ![screenshot](documentation/features/puzzle-7.png) ![screenshot](documentation/features/puzzle-8.png) ![screenshot](documentation/features/puzzle-9.png)|
+| Game buttons | | ![screenshot](documentation/features/game-buttons-mobile.png) |
+| Game buttons for desktop devices | | ![screenshot](documentation/features/game-buttons-desktop.png) |
+| Game statistics | | ![screenshot](documentation/features/game-statistics-mobile.png) |
+| Game statistics for desktop devices | | ![screenshot](documentation/features/game-statistics-desktop.png) |
+| Landing dialog | | ![screenshot](documentation/features/landing-modal.png) |
+| New game dialog | | ![screenshot](documentation/features/new-game-modal.png) |
+| Win message dialog | | ![screenshot](documentation/features/win-message-modal.png) |
+| Leaderboard dialog | | ![screenshot](documentation/features/leaderboard-modal.png) |
+| Rules dialog | | ![screenshot](documentation/features/rules-modal.png) |
+| Landscape mode warning for mobile devices | | ![screenshot](documentation/features/landscape-modal.png) |
+| Error 404 page | | ![screenshot](documentation/features/error-page.png) |
 
 ### Future Features
 
