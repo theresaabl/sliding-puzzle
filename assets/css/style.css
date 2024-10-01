@@ -19,6 +19,11 @@ body {
     font-family: "Fredoka", sans-serif
 }
 
+/* General styles */
+.hidden-heading {
+    visibility: hidden;
+}
+
 /* Header */
 
 header {
@@ -352,6 +357,7 @@ dialog::backdrop {
 
 #landscape-modal i {
     font-size: 150%;
+    margin-bottom: 2rem;
 }
 
 /* Error page */

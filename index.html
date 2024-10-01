@@ -31,6 +31,7 @@
 
         <!-- Game area -->
         <section class="game-area">
+            <h1 class="hidden-heading">Game Area</h1>
             <div id="game-buttons-container" class="game-buttons-stats-container">
                 <button data-open-modal class = "game-button" id = "new-game-button">New Game</button>
                 <button class="game-button" id="reshuffle-button">Reshuffle</button>
@@ -56,18 +57,16 @@
         <!-- Code for modals inspired by https://blog.webdevsimplified.com/2023-04/html-dialog/ -->
         <!-- Modal shows upon loading the page -->
         <dialog data-modal class="modal large-modal" id="landing-modal">
-            <div>
             <form method="dialog" id="landing-form">
                 <h2>Welcome to the Sliding Puzzle Game</h2>
                 <p>Where you can play classic sliding puzzles in many different sizes.</p>
                 <p>The goal is to sort the numbers in ascending order by clicking on the tiles to move them.</p>
                 <p>For more information click the <i class="fa-solid fa-circle-info" title="Info-icon"></i> - icon.</p>
                 <label for="player-name-input">Enter player name: </label>
-                <!-- add required, once development is done! -->
                 <input type="text" id="player-name-input" required autofocus>
                 <br>
                 <label for = "grid-size-input-landing">Choose puzzle size: </label>
-                <select type="select" id="grid-size-input-landing">
+                <select id="grid-size-input-landing">
 
                 </select>
                 <br>
@@ -81,7 +80,7 @@
             <form method="dialog" id="new-game-form">
                 <h2>Start a New Game:</h2>
                 <label for = "grid-size-input-new-game">Choose puzzle size: </label>
-                <select type="select" id="grid-size-input-new-game" autofocus>
+                <select id="grid-size-input-new-game">
 
                 </select>
                 <br>
@@ -114,7 +113,7 @@
             <form method="dialog" id="win-form">
                 <h3>Start a New Game:</h3>
                 <label for = "grid-size-input-win">Choose puzzle size: </label>
-                <select type="select" id="grid-size-input-win" autofocus>
+                <select id="grid-size-input-win">
 
                 </select>
                 <br>
@@ -138,7 +137,7 @@
 
         <!-- Landscape warning modal -->
         <dialog data-modal class="modal" id="landscape-modal">
-            <h2><i class="fa-solid fa-arrows-rotate" title="Rotate device"></i></h2>
+            <i class="fa-solid fa-lg fa-arrows-rotate" title="Rotate device"></i>
             <p>Please rotate your device to continue playing.</p>
         </dialog>
 
