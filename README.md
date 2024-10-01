@@ -92,6 +92,8 @@ I have used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefr
     - Drag and drop tiles on mobile devices (e.g. using jQuery drag and drop)
 Both these options would improve user experience through offering more ways to move the tiles.
 
+- Another very useful future feature would be to implement the option to automatically move several tiles in one go. This would make the game much faster and more user friendly, since it would require significantly fewer clicks to solve the puzzle. If one clicks on a tile in the same row or column as the empty tile (but not neighbouring the empty tile), all tiles up to the empty tile are moved.
+
 - It would also be nice to implement the option for the user to  upload their own images to display on the puzzle, so users can play personalised sliding puzzles.
 
 - For now, the leaderboard data only uses local storage, thus users can only beat there own previous records. It would be great to also include a "real" leaderboard by including a database with backend developemnt.
@@ -180,8 +182,15 @@ Ideally, you should provide an actual link to every resource used, not just a ge
 | Source | Location | Notes |
 | --- | --- | --- |
 | [Markdown Builder](https://tim.2bn.dev/markdown-builder) | README and TESTING | tool to help generate the Markdown files |
-| [W3Schools](https://www.w3schools.com/CSS/css_grid.asp) | sliding puzzle | CSS grid styles |
-
+| [W3Schools](https://www.w3schools.com/CSS/css_grid.asp) | puzzle tile grid | CSS grid layout |
+| [Medium](https://hojelse.medium.com/make-a-truly-responsive-square-in-css-d917f5ef286d) | puzzle tile grid | make a responsive square in CSS |
+| [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/) | script.js | Fisher-Yates algorithm to randomly shuffle an array (the puzzle tiles) |
+| [GeeksForGeeks](https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/) | script.js | check whether the randomly shuffled puzzle is solvable |
+| [GeeksForGeeks](https://www.geeksforgeeks.org/how-to-center-an-element-using-positionfixed-in-css/) | dialogs in entire page | center element in center of page using position fixed |
+| [Web Dev Simplified Blog](https://blog.webdevsimplified.com/2023-04/html-dialog/) | entire page | create and control dialog modals |
+| [Dev](https://dev.to/walternascimentobarroso/creating-a-timer-with-javascript-8b7) | game score area and leaderboard | create and control a timer with javascript | 
+| [Stackoverflow](https://stackoverflow.com/a/2679208) | script.js | check whether a timer is running |
+| [Youtube](https://www.youtube.com/watch?v=YL1F4dCUlLc&t=857s) | leaderboard and other dialogs | use local storage with javascript |
 
 
 
