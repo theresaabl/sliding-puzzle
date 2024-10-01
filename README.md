@@ -66,22 +66,22 @@ I have used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefr
 
 | Feature | Description | Screenshot |
 | --- | --- | --- |
-| Logo | The logo appears in the header in fixed position. The goal is for the user to know the site purpose at first sight. It has a playful but very readable look which fits the theme of a sliding puzzle game. Clicking the logo links back to the home page. | ![screenshot](documentation/features/logo.png) |
-| Header icons | Below the logo a star icon and an information icon are shown. Clicking on these icons opens the leaderboard dialog for the star icon and the rules dialog for the information icon. Clicking again closes the dialogs. | ![screenshot](documentation/features/header-icons-mobile.png) |
-| Header icons for desktop devices | The icons appear on the right end of the header and have the same fuctionality as above | ![screenshot](documentation/features/header-icons-desktop.png) |
-| Game area | | ![screenshot](documentation/features/game-area-mobile.png) |
-| Game area for desktop devices | | ![screenshot](documentation/features/game-area-desktop.png) |
-| Sliding puzzle tile click | Move tiles when click on them. | ![screenshot](documentation/features/puzzle-4.png) |
-| Different puzzle sizes | | ![screenshot](documentation/features/puzzle-2.png) ![screenshot](documentation/features/puzzle-2.png) ![screenshot](documentation/features/puzzle-2.png) ![screenshot](documentation/features/puzzle-3.png) ![screenshot](documentation/features/puzzle-4.png) ![screenshot](documentation/features/puzzle-5.png) ![screenshot](documentation/features/puzzle-6.png) ![screenshot](documentation/features/puzzle-7.png) ![screenshot](documentation/features/puzzle-8.png) ![screenshot](documentation/features/puzzle-9.png)|
-| Game buttons | | ![screenshot](documentation/features/game-buttons-mobile.png) |
-| Game buttons for desktop devices | | ![screenshot](documentation/features/game-buttons-desktop.png) |
-| Game statistics | | ![screenshot](documentation/features/game-statistics-mobile.png) |
-| Game statistics for desktop devices | | ![screenshot](documentation/features/game-statistics-desktop.png) |
-| Landing dialog | | ![screenshot](documentation/features/landing-modal.png) |
-| New game dialog | | ![screenshot](documentation/features/new-game-modal.png) |
-| Win message dialog | | ![screenshot](documentation/features/win-message-modal.png) |
-| Leaderboard dialog | | ![screenshot](documentation/features/leaderboard-modal.png) |
-| Rules dialog | | ![screenshot](documentation/features/rules-modal.png) |
+| [**Logo**] | The logo appears in the header in fixed position. The goal is for the user to know the site purpose at first sight. It has a playful but very readable look which fits the theme of a sliding puzzle game. Clicking the logo links back to the home page. | ![screenshot](documentation/features/logo.png) |
+| Header icons | Below the logo a star icon and an information icon are shown. Clicking on the star icon opens and closes the leaderboard pop up and clicking on the info icon opens and closes the rules pop up (see below). | ![screenshot](documentation/features/header-icons-mobile.png) |
+| Header icons for desktop devices | The icons appear on the right end of the header and have the same functionality as above. | ![screenshot](documentation/features/header-icons-desktop.png) |
+| Game area | The game area indicates the area where the puzzle game is played. It presents the puzzle itself together with the game buttons and the move counter, timer and puzzle size display on a green background. The user should see on first sight which parts of the site contain the actual game and which parts contain additional information or features. | ![screenshot](documentation/features/game-area-mobile.png) |
+| Game area for desktop devices | The game area has a slightly different layout on larger devices to maximise the size of the square containing the puzzle. | ![screenshot](documentation/features/game-area-desktop.png) |
+| Sliding puzzle game | The main feature of this site is the sliding puzzle itself. A number of tiles are contained in a square, where the tiles are numbered and the font size scales nicely depending on the number of tiles as well as the screen size. Many different puzzle sizes (number of tiles) are available, where the size can be chosen by the user through input in different pop ups (see below). When clicking on a tile next to the empty tile, the tile moves and so all the tiles can be ordered into ascending order with the empty tile in the bottom right corner. Once the puzzle is ordered a win message will show (see below). | ![screenshot](documentation/features/puzzle-4.png) |
+| Different puzzle sizes | On the live site puzzle sizes between 2 x 2 and 9 x 9 tiles are available. The maximum available puzzle size can be quickly changed by changing a single variable in the beginning of the [script.js](assets/js/script.js) file. | ![screenshot](documentation/features/puzzle-2.png) ![screenshot](documentation/features/puzzle-2.png) ![screenshot](documentation/features/puzzle-2.png) ![screenshot](documentation/features/puzzle-3.png) ![screenshot](documentation/features/puzzle-4.png) ![screenshot](documentation/features/puzzle-5.png) ![screenshot](documentation/features/puzzle-6.png) ![screenshot](documentation/features/puzzle-7.png) ![screenshot](documentation/features/puzzle-8.png) ![screenshot](documentation/features/puzzle-9.png)|
+| Game buttons | Above the puzzle two buttons are available. The new game button opens a pop up and after choosing a puzzle size a new game starts. This can be used to start a new game of a different size without finishing the current game. The reshuffle button reshuffles the puzzle while keeping the same puzzle size. This can be used to reshuffle a game where one does not want to solve the current tile arrangement. Both buttons reset the timer and move counter. | ![screenshot](documentation/features/game-buttons-mobile.png) |
+| Game buttons for desktop devices | On desktop devices the game buttons are presented on the left side of the puzzle. | ![screenshot](documentation/features/game-buttons-desktop.png) |
+| Game statistics | Below the puzzle a number of information about the game is presented. First there is a move counter that counts how many tiles have been moved, secondly there is a timer that records how long a user takes to solve the puzzle. Both these numbers will be saved in local storage and possibly displayed on the leaderboard. Lastly, the current puzzle grid size is displayed. | ![screenshot](documentation/features/game-statistics-mobile.png) |
+| Game statistics for desktop devices | On desktop devices the game statistics are presented on the right side of the puzzle. | ![screenshot](documentation/features/game-statistics-desktop.png) |
+| Landing pop up | Upon loading the page the landing pop up is shown. This pop up briefly explains the purpose of this site and the game and then asks the user to input a player name, this is required for the leaderboard to be functional and if a player name is available in local storage this name is preloaded. The user can then select a puzzle size (number of tiles) and thus a difficulty level for the game. Once they click play a game of the selected size starts and the move counter and the timer start running. Behind the pop up a default grid is visible for consistent design. This pop up can only be closed by filling in the data and clicking play (see above) or by pressing escape, in this case the default grid is shown and the user can start a game by pressing the new game button. | ![screenshot](documentation/features/landing-modal.png) |
+| New game pop up | Clicking the new game button opens the new game pop up. This pop up includes a form where the user can select the puzzle size of the game they want to start, after clicking play a new game of the selected size starts and the move counter and timer restart fresh. The pop up can also be closed by pressing the close button or escape, in this case the timer continues from were it paused before. | ![screenshot](documentation/features/new-game-modal.png) |
+| Win message pop up | When the puzzle is solved (all tiles ordered in ascending order with the empty tile in the bottom right corner), a pop up with a win message opens. The player name is displayed in the message as is the number of moves and the time needed to solve the puzzle. These numbers are also saved in local storage and compared to previous records to possibly be displayed on the leaderboard. The user then has the option to start a new game by choosing the puzze size and pressing play. The puzzle size of the just won puzzle is preselected. If the user closes the pop up by pressing escape, the solved puzzle is displayed but no more tiles can be moved and the timer is paused. The user can then start a new game by clicking the new game or reshuffle buttons. | ![screenshot](documentation/features/win-message-modal.png) |
+| Leaderboard pop up | When clicking the star icon in the header a leaderboard shows up containing| ![screenshot](documentation/features/leaderboard-modal.png) |
+| Rules pop up | | ![screenshot](documentation/features/rules-modal.png) |
 | Landscape mode warning for mobile devices | | ![screenshot](documentation/features/landscape-modal.png) |
 | Error 404 page | | ![screenshot](documentation/features/error-page.png) |
 
@@ -168,31 +168,19 @@ There are no known differences between the local version in Gitpod and the live 
 
 ### Content
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use this space to provide attribution links to any borrowed code snippets, elements, or resources.
-A few examples have been provided below to give you some ideas.
-
-Ideally, you should provide an actual link to every resource used, not just a generic link to the main site!
-
-⚠️⚠️ EXAMPLE LINKS - REPLACE WITH YOUR OWN ⚠️⚠️
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 | Source | Location | Notes |
 | --- | --- | --- |
 | [Markdown Builder](https://tim.2bn.dev/markdown-builder) | README and TESTING | tool to help generate the Markdown files |
 | [W3Schools](https://www.w3schools.com/CSS/css_grid.asp) | puzzle tile grid | CSS grid layout |
 | [Medium](https://hojelse.medium.com/make-a-truly-responsive-square-in-css-d917f5ef286d) | puzzle tile grid | make a responsive square in CSS |
 | [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/) | script.js | Fisher-Yates algorithm to randomly shuffle an array (the puzzle tiles) |
-| [GeeksForGeeks](https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/) | script.js | check whether the randomly shuffled puzzle is solvable |
+| [GeeksForGeeks](https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/) | puzzle tile grid | check whether the randomly shuffled puzzle is solvable |
 | [GeeksForGeeks](https://www.geeksforgeeks.org/how-to-center-an-element-using-positionfixed-in-css/) | dialogs in entire page | center element in center of page using position fixed |
 | [Web Dev Simplified Blog](https://blog.webdevsimplified.com/2023-04/html-dialog/) | entire page | create and control dialog modals |
 | [Dev](https://dev.to/walternascimentobarroso/creating-a-timer-with-javascript-8b7) | game score area and leaderboard | create and control a timer with javascript | 
-| [Stackoverflow](https://stackoverflow.com/a/2679208) | script.js | check whether a timer is running |
-| [Youtube](https://www.youtube.com/watch?v=YL1F4dCUlLc&t=857s) | leaderboard and other dialogs | use local storage with javascript |
-
-
+| [Stackoverflow](https://stackoverflow.com/a/2679208) | game score area, leaderboard and other dialogs | check whether a timer is running |
+| [Youtube](https://www.youtube.com/watch?v=YL1F4dCUlLc&t=857s) | leaderboard and landing and win dialogs | use local storage with javascript |
+| [Dev](https://dev.to/dcodeyt/the-easiest-way-to-detect-device-orientation-in-javascript-7d7) | entire page for mobile | check orientation of a device |
 
 ### Media
 
@@ -202,4 +190,4 @@ Ideally, you should provide an actual link to every resource used, not just a ge
 
 ### Acknowledgements
 
-I would like to thank my Code Institute mentor, [Tim Nelson](https://github.com/TravelTimN) for his advice and support throughout the development of this project. I would also like to thank my husband for his valuable ideas and insight.
+I would like to thank my Code Institute mentor, [Tim Nelson](https://github.com/TravelTimN) for his advice and support throughout the development of this project. I would also like to thank my husband for his valuable insight and feedback.
