@@ -9,7 +9,6 @@
 }
 
 /* Body */
-
 body {
     min-height: 100vh;
     background-color: #f5f5f5;
@@ -25,7 +24,6 @@ body {
 }
 
 /* Header */
-
 header {
     background-color: #f5f5f5;
     position: fixed;
@@ -35,6 +33,7 @@ header {
     z-index: 3;
 }
 
+/* Logo */
 header a {
     text-decoration: none;
     color: inherit;
@@ -48,6 +47,7 @@ header h1 {
     font-size: 150%;
 }
 
+/* Header icons */
 header div {
     width: 100%;
 }
@@ -67,7 +67,7 @@ header div {
 .icon-button {
     border: none;
     background: none;
-    font-size: 100%;
+    font-size: 130%;
 }
 
 .icon-button:active, .icon-button:hover {
@@ -75,7 +75,7 @@ header div {
 }
 
 /* Main Content */
-
+/* Main */
 main {
     /* Let main take up any surplus space */
     flex: 1 0 auto;
@@ -129,6 +129,7 @@ main {
 }
 
 /* Puzzle container */
+/* needs a fixed max height to keep responsive square within viewport */
 .puzzle-container {
     width: 90%;
     height: 90%;
@@ -136,6 +137,7 @@ main {
     max-height: 50vh;
 }
 
+/* same width for buttons and game statistics display */
 .game-buttons-stats-container {
     width: 90%;
     max-width: 50vh;
@@ -148,19 +150,23 @@ main {
     background-color: #6f8f72a0;
     box-sizing: content-box; 
     display: grid;
-    /* Code inspiration for responsive square from: https://hojelse.medium.com/make-a-truly-responsive-square-in-css-d917f5ef286d */
+    /* responsive square: */
+    /* Code inspiration from: https://hojelse.medium.com/make-a-truly-responsive-square-in-css-d917f5ef286d */
     aspect-ratio: 1 / 1;
     max-height: 100%;
     max-width: 100%;
 }
 
+/* Puzzle tiles */
 .tile-style {
     border: 1px solid #0d1b1e;
     border-radius: 5px;
     background-color: #7dba84;
+    /* center the number on tile */
     display: flex;
     justify-content: center;
     align-items: center;
+    /* font size is set dynamically in script */
 }
 
 .empty-tile p {
@@ -172,6 +178,7 @@ main {
     padding-top: 1rem;
 }
 
+/* Move counter and timer */
 #score-stats {
     width: 100%;
     display: flex;
@@ -179,6 +186,7 @@ main {
     justify-content: space-between;
 }
 
+/* Moves, timer and puzzle size text */
 .game-stats-text {
     padding-bottom: .5rem;
 }
@@ -209,12 +217,15 @@ main {
 
 /* Modals */
 
+/* Backdrop */
 dialog::backdrop {
     background-color: #0d1b1eb0;
 }
 
+/* General modal styles */
 .modal {
-    /* position in center of viewport, code from: https://www.geeksforgeeks.org/how-to-center-an-element-using-positionfixed-in-css/ */
+    /* position in center of viewport */
+    /* code inspiration from: https://www.geeksforgeeks.org/how-to-center-an-element-using-positionfixed-in-css/ */
     position: fixed;
     top: 50%;
     left: 50%;
@@ -226,12 +237,13 @@ dialog::backdrop {
     background-color: #f5f5f5;
 }
 
-/* class for modals with more content */
+/* class for modals with more content, i.e. landing, leaderboard and rules modals */
 .large-modal {
     /* set larger min width for mobile devices */
     min-width: 80%;
 }
 
+/* Modal headings and text */
 .modal h2 {
     margin-bottom: 1.5rem;
     text-align: center;
@@ -246,6 +258,7 @@ dialog::backdrop {
     margin-bottom: 1rem;
 }
 
+/* Modal form input */
 .modal input, .modal select {
     width: 100%;
     margin: .5rem 0;
@@ -261,10 +274,12 @@ dialog::backdrop {
     background-color: #77ad7850;
 }
 
+/* Modal form buttons */
 .modal button {
     margin-bottom: 1rem;
 }
 
+/* Submit buttons */
 .submit-button {
     margin-top: .5rem;
 }
@@ -275,6 +290,7 @@ dialog::backdrop {
     background-color: #0d1b1ea0;
 }
 
+/* Close buttons */
 .close-button {
     border: none;
     background: none;
@@ -283,20 +299,24 @@ dialog::backdrop {
     right: 1.3rem;    
 }
 
+/* Player name display (in win and leaderboard modals) */
 .player-name-style {
     text-transform: uppercase;
     /* needed for long player names */
     word-break: break-all;
 }
 
-/* Leaderboard */
+/* Leaderboard Modal */
+/* flex styles for leaderboard entries */
 
+/* Container of whole leaderboard with all entries */
 #leaderboard-entries {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
+/* Section containing data for one grid size */
 .leaderboard-entries-per-size {
     flex: 1 1 auto;
     background-color: #77ad7880;
@@ -304,37 +324,39 @@ dialog::backdrop {
     padding: 1rem;
 }
 
+/* div contains moves or time */
 .leaderboard-score-div {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
+/* span contains player name and score */
 .leaderboard-score-container {
     margin-left: 1rem;
     align-self: flex-end;
 }
 
-.leaderboard-score-div {
-    margin-bottom: 1rem;
-}
-
+/* player name display */
 .leaderboard-player {
     font-weight: bold;
 }
 
+/* moves or time text */
 .leaderboard-score-type {
     font-weight: 500;
     align-self: flex-start;
 }
 
-/* Rules modal */
-
+/* Rules Modal */
+/* unordered list */
 #rules-modal li {
     margin-bottom: 1.5rem;
     margin-left: 1rem;
 }
 
+/* button mockups in text */
 .rules-button-style {
     border: 1px solid #0d1b1e;
     border-radius: 5px;
@@ -344,29 +366,31 @@ dialog::backdrop {
     display: inline-block;
 }
 
+/* tile mockup in text */
 #rules-tile-style {
     padding: .5rem .8rem;
     background-color: #7dba84;
 }
 
 /* Landscape warning modal */
-
 #landscape-modal {
     text-align: center;
 }
 
+/* rotate icon */
 #landscape-modal i {
     font-size: 150%;
     margin-bottom: 2rem;
 }
 
 /* Error page */
-
+/* Error message container (same styles as game area but larger) */
 #error-message-container {
     max-width: 70vh;
     max-height: 70vh;
 }
 
+/* Error message link back to game */
 #error-message a {
     text-decoration: none;
     color: inherit;
@@ -376,6 +400,7 @@ dialog::backdrop {
     color: #0d1b1ea0;
 }
 
+/* Puzzle piece icon */
 #error-message i {
     font-size: 100%;
 }
@@ -391,6 +416,7 @@ footer {
     z-index: 3;
 }
 
+/* social media icons */
 footer i {
     margin-left: 1rem;
 }
@@ -405,22 +431,27 @@ footer a:active, footer a:hover {
 }
 
 /* Media queries */
-/* Media query: for low screen height (680px and up) */
+
+/* Media query: for low screen height (680px and down) */
 @media screen and (max-height: 680px) {
+
+    /* contain responsive square in screen a bit better */
     .puzzle-container {
         max-width: 50vh;
         max-height: 50vh;
     }
-}
 
+}
 
 /* Media query: tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
+
     /* Header */
     header h1 {
         font-size: 180%;
     }
 
+    /* arrange header icons to the right of header */
     header div {
         position: absolute;
         background-color: #f5f5f5;
@@ -467,8 +498,8 @@ footer a:active, footer a:hover {
 
 /* Media query: laptops and larger (992px and up) */
 @media screen and (min-width: 992px) {
+    
     /* Header */
-
     header h1 {
         font-size: 200%;
     }
@@ -480,6 +511,7 @@ footer a:active, footer a:hover {
     /* Main content */
 
     /* Game area */
+    /* rearrange buttons and score from top and bottom to left and right of puzzle */
     .game-area {
         width: 90%;
         display: flex;
@@ -493,6 +525,7 @@ footer a:active, footer a:hover {
         max-height: 65vh;
     }
 
+    /* Game buttons and score */
     .game-buttons-stats-container {
         height: 100%;
         display: flex;
@@ -500,6 +533,11 @@ footer a:active, footer a:hover {
         justify-content: space-between;
         width: 25%;
         margin: 0 2rem;
+    }
+
+    /* Game buttons */
+    #game-buttons-container {
+        margin-top: 0;
     }
 
     #new-game-button {
@@ -512,6 +550,11 @@ footer a:active, footer a:hover {
         align-self: flex-end;
     }
 
+    /* Game statistics display */
+    #game-stats-display {
+        padding-top: 0;
+    }
+
     #score-stats {
         align-self: flex-start;
         flex-direction: column;
@@ -520,14 +563,6 @@ footer a:active, footer a:hover {
 
     #score-puzzle-size {
         align-self: flex-start;
-    }
-
-    #game-buttons-container {
-        margin-top: 0;
-    }
-
-    #game-stats-display {
-        padding-top: 0;
     }
 
     /* Modals */
@@ -539,11 +574,14 @@ footer a:active, footer a:hover {
     #leaderboard-modal {
         min-width: 70%;
     }
+
 }
 
 /* Media query: large laptops, desktops and larger (1200px and up) */
 @media screen and (min-width: 1200px) {
+
     /* Main content */
+
     /* Game area */
     .game-area {
         width: 80%;
@@ -553,11 +591,14 @@ footer a:active, footer a:hover {
     #leaderboard-modal {
         min-width: 60%;
     }
+
 }
 
 /* Media query: very large desktops(1500px and up) */
 @media screen and (min-width: 1500px) {
+
     /* Main content */
+
     /* Game area */
     .game-area {
         width: 70%;
@@ -567,4 +608,5 @@ footer a:active, footer a:hover {
     #leaderboard-modal {
         min-width: 0;
     }
+
 }

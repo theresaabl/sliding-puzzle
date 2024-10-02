@@ -563,15 +563,34 @@ function showLeaderboard() {
       let timePlayer = localStorage.getItem(`size-${i}-best-time-player`);
       let moveOrMoves = parseInt(moves) === 1 ? "move" : "moves";
       leaderboardDiv += `
-      <div class="leaderboard-entries-per-size">
-        <h3>Puzzle Size: ${i} x ${i}</h3>
-        <div class="leaderboard-score-div">
-          <span class="leaderboard-score-type">Least moves: </span><span class="leaderboard-score-container"><span class="leaderboard-player player-name-style">${movesPlayer}</span> with ${moves} ${moveOrMoves}</span>
-        </div>
-        <div class="leaderboard-score-div">
-          <span class="leaderboard-score-type">Best time: </span><span class="leaderboard-score-container"><span class="leaderboard-player player-name-style">${timePlayer}</span> with ${time}</span>
-        </div>
-      </div>
+        <!-- Leaderboard entries for ${i} x ${i} puzzle -->
+        <section class="leaderboard-entries-per-size">
+
+            <h3>Puzzle Size: ${i} x ${i}</h3>
+
+            <!-- display least moves needed -->
+            <div class="leaderboard-score-div">
+
+                <span class="leaderboard-score-type">Least moves: </span>
+                <!-- player and number of moves -->
+                <span class="leaderboard-score-container">
+                    <span class="leaderboard-player player-name-style">${movesPlayer}</span> with ${moves} ${moveOrMoves}
+                </span>
+            
+            </div>
+
+            <!-- display best time needed -->
+            <div class="leaderboard-score-div">
+
+                <span class="leaderboard-score-type">Best time: </span>
+                <!-- player and time -->
+                <span class="leaderboard-score-container">
+                    <span class="leaderboard-player player-name-style">${timePlayer}</span> with ${time}
+                </span>
+            
+            </div>
+
+        </section>
     `;
     }
   }
