@@ -384,18 +384,24 @@ function randomShuffle(gridTiles, gridSize) {
   } while (!solvable || ordered);
 }
 
-//check whether is solvable
-//code inspiration: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+/**
+ * This function takes randomly shuffled grid tiles and checks whether the puzzle is solvable
+ * code inspiration and more info: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+ * @param {*} gridTiles 
+ * @param {*} gridSize 
+ * @returns true or false
+ */
 function isSolvable(gridTiles, gridSize) {
   //need index of row with empty tile from bottom (starting at 1)
   let emptyTileRow = getEmptyTile(gridTiles, gridSize)[1].position[0];
   let emptyTileRowBottom = gridSize - emptyTileRow;
-  //number of inversions in the puzzle
+  //number of inversions in the puzzle (see below)
   let invCount = countInversions(gridTiles);
   //conditions for puzzle to be solvable
   //gridSize is odd
   if (gridSize % 2) {
-    return (invCount % 2 !== 0);
+    // puzzle solvable if inversions even
+    return (invCount % 2 === 0);
   } else {
     //gridSize is even
     //empty tile row index from bottom is even
@@ -410,12 +416,18 @@ function isSolvable(gridTiles, gridSize) {
   }
 }
 
-//need inversion counter for isSolvable
+/**
+ * This function takes the grid tiles and returns the total number of inversions in the puzzle, an inversion is when a tile with a larger number is before a tile with a smaller number
+ * @param {} gridTiles 
+ * @returns number of inversions 
+ */
 function countInversions(gridTiles) {
+  // get array of tiles
   let tilesArray = getTilesArray(gridTiles);
   //need array without empty tile
   tilesArray.splice(tilesArray.indexOf("0"), 1);
   let invCounter = 0;
+  // loop through all tiles in the array and compare each tile number to all tiles coming after, increase counter everytime a larger number comes before a smaller number in the grid 
   for (let i = 0; i < tilesArray.length - 1; i++){
     for (let j = i + 1; j < tilesArray.length; j++){
       if (tilesArray[i] > tilesArray[j]) {
@@ -427,32 +439,53 @@ function countInversions(gridTiles) {
 }
 
 /**
- * This function takes the HTML collection of tiles and the currently clicked tile 
+ * This function takes the HTML collection of tiles, the grid size and the currently clicked tile 
  * and returns the current tile as an object with position and number
- * @param {*} gridTiles 
+ * @param {*} gridTiles
+ * @param {*} gridSize
  * @param {*} tileHTML 
  */
 function getTile(gridTiles, gridSize, tileHTML) {
   let currentTileText = tileHTML.textContent;
   let currentTileIndex = getTilesArray(gridTiles).indexOf(currentTileText);
+  // get current tile object
   let currentTile = getTilesObjectArray(gridTiles, gridSize)[currentTileIndex];
   return currentTile;
 }
 
+/**
+ * This function takes the grid tiles and grid size and returns the empty tile (and its index)
+ * @param {*} gridTiles 
+ * @param {*} gridSize 
+ * @returns the index of the empty tile and the empty tile HTML object
+ */
 function getEmptyTile(gridTiles, gridSize) {
+  // array of objects
   let tilesObjectArray = getTilesObjectArray(gridTiles, gridSize);
+  // 1d array
   let tilesArray = getTilesArray(gridTiles);
+  // get index
   let emptyTileIndex = tilesArray.indexOf("0");
+  // get object
   let emptyTile = tilesObjectArray[emptyTileIndex];
   return [emptyTileIndex, emptyTile];
 }
 
+/**
+ * This function takes the grid tiles, grid size and the currently clicked tile to check whether it is a neighbour to the empty tile
+ * @param {*} gridTiles 
+ * @param {*} gridSize 
+ * @param {*} currentTile 
+ * @returns true or false
+ */
 function isNeighbourEmpty(gridTiles, gridSize, currentTile) {
+  // get position of empty tile and current tile as 2d coordinates
   let emptyTilePosition = getEmptyTile(gridTiles, gridSize)[1].position;
   let currentTilePosition = currentTile.position;
-  // check if currentTile and emptyTile are neighbours
+  // check if currentTile and emptyTile are neighbours by calculating the difference of their coordinates (x and y axis)
   let DiffX = (currentTilePosition[0] - emptyTilePosition[0]);
   let DiffY = (currentTilePosition[1] - emptyTilePosition[1]);
+  // if the differences are one of the following four, they are neighbours on the 2d grid
   if ((DiffX === -1 && DiffY === 0)||(DiffX === 0 && DiffY === -1)||(DiffX === 1 && DiffY === 0)||(DiffX === 0 && DiffY === 1)) {
     return true;
   } else {
@@ -460,9 +493,16 @@ function isNeighbourEmpty(gridTiles, gridSize, currentTile) {
   }
 }
 
+/**
+ * This function takes the grid tiles and the current tile and swaps the HTML code of the clicked tile and the empty tile
+ * @param {*} gridTiles 
+ * @param {*} currentTile 
+ */
 function moveTile(gridTiles, currentTile) {
+  // get indices
   let currentTileIndex = getTilesArray(gridTiles).indexOf(currentTile.number);
   let emptyTileIndex = getEmptyTile(gridTiles)[0];
+  // get HTML
   let emptyTileHTML = gridTiles[emptyTileIndex].outerHTML;
   let currentTileHTML = gridTiles[currentTileIndex].outerHTML;
   //swap HTML of the two tiles
@@ -470,6 +510,9 @@ function moveTile(gridTiles, currentTile) {
   document.getElementsByClassName("tile-js")[currentTileIndex].outerHTML = emptyTileHTML;
 }
 
+/**
+ * This function increments the move counter and displays in the game statistics aside each time a tile is moved
+ */
 function incrementMoveCounter() {
   let moveCount = document.getElementById("moves-display");
   let moveCountInt = parseInt(moveCount.textContent);
@@ -477,9 +520,12 @@ function incrementMoveCounter() {
   document.getElementById("moves-display").textContent = `${moveCountInt}`;
 }
 
-
-// code inspiration for timer from: https://dev.to/walternascimentobarroso/creating-a-timer-with-javascript-8b7
+/**
+ * This function implements a timer that is displayed in the game stats in the game area
+ * code inspiration for timer from: https://dev.to/walternascimentobarroso/creating-a-timer-with-javascript-8b7
+ */
 function timer() {
+  //incement seconds by one each time timer is called, increment minutes and hours accordingly
   second++;
 
   if (second == 60) {
@@ -502,10 +548,14 @@ function timer() {
   if (hour > 0) {
     let hourString = hour < 10 ? `0${hour}` : `${hour}`;
     minuteString = `${hourString} : ${minuteString}`;
-  } 
+  }
+  // update the HTML
   document.getElementById("minutes-display").textContent = minuteString;
 }
 
+/**
+ * This function starts the timer by setting an interval
+ */
 function startTimer() {
   //start timerInterval only if it is not already running and if game is not won
   if (timerInterval === false && gameWon === false) {
@@ -514,16 +564,21 @@ function startTimer() {
   }
 }
 
+/**
+ * This function stops the timer by clearing the interval
+ */
 function stopTimer() {
   //stops timer
   clearInterval(timerInterval);
   //set timerInterval to false each time it is stopped, can check whether running or not
   timerInterval = false; 
 }
-// /////////////////////////////////////////////////////////
 
-
-
+/**
+ * This function checks whether the puzzle is solved or not after every tile move, by looping through the grid tiles and checking whether their numbers are sorted
+ * @param {*} gridTiles 
+ * @returns true or false
+ */
 function isPuzzleSolved(gridTiles) {
   let tilesArray = getTilesArray(gridTiles);
   //check empty tile is in correct place
@@ -541,6 +596,10 @@ function isPuzzleSolved(gridTiles) {
   }
 }
 
+/**
+ * This function handles the event that the puzzle is solved, it stops the timer, displays a win message, saves the score to local storage, calls the leader board update function and shows the win modal 
+ * @param {*} gridSize 
+ */
 function handleWin(gridSize) {
   stopTimer();
   //set innerHTML of select element based on maxGridSize
@@ -571,6 +630,10 @@ function handleWin(gridSize) {
   winModalForm.addEventListener("submit", handleWinFormSubmit);
 }
 
+/**
+ * This function handles the win form submit, it takes the grid size selected by the player, displays it and starts a new game
+ * @param {*} event 
+ */
 function handleWinFormSubmit(event) {
   event.preventDefault();
   //get grid size user input
@@ -582,6 +645,54 @@ function handleWinFormSubmit(event) {
   runGame();
 }
 
+/**
+ * This function takes the player name and score from the recent win from local storage and compares it to the stored leaderboard values, if any new record is set, the local storage data is updated, it calls the showLeaderboard function
+ */
+function updateLeaderboard() {
+  //get data from current win from local storage
+  let playerName = localStorage.getItem("player-name");
+  let gridSize = localStorage.getItem("last-win-grid-size");
+  let moves = localStorage.getItem("last-win-moves");
+  let time = localStorage.getItem("last-win-time");
+  //get data from leaderboard from local storage
+  let bestTime = localStorage.getItem(`size-${gridSize}-best-time`);
+  let leastMoves = localStorage.getItem(`size-${gridSize}-least-moves`);
+  // check if these entries exist in local storage
+  if (!leastMoves) {
+    //if no entries yet, set new least moves entry
+    localStorage.setItem(`size-${gridSize}-least-moves`, moves);
+    localStorage.setItem(`size-${gridSize}-least-moves-player`, playerName);
+    //set new best time entry
+    localStorage.setItem(`size-${gridSize}-best-time`, time);
+    localStorage.setItem(`size-${gridSize}-best-time-player`, playerName);
+    //show new leaderboard
+    showLeaderboard();
+  } else {
+      //if entry already exists, compare current win moves and update if better
+      if (parseInt(moves) < parseInt(leastMoves)) {
+        //replace entry in local storage
+        localStorage.setItem(`size-${gridSize}-least-moves`, moves);
+        localStorage.setItem(`size-${gridSize}-least-moves-player`, playerName);
+        //show new leaderboard
+        showLeaderboard();
+      }
+      //compare time to best time
+      //convert time to integer seconds
+      let timeInt = timeToInt(time);
+      let bestTimeInt = timeToInt(bestTime);
+      if (timeInt < bestTimeInt) {
+        //replace entry in local storage
+        localStorage.setItem(`size-${gridSize}-best-time`, time);
+        localStorage.setItem(`size-${gridSize}-best-time-player`, playerName);
+        //show new leaderboard
+        showLeaderboard();
+      }
+    }
+  }
+
+/**
+ * This function takes the leaderboard data from the local storage, creates the HTML code for the leaderboard entries and displays them in the leaderboard modal
+ */
 function showLeaderboard() {
   //reset leaderboard html before updating
   document.getElementById("leaderboard-entries").innerHTML = "";
@@ -627,81 +738,51 @@ function showLeaderboard() {
     `;
     }
   }
+  //update HTML
   document.getElementById("leaderboard-entries").innerHTML = leaderboardDiv;
 }
 
-function updateLeaderboard() {
-  //get data from current win from local storage
-  let playerName = localStorage.getItem("player-name");
-  let gridSize = localStorage.getItem("last-win-grid-size");
-  let moves = localStorage.getItem("last-win-moves");
-  let time = localStorage.getItem("last-win-time");
-  //get data from leaderboard from local storage
-  let bestTime = localStorage.getItem(`size-${gridSize}-best-time`);
-  let leastMoves = localStorage.getItem(`size-${gridSize}-least-moves`);
-  // check if these entries exist in local storage
-  if (!leastMoves) {
-    //if no entries yet, set new least moves entry
-    localStorage.setItem(`size-${gridSize}-least-moves`, moves);
-    localStorage.setItem(`size-${gridSize}-least-moves-player`, playerName);
-    //set new best time entry
-    localStorage.setItem(`size-${gridSize}-best-time`, time);
-    localStorage.setItem(`size-${gridSize}-best-time-player`, playerName);
-    //show new leaderboard
-    showLeaderboard();
-  } else {
-    //if entry already exists, compare current win moves and update if better
-    if (parseInt(moves) < parseInt(leastMoves)) {
-      //replace entry in local storage
-      localStorage.setItem(`size-${gridSize}-least-moves`, moves);
-      localStorage.setItem(`size-${gridSize}-least-moves-player`, playerName);
-      //show new leaderboard
-      showLeaderboard();
-    }
-    //compare time to best time
-    //convert time to integer seconds
-    let timeInt = timeToInt(time);
-    let bestTimeInt = timeToInt(bestTime);
-    if (timeInt < bestTimeInt) {
-      //replace entry in local storage
-      localStorage.setItem(`size-${gridSize}-best-time`, time);
-      localStorage.setItem(`size-${gridSize}-best-time-player`, playerName);
-      //show new leaderboard
-      showLeaderboard();
-    }
-    }
-  }
-
+/**
+ * This function takes a time string and turns it into integer seconds
+ * @param {*} time as string
+ * @returns time in seconds as integer
+ */
 function timeToInt(time) {
   let timeArray = time.split(":");
   let timeSeconds = parseInt(timeArray[timeArray.length - 1]);
   let timeMinutes = parseInt(timeArray[timeArray.length - 2]);
   //in case game is running for long time and includes hours
   let timeHours = (timeArray.length === 3) ? parseInt(timeArray[timeArray.length - 3]) : 0;
-
+  //time integer
   let timeInt = timeHours * 3600 + timeMinutes * 60 + timeSeconds;
   return timeInt;
 }
 
-//Modal is closed when click outside of it, use for most modals (not landing modal)
-//https://blog.webdevsimplified.com/2023-04/html-dialog/
+/**
+ * This function handles the event when user clicks outside of a modal (all but landing and landscape modals)
+ * code from https://blog.webdevsimplified.com/2023-04/html-dialog/
+ * @param {*} event (clilck outside of modal)
+ */
 function handleModalClick(event) {
   //get position and dimensions of the modal relative to viewport
-  //backdrop is child element of modal, so if backdrop clicked, evenListener works
+  //backdrop is child element of modal, so if backdrop clicked, eventListener works
   const modalDimensions = this.getBoundingClientRect();
   //if click inside modal nothing happens
+  //click outside: modal closes
   if (
     event.clientX < modalDimensions.left ||
     event.clientX > modalDimensions.right ||
     event.clientY < modalDimensions.top ||
     event.clientY > modalDimensions.bottom
   ) {
-    //click outside: modal closes
     this.close();
   }
 }
 
-//create select element for landing, new game and win modals depending on maxGridSize
+/**
+ * This function returns the select element for landing, new game and win modals depending on maxGridSize
+ * @returns HTML code for select elements in modals
+ */
 function createSelect() {
   let selectHTML = "";
   for (let i = 2; i <= maxGridSize; i++) {
@@ -710,39 +791,48 @@ function createSelect() {
   return selectHTML;
 }
 
-// Add event listener for when mobile device is turned into landscape mode
-//page does not work properly in landscape mode for all devices as screen hight too small
-//show a modal that tells the user to go back to portrait mode
-//https://dev.to/dcodeyt/the-easiest-way-to-detect-device-orientation-in-javascript-7d7
+/**
+ * This function adds an event listener for when mobile device is turned into landscape mode and shows a modal with a warning
+ * code inspiration from https://dev.to/dcodeyt/the-easiest-way-to-detect-device-orientation-in-javascript-7d7
+ */
 function checkOrientationChange() {
   window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
     //check these conditions and only if true, show warning when in landscape mode
     //for mobile devices with screens less than 680px, this is about the min height that need to display game properly
     if (window.innerWidth < 680 || window.innerHeight < 680){
       const portrait = e.matches;
+      //if phone is rotated into portrait mode
       if (portrait) {
-        //check if another modal is open that handles the timer already
+        //if no other modal is open, start timer
         if (!modalOpen) {
           startTimer();
         }
+        // close the landscape warning modal
         document.getElementById("landscape-modal").close();
       } else {
+        //if phone rotated to landscape mode
         //check if another modal is open that handles the timer already
         if (!modalOpen) {
           stopTimer();
         }
+        // show modal
         document.getElementById("landscape-modal").showModal();
       }
     }
   });
 }
 
+/**
+ * This function checks whether a device is in landscape mode (as opposed to detecting the change of orientation done in checkOrientationChange), this is needed when the game is loaded in landscape mode on a mobile device
+ */
 function checkIfLandscape() {
   //check these conditions and only if true, show warning when in landscape mode
-    //for mobile devices with screens less than 680px
-    if (window.innerWidth < 680 || window.innerHeight < 680){
+  //for mobile devices with screens less than 680px
+  if (window.innerWidth < 680 || window.innerHeight < 680){
     let portrait = window.matchMedia("(orientation: portrait)").matches;
+    //if in landscape mode
     if (portrait === false) {
+      //set variable to true
       loadedFromLandscape = true;
       //show the warning modal until device is turned back (orientation change is detected with checkOrientationChange)
       do {
