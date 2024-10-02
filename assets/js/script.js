@@ -1,26 +1,28 @@
 /* jshint esversion: 11 */
 
+//initialize global variables
 //set the maximum grid size available for the game, set globally so can change in one place
 const maxGridSize = 9;
-//initialize global variables
+// timer variables
 let second = 0;
 let minute = 0;
 let hour = 0;
 //set timerInterval to false initially to indicate it is not running
 //code inspiration for only starting timer if no interval is set yet https://stackoverflow.com/a/2679208
 let timerInterval = false;
-//set gameWon to false, need to check this in moveTile function
+//set gameWon to false, need to check this in moveTile and startTimer functions
 let gameWon = false;
 //set modalOpen to false, to track whether a modal (except landscape modal) is currently open or not
 let modalOpen = false;
-//this variable stores whether the page was loaded from landscape mode on mobile devices
+//store whether the page was loaded from landscape mode on mobile devices
 //this influences when the timer should start (only once the phone is in portrait mode)
 let loadedFromLandscape = false;
 
 //Event Listeners
 
-//code inspiration for modals: https://blog.webdevsimplified.com/2023-04/html-dialog/
 //Add event listeners to buttons to show modals and call further functions
+//code inspiration for modals: https://blog.webdevsimplified.com/2023-04/html-dialog/
+// Click new game button
 document.getElementById("new-game-button").addEventListener("click", function() {
   //pause timer when modal open
   stopTimer();
@@ -31,12 +33,16 @@ document.getElementById("new-game-button").addEventListener("click", function() 
   //handle form in new game modal to get grid size
   document.getElementById("new-game-form").addEventListener("submit", handleNewGameFormSubmit);
 });
+
+// Click leaderboard icon
 document.getElementById("leaderboard-icon").addEventListener("click", function() {
   //pause timer when modal open
   stopTimer();
   modalOpen = true;
   document.getElementById("leaderboard-modal").showModal();
 });
+
+// Click rules icon
 document.getElementById("rules-icon").addEventListener("click", function() {
   //pause timer when modal open
   stopTimer();
@@ -46,7 +52,7 @@ document.getElementById("rules-icon").addEventListener("click", function() {
   document.getElementById("rules-modal").showModal();
 });
 
-//buttons to close modals (all except landing modal and win modal)
+//buttons to close modals (all except landing modal and landscape modal)
 document.getElementById("close-new-game-modal").addEventListener("click", function() {
   document.getElementById("new-game-modal").close();
 });
@@ -92,11 +98,13 @@ document.getElementById("landing-modal").addEventListener("close", function () {
 }
 );
 
-//Add eventlistener to dynamically change the font size of the tile numbers when screen width changes
+//Add event listener to dynamically change the font size of the tile numbers when screen width changes
 window.addEventListener("resize", tileFontSize);
 
+//Add event listener to reshuffle button, starts a new game but not changing the grid size
+document.getElementById("reshuffle-button").addEventListener("click", runGame);
 
-////////////////////////////////////////////////////////////////////////////////
+// The main program:
 // Add event listeners for tiles once Dom content is loaded
 document.addEventListener("DOMContentLoaded", function() {
   //reset loadedFromLandScape to false
@@ -121,14 +129,14 @@ document.addEventListener("DOMContentLoaded", function() {
   //handle form in landing modal to get player name and grid size
   document.getElementById("landing-form").addEventListener("submit", handleLandingFormSubmit);
 });
-/////////////////////////////////////////////////////////////////////////////
 
-//Add event listener to reshuffle button
-//starts a new game but not changing the grid size, allows the user to quickly reshuffle the puzzle
-document.getElementById("reshuffle-button").addEventListener("click", runGame);
-
+/**
+ * This function takes userinput and processes it, then starts a game with runGame
+ * @param {*} event (submit landing form)
+ */
 function handleLandingFormSubmit(event) {
   event.preventDefault();
+  // get userinput
   let playerName = this.elements["player-name-input"].value;
   let gridSize = this.elements["grid-size-input-landing"].value;
   // display grid size
@@ -142,6 +150,10 @@ function handleLandingFormSubmit(event) {
   runGame();
 }
 
+/**
+ * This function takes user input, displays it and starts a new game
+ * @param {*} event (submit new game form)
+ */
 function handleNewGameFormSubmit(event) {
   event.preventDefault();
   //get grid size user input
@@ -153,58 +165,11 @@ function handleNewGameFormSubmit(event) {
   runGame();
 }
 
-
-// ///////////////////////////////////////////////
-
-// code inspiration for timer from: https://dev.to/walternascimentobarroso/creating-a-timer-with-javascript-8b7
-function timer() {
-  second++;
-
-  if (second == 60) {
-    second = 0;
-    minute++;
-  }
-  if (minute == 60) {
-    minute = 0;
-    hour++;
-  }
-
-  // check how to display time, depending on number of digits
-  //seconds
-  let secondString = second < 10 ? `0${second}` : `${second}`;
-  document.getElementById("seconds-display").textContent = secondString;
-  //minutes
-  let minuteString = minute < 10 ? `0${minute} :` : `${minute} :`;
-  // hours (just in case someone leaves game running for really long time)
-  //if minutes more than 60:
-  if (hour > 0) {
-    let hourString = hour < 10 ? `0${hour}` : `${hour}`;
-    minuteString = `${hourString} : ${minuteString}`;
-  } 
-  document.getElementById("minutes-display").textContent = minuteString;
-}
-
-function startTimer() {
-  //start timerInterval only if it is not already running and if game is not won
-  if (timerInterval === false && gameWon === false) {
-    //call function timer every 1000ms
-    timerInterval = setInterval(timer, 1000);
-  }
-}
-
-function stopTimer() {
-  //stops timer
-  clearInterval(timerInterval);
-  //set timerInterval to false each time it is stopped, can check whether running or not
-  timerInterval = false; 
-}
-// /////////////////////////////////////////////////////////
-
-
+/**
+ * This function starts a game by reseting variables, creating a randomly shuffled puzzle and adding click event listeners to tiles
+ */
 function runGame() {
   gameWon = false;
-  // //reset grid every time game is run
-  // document.getElementById("puzzle").innerHTML = "";
   //reset move counter and timer
   document.getElementById("moves-display").textContent = "0";
   stopTimer(); //clear interval and set timer to false
@@ -213,7 +178,7 @@ function runGame() {
   hour = 0;
   document.getElementById("minutes-display").textContent = "00 :";
   document.getElementById("seconds-display").textContent = "00";
-  //create puzzle grid
+  //get grid size
   let gridSize = document.getElementById("grid-size-display").textContent;
   gridSize = parseInt(gridSize[0]);
   //create ordered grid
@@ -226,20 +191,28 @@ function runGame() {
   loadedFromLandscape = false;
   // HTML collection of tiles
   let gridTiles = document.getElementsByClassName("tile-js");
-  //shuffle
+  //shuffle tiles
   randomShuffle(gridTiles, gridSize);
+  // add click event listeners to tiles
   for (let tile of gridTiles) {
     tile.addEventListener("click", handleTileClick);
   }
 }
 
+/**
+ * This function handles users clicking on (not empty) tiles and moves them if they are next to the empty tile. Checks if game won.
+ * @param {} event (click on tiles) 
+ */
 function handleTileClick(event) {
   //if game already won, nothing happens
   if (gameWon === false) {
     let gridSize = document.getElementById("grid-size-display").textContent;
     gridSize = parseInt(gridSize[0]);
+    // HTML collection of tiles
     let gridTiles = document.getElementsByClassName("tile-js");
+    // get the clicked tile
     let currentTile = getTile(gridTiles, gridSize, this);
+    // check whether the clicked tile is next to the empty one, if yes, move tile
     if (isNeighbourEmpty(gridTiles, gridSize, currentTile)){
       moveTile(gridTiles, currentTile);
       incrementMoveCounter();
@@ -257,10 +230,14 @@ function handleTileClick(event) {
   }
 }
 
-//creates ordered grid of gridSize
+/**
+ * This function creates an ordered puzzle grid of the required grid size
+ * @param {*} gridSize 
+ */
 function createGrid(gridSize){
   let puzzle = document.getElementById("puzzle");
   let puzzleHTML = "";
+  // loop through grid and assign the required HTML
   for (let i = 1; i < gridSize * gridSize; i++) {
     puzzleHTML += `<div class="tile-style tile-js"><p>${i}</p></div>`;
   }
@@ -273,9 +250,11 @@ function createGrid(gridSize){
   tileFontSize();
 }
 
-//calculate tile number font size from tile width
+/**
+ * This function sets a dynamic font size for the number on the tiles depending on the size of the tiles (i.e. the number of tiles and the size of the screen)
+ */
 function tileFontSize() {
-  //get computed style width of tile (div containing the number)
+  //get computed style width of tile
   let tileStyleWidth = getComputedStyle(document.getElementsByClassName("tile-style")[0]).width;
   //get a string "number" + "px", remove "px"
   tileStyleWidth.slice(-2);
@@ -287,6 +266,11 @@ function tileFontSize() {
   }
 }
 
+/**
+ * This function resets the grid to its ordered condition (needed for shuffle randomShuffle)
+ * Note it is similar to createGrid but does not require to set the grid column styles again in each loop in randomShuffle
+ * @param {*} gridSize 
+ */
 function resetGrid(gridSize) {
   let puzzleHTML = "";
   for (let i = 1; i < gridSize * gridSize; i++) {
@@ -297,19 +281,16 @@ function resetGrid(gridSize) {
   //set dynamic fontsize
   tileFontSize();
   }
-    
-  
+
 /**
- * This function takes the HTML collection of tiles in the puzzle grid
- * and returns an array of tile objects which contain the coordinates 
- * as well as displayed numbers of the tiles
+ * This function takes the HTML collection of tiles in the puzzle grid and returns an array of tile objects which contain the coordinates as well as displayed numbers of the tiles
  * @param {*} gridTiles (HTML collection of puzzle tiles)
  * @returns array of tile objects
  */
 function getTilesObjectArray(gridTiles, gridSize){
-  // grid coordinates for gridSize
+  // 2d grid coordinates for gridSize
   let coordinates = getCoordinates(gridSize);
-  // array of tiles objects to save grid position and assigned number
+  // array of tiles objects with keys "position" and values "number" to save grid position and assigned number
   let tilesObjectArray = [];
   for (let i = 0; i < gridTiles.length; i++){
     let tilesObject = {};
@@ -320,6 +301,11 @@ function getTilesObjectArray(gridTiles, gridSize){
   return tilesObjectArray;
 }
 
+/**
+ * This function returns an array of 2d coordinates for a required grid size
+ * @param {} size 
+ * @returns array of 2d coordinates
+ */
 function getCoordinates(size) {
   let coordinates = [];
   for (let i = 0; i < size; i ++){
@@ -331,8 +317,7 @@ function getCoordinates(size) {
 }
 
 /**
- * This function takes the HTML collection of puzzle tiles and
- * returns a 1d array of the numbers on the tiles
+ * This function takes the HTML collection of puzzle tiles and returns a 1d array of the numbers on the tiles
  * @param {*} gridTiles (HTML collection of puzzle tiles)
  * @returns 1d array of numbers on tiles
  */
@@ -345,10 +330,11 @@ function getTilesArray(gridTiles){
   return tilesArray;
 }
 
-// function getGridSize() {
-
-// }
-
+/**
+ * This function takes the grid tiles and the grid size and randomly shuffles the puzzle tiles until they are solvable (and not ordered), it then assigns the new HTML to the grid
+ * @param {*} gridTiles 
+ * @param {*} gridSize 
+ */
 function randomShuffle(gridTiles, gridSize) {
   //create array of ordered tiles
   let tilesOrdered = [];
@@ -357,16 +343,16 @@ function randomShuffle(gridTiles, gridSize) {
   }
   let ordered = true;
   let solvable = false;
-  //shuffle again until puzzle is solvable and not accidentally ordered
+  //shuffle until puzzle is solvable and not accidentally ordered
   do {
     //reset ordered and solvable for each loop
     ordered = true;
     solvable = false;
-    //also reset gridTiles each time
+    //also reset gridTiles to ordered each time
     resetGrid(gridSize);
     //create copy of array of tiles to shuffle
     let tilesArray = tilesOrdered.slice();
-    //random shuffle using Fisher-Yates shuffle algorithm
+    //random shuffle using Fisher-Yates shuffle algorithm, swap each tile in the array with a tile with random index from the remaining unshuffled tiles.       
     //Code inspiration from: https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/
     for (let i = tilesArray.length - 1; i > 0; i--) { 
       const j = Math.floor(Math.random() * (i + 1)); 
@@ -382,12 +368,11 @@ function randomShuffle(gridTiles, gridSize) {
       } 
     }
     //save HTML of ordered tiles in a new array
-    //error here: no longer have default ordered grid available!
     let tilesOrderedHTML = [];
     for (let tile of gridTiles) {
       tilesOrderedHTML.push(tile.outerHTML);
     }
-    //swap tiles based on shuffled 1d tilesArray
+    //swap tiles HTML based on shuffled 1d tilesArray
     for (let i = 0; i < tilesOrdered.length; i++){
       let newHTML = tilesOrderedHTML[tilesArray[i] - 1];
       document.getElementsByClassName("tile-js")[[tilesOrdered[i] - 1]].outerHTML = newHTML;
@@ -397,22 +382,6 @@ function randomShuffle(gridTiles, gridSize) {
       solvable = true;
     }
   } while (!solvable || ordered);
-}
-
-//need inversion counter for isSolvable
-function countInversions(gridTiles) {
-  let tilesArray = getTilesArray(gridTiles);
-  //need array without empty tile
-  tilesArray.splice(tilesArray.indexOf("0"), 1);
-  let invCounter = 0;
-  for (let i = 0; i < tilesArray.length - 1; i++){
-    for (let j = i + 1; j < tilesArray.length; j++){
-      if (tilesArray[i] > tilesArray[j]) {
-        invCounter++;
-      }
-    }
-  }
-  return invCounter;
 }
 
 //check whether is solvable
@@ -439,6 +408,22 @@ function isSolvable(gridTiles, gridSize) {
       return (invCount % 2 === 0);
     }
   }
+}
+
+//need inversion counter for isSolvable
+function countInversions(gridTiles) {
+  let tilesArray = getTilesArray(gridTiles);
+  //need array without empty tile
+  tilesArray.splice(tilesArray.indexOf("0"), 1);
+  let invCounter = 0;
+  for (let i = 0; i < tilesArray.length - 1; i++){
+    for (let j = i + 1; j < tilesArray.length; j++){
+      if (tilesArray[i] > tilesArray[j]) {
+        invCounter++;
+      }
+    }
+  }
+  return invCounter;
 }
 
 /**
@@ -491,6 +476,53 @@ function incrementMoveCounter() {
   moveCountInt++;
   document.getElementById("moves-display").textContent = `${moveCountInt}`;
 }
+
+
+// code inspiration for timer from: https://dev.to/walternascimentobarroso/creating-a-timer-with-javascript-8b7
+function timer() {
+  second++;
+
+  if (second == 60) {
+    second = 0;
+    minute++;
+  }
+  if (minute == 60) {
+    minute = 0;
+    hour++;
+  }
+
+  // check how to display time, depending on number of digits
+  //seconds
+  let secondString = second < 10 ? `0${second}` : `${second}`;
+  document.getElementById("seconds-display").textContent = secondString;
+  //minutes
+  let minuteString = minute < 10 ? `0${minute} :` : `${minute} :`;
+  // hours (just in case someone leaves game running for really long time)
+  //if minutes more than 60:
+  if (hour > 0) {
+    let hourString = hour < 10 ? `0${hour}` : `${hour}`;
+    minuteString = `${hourString} : ${minuteString}`;
+  } 
+  document.getElementById("minutes-display").textContent = minuteString;
+}
+
+function startTimer() {
+  //start timerInterval only if it is not already running and if game is not won
+  if (timerInterval === false && gameWon === false) {
+    //call function timer every 1000ms
+    timerInterval = setInterval(timer, 1000);
+  }
+}
+
+function stopTimer() {
+  //stops timer
+  clearInterval(timerInterval);
+  //set timerInterval to false each time it is stopped, can check whether running or not
+  timerInterval = false; 
+}
+// /////////////////////////////////////////////////////////
+
+
 
 function isPuzzleSolved(gridTiles) {
   let tilesArray = getTilesArray(gridTiles);

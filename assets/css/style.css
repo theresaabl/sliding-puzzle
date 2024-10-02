@@ -637,8 +637,8 @@ footer a:active, footer a:hover {
 
 }
 
-/* Media query: for very low screen height (410px and down) */
-@media screen and (max-height: 410px) {
+/* Media query: for very low screen height (450px and down) */
+@media screen and (max-height: 450px) {
 
 /* Error page */
     #error-message-container {
