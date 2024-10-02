@@ -150,6 +150,11 @@ main {
     background-color: #6f8f72a0;
     box-sizing: content-box; 
     display: grid;
+    /* responsive square: */
+    /* Code inspiration from: https://hojelse.medium.com/make-a-truly-responsive-square-in-css-d917f5ef286d */
+    aspect-ratio: 1 / 1;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 /* Puzzle tiles */
@@ -162,11 +167,6 @@ main {
     justify-content: center;
     align-items: center;
     /* font size is set dynamically in script */
-    /* responsive square: */
-    /* Code inspiration from: https://hojelse.medium.com/make-a-truly-responsive-square-in-css-d917f5ef286d */
-    aspect-ratio: 1 / 1;
-    max-height: 100%;
-    max-width: 100%;
 }
 
 .empty-tile p {
@@ -354,6 +354,18 @@ dialog::backdrop {
 #rules-modal li {
     margin-bottom: 1.5rem;
     margin-left: 1rem;
+}
+
+/* screenshot */
+#solved-puzzle-div {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#rules-modal img {
+    border: .5px solid #0d1b1e;
+    border-radius: 5px;
+    width: 40%;
 }
 
 /* button mockups in text */
