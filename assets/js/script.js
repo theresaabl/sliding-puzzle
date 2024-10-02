@@ -185,8 +185,8 @@ function timer() {
 }
 
 function startTimer() {
-  //start timerInterval only if it is not already running
-  if (timerInterval === false) {
+  //start timerInterval only if it is not already running and if game is not won
+  if (timerInterval === false && gameWon === false) {
     //call function timer every 1000ms
     timerInterval = setInterval(timer, 1000);
   }
