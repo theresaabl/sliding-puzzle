@@ -1,53 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Meta tags for search engines-->
-    <meta name="description" content="Play a classic sliding tile puzzle in many different sizes.">
-    <meta name="keywords" content="sliding puzzle, sliding tile puzzle, 15 puzzle, fifteen puzzle, sliding puzzle game, sliding tile puzzle game">
-    <title>Sliding-Puzzle</title>
-     <!--Favicon-->
-     <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
-     <!--Stylesheet-->
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <h1 id="logo">
-            <a href="index.html">Sliding Puzzle</a>
-        </h1>
-    </header>
 
-    <!-- Main Content -->
-    <main>
+    <head>
 
-        <!-- Error message area -->
-        <section class="game-area">
-            <h1 class="hidden-heading">Error Message Area</h1>
-            <div class="puzzle-container" id="error-message-container">
-                <div id="error-message" class="puzzle-style">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Meta tags for search engines-->
+        <meta name="description" content="Play a classic sliding tile puzzle in many different sizes.">
+        <meta name="keywords" content="sliding puzzle, sliding tile puzzle, 15 puzzle, fifteen puzzle, sliding puzzle game, sliding tile puzzle game">
+        <title>Sliding-Puzzle</title>
+        <!--Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+        <!--Stylesheet-->
+        <link rel="stylesheet" href="assets/css/style.css">
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <header>
+
+            <!-- Logo -->
+            <h1 id="logo">
+                <a href="index.html">Sliding Puzzle</a>
+            </h1>
+
+        </header>
+
+        <!-- Main Content -->
+        <main>
+
+            <!-- Error message area, same style as game area in index.html -->
+            <section class="game-area">
+
+                <h2 class="hidden-heading">Error Message Area</h2>
+
+                <!-- Error message container, to get responsive square -->
+                <div class="puzzle-container" id="error-message-container">
+
+                    <!-- Error message in form of puzzle grid -->
+                    <div id="error-message" class="puzzle-style">
+
+                    </div>
 
                 </div>
-            </div>
-        </section>
 
-    </main>
+            </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>
-            developed by Theresa Abl 
-            <span id="footer-icons">
-                <a href="https://github.com/theresaabl" target="_blank" rel="noopener" aria-label="Visit my GitHub page (opens in a new tab)"><i class="fa-brands fa-github" title="Go to GitHub"></i></a>
-                <a href="https://www.linkedin.com/in/theresa-abl/" target="_blank" rel="noopener" aria-label="Visit my LinkedIn page (opens in a new tab)"><i class="fa-brands fa-linkedin" title="Go to LinkedIn"></i></a>
-            </span></p>
-    </footer>
-    
-    <!--Font Awesome kit-->
-    <script src="https://kit.fontawesome.com/e1363dc097.js" crossorigin="anonymous"></script>
-    <!-- link to error page script -->
-    <script src="assets/js/script-404.js"></script>
-</body>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+
+            <p>
+                Developed by Theresa Abl
+
+                <!-- span with social media icons -->
+                <span id="footer-icons">
+                    <a href="https://github.com/theresaabl" target="_blank" rel="noopener" aria-label="Visit my GitHub page (opens in a new tab)"><i class="fa-brands fa-github" title="Go to GitHub"></i></a>
+                    <a href="https://www.linkedin.com/in/theresa-abl/" target="_blank" rel="noopener" aria-label="Visit my LinkedIn page (opens in a new tab)"><i class="fa-brands fa-linkedin" title="Go to LinkedIn"></i></a>
+                </span>
+                
+            </p>
+
+        </footer>
+        
+        <!--Font Awesome kit-->
+        <script src="https://kit.fontawesome.com/e1363dc097.js" crossorigin="anonymous"></script>
+        <!-- link to error page script -->
+        <script src="assets/js/script-404.js"></script>
+
+    </body>
+
 </html>
