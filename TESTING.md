@@ -200,15 +200,14 @@ The aforementioned tests are just an example of a few different project scenario
 
 ## User Story Testing
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
+- As a user I want to play a sliding puzzle game that is functional and easy to control.
+- As a user I want to choose the puzzle size I play on.
+- As a user I want to be able to reshuffle the puzzle at any time.
+- As a user I want to be able to start a new game at any time.
+- As a user I want to see when I won the game and start a new one right away.
+- As a user I want to have access to information about the game and the controls.
+- As a user I want to see my score and have access to a leaderboard.
 
-Testing user stories is actually quite simple, once you've already got the stories defined on your README.
-
-Most of your project's **features** should already align with the **user stories**,
-so this should as simple as creating a table with the user story, matching with the re-used screenshot
-from the respective feature.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
 
 | User Story | Screenshot |
 | --- | --- |

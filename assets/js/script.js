@@ -399,7 +399,7 @@ function isSolvable(gridTiles, gridSize) {
   let invCount = countInversions(gridTiles);
   //conditions for puzzle to be solvable
   //gridSize is odd
-  if (gridSize % 2) {
+  if (gridSize % 2 !== 0) {
     // puzzle solvable if inversions even
     return (invCount % 2 === 0);
   } else {
