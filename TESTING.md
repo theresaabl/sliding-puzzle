@@ -56,67 +56,23 @@ I have tested my deployed project on multiple browsers to check for compatibilit
 
 ## Responsiveness
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
+I have tested my deployed project on multiple devices to check for responsiveness issues. I first tested many different device sizes in Chrome DevTools and then tested the site on different physical devices. The screenshots below are from the real devices.
 
-Use this space to discuss testing the live/deployed site on various device sizes.
-
-The minimum requirement is for the following 3 tests:
-- Mobile
-- Tablet
-- Desktop
-
-**IMPORTANT**: You must provide screenshots of the tested responsiveness, to "prove" that you've actually tested them.
-
-Using the "amiresponsive" mockup image (or similar) does not suffice the requirements.
-Consider using some of the built-in device sizes in the Developer Tools.
-
-If you have tested the project on your actual mobile phone or tablet, consider also including screenshots of these as well.
-It showcases a higher level of manual tests, and can be seen as a positive inclusion!
-
-Sample responsiveness testing documentation:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-I've tested my deployed project on multiple devices to check for responsiveness issues.
-
-| Device | Home | About | Contact | etc | Notes |
-| --- | --- | --- | --- | --- | --- |
-| Mobile (DevTools) | ![screenshot](documentation/responsiveness/responsive-mobile-home.png) | ![screenshot](documentation/responsiveness/responsive-mobile-about.png) | ![screenshot](documentation/responsiveness/responsive-mobile-contact.png) | ![screenshot](documentation/responsiveness/responsive-mobile-etc.png) | Works as expected |
-| Tablet (DevTools) | ![screenshot](documentation/responsiveness/responsive-tablet-home.png) | ![screenshot](documentation/responsiveness/responsive-tablet-about.png) | ![screenshot](documentation/responsiveness/responsive-tablet-contact.png) | ![screenshot](documentation/responsiveness/responsive-tablet-etc.png) | Works as expected |
-| Desktop | ![screenshot](documentation/responsiveness/responsive-desktop-home.png) | ![screenshot](documentation/responsiveness/responsive-desktop-about.png) | ![screenshot](documentation/responsiveness/responsive-desktop-contact.png) | ![screenshot](documentation/responsiveness/responsive-desktop-etc.png) | Works as expected |
-| XL Monitor | ![screenshot](documentation/responsiveness/responsive-xl-home.png) | ![screenshot](documentation/responsiveness/responsive-xl-about.png) | ![screenshot](documentation/responsiveness/responsive-xl-contact.png) | ![screenshot](documentation/responsiveness/responsive-xl-etc.png) | Scaling starts to have minor issues |
-| 4K Monitor | ![screenshot](documentation/responsiveness/responsive-4k-home.png) | ![screenshot](documentation/responsiveness/responsive-4k-about.png) | ![screenshot](documentation/responsiveness/responsive-4k-contact.png) | ![screenshot](documentation/responsiveness/responsive-4k-etc.png) | Noticeable scaling issues |
-| Google Pixel 7 Pro | ![screenshot](documentation/responsiveness/responsive-pixel-home.png) | ![screenshot](documentation/responsiveness/responsive-pixel-about.png) | ![screenshot](documentation/responsiveness/responsive-pixel-contact.png) | ![screenshot](documentation/responsiveness/responsive-pixel-etc.png) | Works as expected |
-| iPhone 14 | ![screenshot](documentation/responsiveness/responsive-iphone-home.png) | ![screenshot](documentation/responsiveness/responsive-iphone-about.png) | ![screenshot](documentation/responsiveness/responsive-iphone-contact.png) | ![screenshot](documentation/responsiveness/responsive-iphone-etc.png) | Works as expected |
-| repeat for any other tested devices | x | x | x | x | x |
+| Device | Landing modal | Main game | Win message | New game modal | Leaderboard | Rules | 404 page | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Samsung Galaxy A41 (Mobile) | ![screenshot](documentation/responsiveness/responsiveness-galaxy-landing.jpg) | ![screenshot](documentation/responsiveness/responsiveness-galaxy-main-game.jpg) | ![screenshot](documentation/responsiveness/responsiveness-galaxy-win-message.jpg) | ![screenshot](documentation/responsiveness/responsiveness-galaxy-new-game.jpg) | ![screenshot](documentation/responsiveness/responsiveness-galaxy-leaderboard.jpg) | ![screenshot](documentation/responsiveness/responsiveness-galaxy-rules.jpg) | ![screenshot](documentation/responsiveness/responsiveness-galaxy-error.jpg) | Works as expected |
+| Galaxy Tab S6 Lite (Tablet) | ![screenshot](documentation/responsiveness/responsiveness-tab-s6-landing.jpg) | ![screenshot](documentation/responsiveness/responsiveness-tab-s6-main-game.jpg) | ![screenshot](documentation/responsiveness/responsiveness-tab-s6-win-message.jpg) | ![screenshot](documentation/responsiveness/responsiveness-tab-s6-new-game.jpg) | ![screenshot](documentation/responsiveness/responsiveness-tab-s6-leaderboard.jpg) | ![screenshot](documentation/responsiveness/responsiveness-tab-s6-rules.jpg) | ![screenshot](documentation/responsiveness/responsiveness-tab-s6-error.jpg) | Works as expected |
+| Lenovo X1 Extreme (Laptop) | ![screenshot](documentation/responsiveness/responsiveness-lenovo-landing.png) | ![screenshot](documentation/responsiveness/responsiveness-lenovo-main-game.png) | ![screenshot](documentation/responsiveness/responsiveness-lenovo-win-message.png) | ![screenshot](documentation/responsiveness/responsiveness-lenovo-new-game.png) | ![screenshot](documentation/responsiveness/responsiveness-lenovo-leaderboard.png) | ![screenshot](documentation/responsiveness/responsiveness-lenovo-rules.png) | ![screenshot](documentation/responsiveness/responsiveness-lenovo-error.png) | Works as expected |
+| Lenovo ThinkVision P24h-10 (Monitor) | ![screenshot](documentation/responsiveness/responsiveness-thinkvision-landing.png) | ![screenshot](documentation/responsiveness/responsiveness-thinkvision-main-game.png) | ![screenshot](documentation/responsiveness/responsiveness-thinkvision-win-message.png) | ![screenshot](documentation/responsiveness/responsiveness-thinkvision-new-game.png) | ![screenshot](documentation/responsiveness/responsiveness-thinkvision-leaderboard.png) | ![screenshot](documentation/responsiveness/responsiveness-thinkvision-rules.png) | ![screenshot](documentation/responsiveness/responsiveness-thinkvision-error.png) | Works as expected |
 
 ## Lighthouse Audit
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use this space to discuss testing the live/deployed site's Lighthouse Audit reports.
-Avoid testing the local version (especially if developing in Gitpod), as this can have knock-on effects of performance.
-
-If you don't have Lighthouse in your Developer Tools,
-it can be added as an [extension](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk).
-
-Don't just test the home page (unless it's a single-page application).
-Make sure to test the Lighthouse Audit results for all of your pages.
-
-**IMPORTANT**: You must provide screenshots of the results, to "prove" that you've actually tested them.
-
-Sample Lighthouse testing documentation:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
+I have tested my deployed project using the Lighthouse Audit tool to check for any major issues.
 
 | Page | Mobile | Desktop | Notes |
 | --- | --- | --- | --- |
-| Home | ![screenshot](documentation/lighthouse/lighthouse-home-mobile.png) | ![screenshot](documentation/lighthouse/lighthouse-home-desktop.png) | Some minor warnings |
-| About | ![screenshot](documentation/lighthouse/lighthouse-about-mobile.png) | ![screenshot](documentation/lighthouse/lighthouse-about-desktop.png) | Some minor warnings |
-| Gallery | ![screenshot](documentation/lighthouse/lighthouse-gallery-mobile.png) | ![screenshot](documentation/lighthouse/lighthouse-gallery-desktop.png) | Slow response time due to large images |
-| x | x | x | repeat for any other tested pages/sizes |
+| Main page | ![screenshot](documentation/lighthouse/lighthouse-mobile-index.png) | ![screenshot](documentation/lighthouse/lighthouse-desktop-index.png) | Some minor warnings |
+| error 404 page | ![screenshot](documentation/lighthouse/lighthouse-mobile-404.png) | ![screenshot](documentation/lighthouse/lighthouse-desktop-404.png) | Some minor warnings |
 
 ## Defensive Programming
 
