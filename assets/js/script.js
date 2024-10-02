@@ -158,7 +158,7 @@ function handleNewGameFormSubmit(event) {
 
 // code inspiration for timer from: https://dev.to/walternascimentobarroso/creating-a-timer-with-javascript-8b7
 function timer() {
-  second++
+  second++;
 
   if (second == 60) {
     second = 0;
@@ -175,9 +175,10 @@ function timer() {
   document.getElementById("seconds-display").textContent = secondString;
   //minutes
   let minuteString = minute < 10 ? `0${minute} :` : `${minute} :`;
+  // hours (just in case someone leaves game running for really long time)
   //if minutes more than 60:
   if (hour > 0) {
-    hourString = hour < 10 ? `0${hour}` : `${hour}`;
+    let hourString = hour < 10 ? `0${hour}` : `${hour}`;
     minuteString = `${hourString} : ${minuteString}`;
   } 
   document.getElementById("minutes-display").textContent = minuteString;
@@ -425,17 +426,17 @@ function isSolvable(gridTiles, gridSize) {
   //conditions for puzzle to be solvable
   //gridSize is odd
   if (gridSize % 2) {
-    return (!(invCount % 2));
+    return (invCount % 2 !== 0);
   } else {
     //gridSize is even
     //empty tile row index from bottom is even
-    if (!(emptyTileRowBottom % 2)){
+    if (emptyTileRowBottom % 2 === 0){
       //true if invCount odd
       return (invCount % 2); 
     } else {
       //empty tile row index from bottom is odd
       //true if invCount even
-      return (!(invCount % 2));
+      return (invCount % 2 === 0);
     }
   }
 }
@@ -487,7 +488,7 @@ function moveTile(gridTiles, currentTile) {
 function incrementMoveCounter() {
   let moveCount = document.getElementById("moves-display");
   let moveCountInt = parseInt(moveCount.textContent);
-  moveCountInt++
+  moveCountInt++;
   document.getElementById("moves-display").textContent = `${moveCountInt}`;
 }
 
@@ -655,7 +656,7 @@ function timeToInt(time) {
 function handleModalClick(event) {
   //get position and dimensions of the modal relative to viewport
   //backdrop is child element of modal, so if backdrop clicked, evenListener works
-  const modalDimensions = this.getBoundingClientRect()
+  const modalDimensions = this.getBoundingClientRect();
   //if click inside modal nothing happens
   if (
     event.clientX < modalDimensions.left ||
@@ -664,7 +665,7 @@ function handleModalClick(event) {
     event.clientY > modalDimensions.bottom
   ) {
     //click outside: modal closes
-    this.close()
+    this.close();
   }
 }
 
@@ -715,6 +716,6 @@ function checkIfLandscape() {
       do {
         document.getElementById("landscape-modal").showModal();
       } while (checkOrientationChange());
-    }; 
+    }
   }
 }
