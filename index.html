@@ -1,161 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Meta tags for search engines-->
-    <meta name="description" content="Play a classic sliding tile puzzle in many different sizes.">
-    <meta name="keywords" content="sliding puzzle, sliding tile puzzle, 15 puzzle, fifteen puzzle, sliding puzzle game, sliding tile puzzle game">
-    <title>Sliding-Puzzle</title>
-     <!--Favicon-->
-     <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
-     <!--Stylesheet-->
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div>
-            <h1 id="logo">
-                <a href="index.html">Sliding Puzzle</a>
-            </h1>
-            <span id="header-icons">
-                <button class="icon-button" id="leaderboard-icon"><i class="fa-solid fa-star" title="Show leaderboard"></i></button>
-                <button class="icon-button" id="rules-icon"><i class="fa-solid fa-circle-info" title="Show rules"></i></button>
-            </span>
-        </div>        
-    </header>
 
-    <!-- Main Content -->
-    <main>
+    <head>
 
-        <!-- Game area -->
-        <section class="game-area">
-            <h2 class="hidden-heading">Game Area</h2>
-            <div id="game-buttons-container" class="game-buttons-stats-container">
-                <button data-open-modal class = "game-button" id = "new-game-button">New Game</button>
-                <button class="game-button" id="reshuffle-button">Reshuffle</button>
-            </div>
-            <div class="puzzle-container">
-                <div id="puzzle" class="puzzle-style">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Meta tags for search engines-->
+        <meta name="description" content="Play a classic sliding tile puzzle in many different sizes.">
+        <meta name="keywords" content="sliding puzzle, sliding tile puzzle, 15 puzzle, fifteen puzzle, sliding puzzle game, sliding tile puzzle game">
+        <title>Sliding-Puzzle</title>
+        <!--Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+        <!--Stylesheet-->
+        <link rel="stylesheet" href="assets/css/style.css">
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <header>
+
+            <!-- Logo and header buttons container -->
+            <div>
+                
+                <!-- Logo -->
+                <h1 id="logo">
+                    <a href="index.html">Sliding Puzzle</a>
+                </h1>
+
+                <!-- span with leaderboard and buttons icons -->
+                <span id="header-icons">
+                    <button class="icon-button" id="leaderboard-icon"><i class="fa-solid fa-star" title="Show leaderboard"></i></button>
+                    <button class="icon-button" id="rules-icon"><i class="fa-solid fa-circle-info" title="Show rules"></i></button>
+                </span>
+
+            </div>   
+     
+        </header>
+
+        <!-- Main Content -->
+        <main>
+
+            <!-- Main page where game is played -->
+            <!-- Game area -->
+            <section class="game-area">
+
+                <h2 class="hidden-heading">Game Area</h2>
+
+                <!-- Game button container -->
+                <div id="game-buttons-container" class="game-buttons-stats-container">
+                    <button data-open-modal class = "game-button" id = "new-game-button">New Game</button>
+                    <button class="game-button" id="reshuffle-button">Reshuffle</button>
+                </div>
+
+                <!-- Puzzle grid container -->
+                <div class="puzzle-container">
+
+                    <!-- Puzzle itself -->
+                    <div id="puzzle" class="puzzle-style">
+
+                    </div>
 
                 </div>
-            </div>
-            <div id="game-stats-display" class="game-buttons-stats-container">
-                <div id="score-stats">
-                    <p class="game-stats-text" id="moves">Moves: <span id="moves-display">0</span>
-                    <!-- timer-text and timer-display spans needed for layout -->
-                    <p class="game-stats-text" id="timer">
-                        <span id="timer-text">Timer: </span>
-                        <span id="timer-display"><span id="minutes-display">00 :</span><span id="seconds-display">00</span></span>
+
+                <!-- Game statistics display container -->
+                <aside id="game-stats-display" class="game-buttons-stats-container">
+
+                    <!-- Mover counter and timer container -->
+                    <div id="score-stats">
+
+                        <!-- Move counter -->
+                        <p class="game-stats-text" id="moves">Moves: <span id="moves-display">0</span>
+
+                        <!-- timer container -->
+                        <div class="game-stats-text" id="timer">
+
+                            <!-- timer-text -->
+                            <span id="timer-text">Timer: </span>
+
+                            <!-- timer display -->
+                            <!-- several spans for layout and access from script.js -->
+                            <span id="timer-display">
+                                <span id="minutes-display">00 :</span><span id="seconds-display">00</span>
+                            </span>
+                        
+                        </div>
+
+                    </div>
+
+                    <!-- Grid size display -->
+                    <p class="game-stats-text" id="score-puzzle-size">
+                        Puzzle size: 
+                        <span id="grid-size-display">0 x 0</span>
                     </p>
-                </div>
-                <p class="game-stats-text" id="score-puzzle-size">Puzzle size: <span id="grid-size-display">0 x 0</span></p>
-            </div>
-        </section>
+                
+                </aside>
 
-        <!-- Code for modals inspired by https://blog.webdevsimplified.com/2023-04/html-dialog/ -->
-        <!-- Modal shows upon loading the page -->
-        <dialog data-modal class="modal large-modal" id="landing-modal">
-            <form method="dialog" id="landing-form">
+            </section>
+
+            <!-- Modals -->
+            <!-- Code for modals inspired by https://blog.webdevsimplified.com/2023-04/html-dialog/ -->
+            <!-- Modal shows upon loading the page -->
+            <dialog data-modal class="modal large-modal" id="landing-modal">
+
+                <!-- Game description -->
                 <h2>Welcome to the Sliding Puzzle Game</h2>
                 <p>Where you can play classic sliding puzzles in many different sizes.</p>
                 <p>The goal is to sort the numbers in ascending order by clicking on the tiles to move them.</p>
-                <p>For more information click the <i class="fa-solid fa-circle-info" title="Info-icon"></i> - icon.</p>
-                <label for="player-name-input">Enter player name: </label>
-                <input type="text" id="player-name-input" required autofocus>
-                <br>
-                <label for = "grid-size-input-landing">Choose puzzle size: </label>
-                <select id="grid-size-input-landing">
+                <p>For more information click the <i class="fa-solid fa-circle-info" title="Info-icon"></i> - icon in the header.</p>
 
-                </select>
-                <br>
-                <button type="submit" class="game-button submit-button">Play</button>
-            </form>
-        </dialog>
+                <!-- Landing modal form -->
+                <form method="dialog" id="landing-form">
 
-        <!-- Modal shows when new game button is clicked -->
-        <dialog data-modal class="modal" id="new-game-modal">
-            <button data-close-modal id="close-new-game-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
-            <form method="dialog" id="new-game-form">
-                <h2>Start a New Game:</h2>
-                <label for = "grid-size-input-new-game">Choose puzzle size: </label>
-                <select id="grid-size-input-new-game">
 
-                </select>
-                <br>
-                <button type="submit" id = "submit-new-game-form" class="game-button submit-button">Play</button>
-            </form>
-        </dialog>
+                    <label for="player-name-input">Enter player name: </label>
+                    <input type="text" id="player-name-input" required autofocus>
+                    <br>
+                    <label for = "grid-size-input-landing">Choose puzzle size: </label>
+                    <select id="grid-size-input-landing">
 
-        <!-- Leaderboard modal -->
-        <dialog data-modal class="modal large-modal" id="leaderboard-modal">
-            <button data-close-modal id="close-leaderboard-modal" class="close-button"><i class="fa-solid fa-x"></i></button>
-            <h2>Leaderboard</h2>
-            <div id="leaderboard-entries">
+                    </select>
+                    <br>
+                    <button type="submit" class="game-button submit-button">Play</button>
 
-            </div>
-        </dialog>
+                </form>
 
-        <!-- Win message modal -->
-        <dialog data-modal class="modal" id="win-modal">
-            <button data-close-modal id="close-win-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
-            <p class="player-name"></p>
-            <h2>
-                Congratulations<span id="player-name-win-display" class="player-name-style"></span>,
-                <br>
-                You Won!
-            </h2>
-            <h3>Your Score:</h3>
-            <p>Puzzle size: <span id="grid-size-display-win"></span></p>
-            <p>Time: <span id="time-win-display"></span></p>
-            <p>Moves: <span id="moves-win-display"></span></p>
-            <form method="dialog" id="win-form">
-                <h3>Start a New Game:</h3>
-                <label for = "grid-size-input-win">Choose puzzle size: </label>
-                <select id="grid-size-input-win">
+            </dialog>
 
-                </select>
-                <br>
-                <button type="submit" id="submit-win-form" class="game-button submit-button">Play</button>
-            </form>
-        </dialog>
+            <!-- Modal shows when new game button is clicked -->
+            <dialog data-modal class="modal" id="new-game-modal">
+                <button data-close-modal id="close-new-game-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
+                <form method="dialog" id="new-game-form">
+                    <h2>Start a New Game:</h2>
+                    <label for = "grid-size-input-new-game">Choose puzzle size: </label>
+                    <select id="grid-size-input-new-game">
 
-        <!-- Rules modal -->
-        <dialog data-modal class="modal large-modal" id="rules-modal">
-            <button data-close-modal id="close-rules-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
-            <h2>Sliding Puzzle</h2>
-            <ul>
-                <li>This website provides a classic sliding puzzle game, which can be played with puzzle sizes between 2 x 2 and <span id="rules-max-grid-size"></span>.</li>
-                <li>The goal is to order the tiles in ascending order (1, 2, 3, ...) with the empty tile in the right bottom corner.</li>
-                <li>To move a tile <span class="rules-button-style" id="rules-tile-style">1</span> click on it (or touch it for mobile devices).</li>
-                <li>To start a new game click the <span class="rules-button-style">New Game</span> button.</li>
-                <li>To reshuffle the puzzle click the <span class="rules-button-style">Reshuffle</span> button.</li>
-                <li>The number of moves and the time needed to solve the puzzle are displayed and a leaderboard is available when clicking on the <i class="fa-solid fa-star" title="Star-icon"></i> - icon.</li>
-            </ul>
-        </dialog>
+                    </select>
+                    <br>
+                    <button type="submit" id = "submit-new-game-form" class="game-button submit-button">Play</button>
+                </form>
+            </dialog>
 
-        <!-- Landscape warning modal -->
-        <dialog data-modal class="modal" id="landscape-modal">
-            <i class="fa-solid fa-lg fa-arrows-rotate" title="Rotate device"></i>
-            <p>Please rotate your device to continue playing.</p>
-        </dialog>
+            <!-- Leaderboard modal -->
+            <dialog data-modal class="modal large-modal" id="leaderboard-modal">
+                <button data-close-modal id="close-leaderboard-modal" class="close-button"><i class="fa-solid fa-x"></i></button>
+                <h2>Leaderboard</h2>
+                <div id="leaderboard-entries">
 
-    </main>
+                </div>
+            </dialog>
 
-    <!-- Footer -->
-    <footer>
-        <p>
-            Developed by Theresa Abl 
-            <span id="footer-icons">
-                <a href="https://github.com/theresaabl" target="_blank" rel="noopener" aria-label="Visit my GitHub page (opens in a new tab)"><i class="fa-brands fa-github" title="Go to GitHub"></i></a>
-                <a href="https://www.linkedin.com/in/theresa-abl/" target="_blank" rel="noopener" aria-label="Visit my LinkedIn page (opens in a new tab)"><i class="fa-brands fa-linkedin" title="Go to LinkedIn"></i></a>
-            </span></p>
-    </footer>
+            <!-- Win message modal -->
+            <dialog data-modal class="modal" id="win-modal">
+                <button data-close-modal id="close-win-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
+                <p class="player-name"></p>
+                <h2>
+                    Congratulations<span id="player-name-win-display" class="player-name-style"></span>,
+                    <br>
+                    You Won!
+                </h2>
+                <h3>Your Score:</h3>
+                <p>Puzzle size: <span id="grid-size-display-win"></span></p>
+                <p>Time: <span id="time-win-display"></span></p>
+                <p>Moves: <span id="moves-win-display"></span></p>
+                <form method="dialog" id="win-form">
+                    <h3>Start a New Game:</h3>
+                    <label for = "grid-size-input-win">Choose puzzle size: </label>
+                    <select id="grid-size-input-win">
+
+                    </select>
+                    <br>
+                    <button type="submit" id="submit-win-form" class="game-button submit-button">Play</button>
+                </form>
+            </dialog>
+
+            <!-- Rules modal -->
+            <dialog data-modal class="modal large-modal" id="rules-modal">
+                <button data-close-modal id="close-rules-modal" class="close-button"><i class="fa-solid fa-x" title="Close pop-up"></i></button>
+                <h2>Sliding Puzzle</h2>
+                <ul>
+                    <li>This website provides a classic sliding puzzle game, which can be played with puzzle sizes between 2 x 2 and <span id="rules-max-grid-size"></span>.</li>
+                    <li>The goal is to order the tiles in ascending order (1, 2, 3, ...) with the empty tile in the right bottom corner.</li>
+                    <li>To move a tile <span class="rules-button-style" id="rules-tile-style">1</span> click on it (or touch it for mobile devices).</li>
+                    <li>To start a new game click the <span class="rules-button-style">New Game</span> button.</li>
+                    <li>To reshuffle the puzzle click the <span class="rules-button-style">Reshuffle</span> button.</li>
+                    <li>The number of moves and the time needed to solve the puzzle are displayed and a leaderboard is available when clicking on the <i class="fa-solid fa-star" title="Star-icon"></i> - icon.</li>
+                </ul>
+            </dialog>
+
+            <!-- Landscape warning modal -->
+            <dialog data-modal class="modal" id="landscape-modal">
+                <i class="fa-solid fa-lg fa-arrows-rotate" title="Rotate device"></i>
+                <p>Please rotate your device to continue playing.</p>
+            </dialog>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+
+            <p>
+                Developed by Theresa Abl
+                
+                <!-- span with social media icons -->
+                <span id="footer-icons">
+                    <a href="https://github.com/theresaabl" target="_blank" rel="noopener" aria-label="Visit my GitHub page (opens in a new tab)"><i class="fa-brands fa-github" title="Go to GitHub"></i></a>
+                    <a href="https://www.linkedin.com/in/theresa-abl/" target="_blank" rel="noopener" aria-label="Visit my LinkedIn page (opens in a new tab)"><i class="fa-brands fa-linkedin" title="Go to LinkedIn"></i></a>
+                </span>
+            
+            </p>
+        
+        </footer>
+        
+        <!--Font Awesome kit-->
+        <script src="https://kit.fontawesome.com/e1363dc097.js" crossorigin="anonymous"></script>
+        <!-- link to main script -->
+        <script src="assets/js/script.js"></script>
     
-    <!--Font Awesome kit-->
-    <script src="https://kit.fontawesome.com/e1363dc097.js" crossorigin="anonymous"></script>
-    <!-- link to main script -->
-    <script src="assets/js/script.js"></script>
-</body>
+    </body>
+
 </html>
