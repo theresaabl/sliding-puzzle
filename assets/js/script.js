@@ -378,9 +378,7 @@ function randomShuffle(gridTiles, gridSize) {
       document.getElementsByClassName("tile-js")[[tilesOrdered[i] - 1]].outerHTML = newHTML;
     }
     //check that puzzle is solvable (or shuffle again)
-    if (isSolvable(gridTiles, gridSize)){
-      solvable = true;
-    }
+    solvable = isSolvable(gridTiles, gridSize);
   } while (!solvable || ordered);
 }
 
@@ -407,7 +405,7 @@ function isSolvable(gridTiles, gridSize) {
     //empty tile row index from bottom is even
     if (emptyTileRowBottom % 2 === 0){
       //true if invCount odd
-      return (invCount % 2); 
+      return (invCount % 2 !== 0); 
     } else {
       //empty tile row index from bottom is odd
       //true if invCount even
@@ -418,7 +416,7 @@ function isSolvable(gridTiles, gridSize) {
 
 /**
  * This function takes the grid tiles and returns the total number of inversions in the puzzle, an inversion is when a tile with a larger number is before a tile with a smaller number
- * @param {} gridTiles 
+ * @param {*} gridTiles 
  * @returns number of inversions 
  */
 function countInversions(gridTiles) {
@@ -430,7 +428,8 @@ function countInversions(gridTiles) {
   // loop through all tiles in the array and compare each tile number to all tiles coming after, increase counter everytime a larger number comes before a smaller number in the grid 
   for (let i = 0; i < tilesArray.length - 1; i++){
     for (let j = i + 1; j < tilesArray.length; j++){
-      if (tilesArray[i] > tilesArray[j]) {
+      // convert strings to integers
+      if (parseInt(tilesArray[i]) > parseInt(tilesArray[j])) {
         invCounter++;
       }
     }
