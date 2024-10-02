@@ -21,16 +21,16 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-|  | 404.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-|  | index.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
+|  | [index.html](https://theresaabl.github.io/sliding-puzzle/index.html) | ![screenshot](documentation/validation/html-index.png) | On first validation there was a number of errors, which were easily fixed. ![screenshot](documentation/validation/html-index-errors.png) |
+|  | [404.html](https://theresaabl.github.io/sliding-puzzle/404.html) | ![screenshot](documentation/validation/html-404.png) | Upon first validation there was an error which was easily fixed. ![screenshot](documentation/validation/html-404-error.png) |
 
 ### CSS
 
-I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate all of my CSS files.
+I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate my CSS file.
 
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-| assets | [style.css](https://jigsaw.w3.org/css-validator/validator?uri=https://theresaabl.github.io/sliding-puzzle) | ![screenshot](documentation/validation/css.png) | |
+| assets/css | [style.css](https://jigsaw.w3.org/css-validator/validator?uri=https://theresaabl.github.io/sliding-puzzle) | ![screenshot](documentation/validation/css.png) | |
 
 ### JavaScript
 
@@ -38,48 +38,21 @@ I have used the recommended [JShint Validator](https://jshint.com) to validate a
 
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-| assets | script-404.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| assets | script.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
+| assets/js | script.js | ![screenshot](documentation/validation/js-index.png) | On first validation there was a number of minor errors, which were easily fixed. ![screenshot](documentation/validation/js-index.png) |
+| assets/js | script-404.js | ![screenshot](documentation/validation/js-404.png) | |
 
 ## Browser Compatibility
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use this space to discuss testing the live/deployed site on various browsers.
-
-Consider testing AT LEAST 3 different browsers, if available on your system.
-
-You DO NOT need to use all of the browsers below, just pick any 3 (minimum).
-
-Recommended browsers to consider:
+I have tested my deployed project on multiple browsers to check for compatibility issues. The browsers I have tested on are:
 - [Chrome](https://www.google.com/chrome)
-- [Firefox (Developer Edition)](https://www.mozilla.org/firefox/developer)
+- [Firefox](https://www.mozilla.org/firefox)
 - [Edge](https://www.microsoft.com/edge)
-- [Safari](https://support.apple.com/downloads/safari)
-- [Brave](https://brave.com/download)
-- [Opera](https://www.opera.com/download)
 
-**IMPORTANT**: You must provide screenshots of the tested browsers, to "prove" that you've actually tested them.
-
-Please note, there are services out there that can test multiple browser compatibilities at the same time.
-Some of these are paid services, but some are free.
-If you use these, you must provide a link to the source used for attribution, and multiple screenshots of the results.
-
-Sample browser testing documentation:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-I've tested my deployed project on multiple browsers to check for compatibility issues.
-
-| Browser | Home | About | Contact | etc | Notes |
-| --- | --- | --- | --- | --- | --- |
-| Chrome | ![screenshot](documentation/browsers/browser-chrome-home.png) | ![screenshot](documentation/browsers/browser-chrome-about.png) | ![screenshot](documentation/browsers/browser-chrome-contact.png) | ![screenshot](documentation/browsers/browser-chrome-etc.png) | Works as expected |
-| Firefox | ![screenshot](documentation/browsers/browser-firefox-home.png) | ![screenshot](documentation/browsers/browser-firefox-about.png) | ![screenshot](documentation/browsers/browser-firefox-contact.png) | ![screenshot](documentation/browsers/browser-firefox-etc.png) | Works as expected |
-| Edge | ![screenshot](documentation/browsers/browser-edge-home.png) | ![screenshot](documentation/browsers/browser-edge-about.png) | ![screenshot](documentation/browsers/browser-chrome-edge.png) | ![screenshot](documentation/browsers/browser-edge-etc.png) | Works as expected |
-| Safari | ![screenshot](documentation/browsers/browser-safari-home.png) | ![screenshot](documentation/browsers/browser-safari-about.png) | ![screenshot](documentation/browsers/browser-safari-contact.png) | ![screenshot](documentation/browsers/browser-safari-etc.png) | Minor CSS differences |
-| Brave | ![screenshot](documentation/browsers/browser-brave-home.png) | ![screenshot](documentation/browsers/browser-brave-about.png) | ![screenshot](documentation/browsers/browser-brave-contact.png) | ![screenshot](documentation/browsers/browser-brave-etc.png) | Works as expected |
-| Opera | ![screenshot](documentation/browsers/browser-opera-home.png) | ![screenshot](documentation/browsers/browser-opera-about.png) | ![screenshot](documentation/browsers/browser-opera-contact.png) | ![screenshot](documentation/browsers/browser-opera-etc.png) | Minor differences |
-| repeat for any other tested browsers | x | x | x | x | x |
+| Browser | Landing modal | Main game | Win message | New game modal | Leaderboard | Rules | 404 page | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | -- |
+| Chrome | ![screenshot](documentation/browsers/browser-chrome-landing.png) | ![screenshot](documentation/browsers/browser-chrome-main-game.png) |![screenshot](documentation/browsers/browser-chrome-win-message.png) | ![screenshot](documentation/browsers/browser-chrome-new-game.png) | ![screenshot](documentation/browsers/browser-chrome-leaderboard.png) | ![screenshot](documentation/browsers/browser-chrome-rules.png)  | ![screenshot](documentation/browsers/browser-chrome-404.png) |  Works as expected |
+| Firefox | ![screenshot](documentation/browsers/browser-firefox-landing.png) | ![screenshot](documentation/browsers/browser-firefox-main-game.png) |![screenshot](documentation/browsers/browser-firefox-win-message.png) | ![screenshot](documentation/browsers/browser-firefox-new-game.png) | ![screenshot](documentation/browsers/browser-firefox-leaderboard.png) | ![screenshot](documentation/browsers/browser-firefox-rules.png)  | ![screenshot](documentation/browsers/browser-firefox-404.png) |  There is a bug showing up in Firefox, when clicking on the select elements in the new game or win modals, the modal closes immediately without letting the user select an option. The select element can however be accessed via keyboard. I found some helpful answers on [Stackoverflow](https://stackoverflow.com/questions/77402658/why-does-clicking-a-select-dropdown-inside-a-form-embedded-in-a-modal-dialog-clo) which lead to the conclusion, that this issue comes the function that handles when a user clicks outside the modal. In other browsers clicking outside the modal closes it, however in Firefox clicking on a select element returns  e.clientX and e.clientY of 0, which leads to the modal closing. A quick solution would be to leave this functionality out as the user can close the modal by clicking the close button and pressing the escape key. However, for the purpose of this release I decided to leave this functionality in, and Firefox users can control the select elements via keyboard. |
+| Edge | ![screenshot](documentation/browsers/browser-edge-landing.png) | ![screenshot](documentation/browsers/browser-edge-main-game.png) |![screenshot](documentation/browsers/browser-edge-win-message.png) | ![screenshot](documentation/browsers/browser-edge-new-game.png) | ![screenshot](documentation/browsers/browser-edge-leaderboard.png) | ![screenshot](documentation/browsers/browser-edge-rules.png)  | ![screenshot](documentation/browsers/browser-edge-404.png) |  Works as expected |
 
 ## Responsiveness
 
