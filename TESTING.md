@@ -66,120 +66,57 @@ I have tested my deployed project using the Lighthouse Audit tool to check for a
 
 ## Defensive Programming
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Defensive programming (defensive design) is extremely important!
-
-When building projects that accept user inputs or forms, you should always test the level of security for each.
-Examples of this could include (not limited to):
-
-Forms:
-- Users cannot submit an empty form
-- Users must enter valid email addresses
-
-PP3 (Python-only):
-- Users must enter a valid letter/word/string when prompted
-- Users must choose from a specific list only
-
-MS3 (Flask) | MS4/PP4/PP5 (Django):
-- Users cannot brute-force a URL to navigate to a restricted page
-- Users cannot perform CRUD functionality while logged-out
-- User-A should not be able to manipulate data belonging to User-B, or vice versa
-- Non-Authenticated users should not be able to access pages that require authentication
-- Standard users should not be able to access pages intended for superusers
-
-You'll want to test all functionality on your application, whether it's a standard form,
-or uses CRUD functionality for data manipulation on a database.
-Make sure to include the `required` attribute on any form-fields that should be mandatory.
-Try to access various pages on your site as different user types (User-A, User-B, guest user, admin, superuser).
-
-You should include any manual tests performed, and the expected results/outcome.
-
-Testing should be replicable.
-Ideally, tests cases should focus on each individual section of every page on the website.
-Each test case should be specific, objective, and step-wise replicable.
-
-Instead of adding a general overview saying that everything works fine,
-consider documenting tests on each element of the page
-(ie. button clicks, input box validation, navigation links, etc.) by testing them in their happy flow,
-and also the bad/exception flow, mentioning the expected and observed results,
-and drawing a parallel between them where applicable.
-
-Consider using the following format for manual test cases:
-
-Expected Outcome / Test Performed / Result Received / Fixes Implemented
-
-- **Expected**: "Feature is expected to do X when the user does Y."
-- **Testing**: "Tested the feature by doing Y."
-- (either) **Result**: "The feature behaved as expected, and it did Y."
-- (or) **Result**: "The feature did not respond to A, B, or C."
-- **Fix**: "I did Z to the code because something was missing."
-
-Use the table below as a basic start, and expand on it using the logic above.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 Defensive programming was manually tested with the below user acceptance testing:
 
-| Page | Expectation | Test | Result | Fix | Screenshot |
+| Feature | Expectation | Action | Outcome | Fix | Screenshot |
 | --- | --- | --- | --- | --- | --- |
-| Home | | | | | |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature behaved as expected, and it did Y | Test concluded and passed | ![screenshot](documentation/features/feature01.png) |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature did not respond to A, B, or C. | I did Z to the code because something was missing | ![screenshot](documentation/features/feature02.png) |
-| About | | | | | |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature behaved as expected, and it did Y | Test concluded and passed | ![screenshot](documentation/features/feature03.png) |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature did not respond to A, B, or C. | I did Z to the code because something was missing | ![screenshot](documentation/features/feature04.png) |
-| Gallery | | | | | |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature behaved as expected, and it did Y | Test concluded and passed | ![screenshot](documentation/features/feature05.png) |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature did not respond to A, B, or C. | I did Z to the code because something was missing | ![screenshot](documentation/features/feature06.png) |
-| Contact | | | | | |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature behaved as expected, and it did Y | Test concluded and passed | ![screenshot](documentation/features/feature07.png) |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature did not respond to A, B, or C. | I did Z to the code because something was missing | ![screenshot](documentation/features/feature08.png) |
-| repeat for all remaining pages | x | x | x | x | x |
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Another way of performing defensive testing is a simple Pass/Fail for each test.
-The assessors prefer the above method, with the full test explained, but this is also acceptable in most cases.
-
-When in doubt, use the above method instead, and delete the table below.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-| Page | User Action | Expected Result | Pass/Fail | Comments |
-| --- | --- | --- | --- | --- |
-| Home | | | | |
-| | Click on Logo | Redirection to Home page | Pass | |
-| | Click on Home link in navbar | Redirection to Home page | Pass | |
-| Gallery | | | | |
-| | Click on Gallery link in navbar | Redirection to Gallery page | Pass | |
-| | Load gallery images | All images load as expected | Pass | |
-| Contact | | | | |
-| | Click on Contact link in navbar | Redirection to Contact page | Pass | |
-| | Enter first/last name | Field will accept freeform text | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
-| | Enter message in textarea | Field will accept freeform text | Pass | |
-| | Click the Submit button | Redirects user to form-dump | Pass | User must click 'Back' button to return |
-| Sign Up | | | | |
-| | Click on Sign Up button | Redirection to Sign Up page | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
-| | Enter valid password (twice) | Field will only accept password format | Pass | |
-| | Click on Sign Up button | Asks user to confirm email page | Pass | Email sent to user |
-| | Confirm email | Redirects user to blank Sign In page | Pass | |
-| Log In | | | | |
-| | Click on the Login link | Redirection to Login page | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
-| | Enter valid password | Field will only accept password format | Pass | |
-| | Click Login button | Redirects user to home page | Pass | |
-| Log Out | | | | |
-| | Click Logout button | Redirects user to logout page | Pass | Confirms logout first |
-| | Click Confirm Logout button | Redirects user to home page | Pass | |
-| Profile | | | | |
-| | Click on Profile button | User will be redirected to the Profile page | Pass | |
-| | Click on the Edit button | User will be redirected to the edit profile page | Pass | |
-| | Click on the My Orders link | User will be redirected to the My Orders page | Pass | |
-| | Brute forcing the URL to get to another user's profile | User should be given an error | Pass | Redirects user back to own profile |
-| repeat for all remaining pages | x | x | x | x |
+| **Landing pop up** | When the page is loaded the landing modal will open | Load the page | Landing modal opened when page loaded | Test concluded and passed | ![screenshot](documentation/features/feature-landing.png) |
+|  | When a player name is entered and play is clicked after chosing a puzzle size a new game of the chosen size will start when clicking play | Click play after entering player name and selecting puzzle size | New game started after play clicked | Test concluded and passed | ![screenshot](documentation/features/feature-puzzle.png) |
+|  | When no player name is entered and play is clicked a warning to enter a player name is shown and the form cannot be submitted | Click play without entering a player name | A warning showed after clicking play without entering a player name | Test concluded and passed | ![screenshot](documentation/features/feature-puzzle.png) |
+|  | When the modal is closed by pressing the "Escape" key, a default grid is shown and a game can be started by pressing one of the game buttons | Close the modal by pressing "Escape" | A default puzzle grid is displayed after modal closed | Test concluded and passed |  |
+| **Logo** |  When clicked the home page will open | Click the logo | Home page opened when clicked | Test concluded and passed | ![screenshot](documentation/features/feature-logo.png) |
+| **Header icons** | When clicked the leaderboard or rules modal will open respectively | Click the star icon or the rules icon | Leaderboard or rules modal opened when clicked | Test concluded and passed | ![screenshot](documentation/features/feature-header-icons-mobile.png) |
+|  | When clicked the timer will pause | Click the star icon or the rules icon | Timer pauses when clicked | Test concluded and passed | ![screenshot](documentation/features/feature-leaderboard.png) ![screenshot](documentation/features/feature-rules.png) |
+| **Leaderboard pop up** | When modal opens the leaderboard is displayed with data from local storage | Click the star icon | Leaderboard is displayed when modal opens | Test concluded and passed, Note that only scores from previously played puzzle sizes are displayed on the leaderboard, so it will be empty in the beginning | ![screenshot](documentation/features/feature-leaderboard.png) |
+| | When clicking the close button the modal closes | Click close button | Modal closed when clicked | Test concluded and passed |  |
+| | When clicking anywhere outside the modal it closes | Click outside the modal | Modal closed when clicked outside | Note that this works well in Chrome and Edge and leads to a bug in Firefox, see (#open-issues) |  |
+| | When pressing the "Escape" key the modal closes | Press "Escape" key | Modal closed when pressed | Test concluded and passed |  |
+| | When closes the timer resumes and game continues | Close the modal without starting a new puzzle | Timer resumes and game is continued | Test concluded and passed |  |
+| **Rules pop up** | When clicking the close button the modal closes | Click close button | Modal closed when clicked | Test concluded and passed | ![screenshot](documentation/features/feature-rules.png)  |
+| | When clicking anywhere outside the modal it closes | Click outside the modal | Modal closed when clicked outside | Note that this works well in Chrome and Edge and leads to a bug in Firefox, see (#open-issues) |  |
+| | When pressing the "Escape" key the modal closes | Press "Escape" key | Modal closed when pressed | Test concluded and passed |  |
+| | When closes the timer resumes and game continues | Close the modal without starting a new puzzle | Timer resumes and game is continued | Test concluded and passed |  |
+| **Sliding puzzle game** | When a tile is clicked, the tile will move if it is next to the empty tile | Click a tile next to the empty tile | A tile next to the empty tile moves when clicked | Test concluded and passed | ![screenshot](documentation/features/feature-puzzle.png) |
+| | When a tile is clicked, the tile will not move if it is not next to the empty tile | Click a tile not next to the empty tile | A tile not next to the empty tile does not move when clicked | Test concluded and passed | ![screenshot](documentation/features/feature-puzzle.png) |
+| | When all tiles are ordered in the correct way and the puzzle is solved, the win modal shows | Solve the puzzle | A win message shows when the puzzle is solved | Test concluded and passed | ![screenshot](documentation/features/feature-win-message.png) |
+| **Win message pop up** | When the win message opens the timer stops | Solve the puzzle | Timer stopped when puzzle is solved | Test concluded and passed | ![screenshot](documentation/features/feature-win-message.png) |
+| | When opens the timer stops | Solve the puzzle | Timer stopped when opened (solved puzzle) | Test concluded and passed | ![screenshot](documentation/features/feature-win-message.png) |
+| | When clicking the close button the modal closes | Click close button | Modal closed when clicked | Test concluded and passed |  |
+| | When clicking anywhere outside the modal it closes | Click outside the modal | Modal closed when clicked outside | Note that this works well in Chrome and Edge and leads to a bug in Firefox, see (#open-issues) |  |
+| | When pressing the "Escape" key the modal closes | Press "Escape" key | Modal closed when pressed | Test concluded and passed |  |
+| | When closes the timer is still stopped and no tiles can be moved | Close the modal | Timer stays stopped and no tiles can be clicked after win modal closed | There was a bug where, when opening the leaderboard or rules modals after the game was won and closing them again, the timer started again even though the game was finished. See Issue [Timer continues after game ended in some cases](https://github.com/theresaabl/sliding-puzzle/issues/8) for the fix. |  |
+| **Win message form**  | The previously won puzzle size is preselected  in the form select element | Win a puzzle of a given size | The won puzzle size is preselected in the form select element | Test concluded and passed | ![screenshot](documentation/features/feature-win-message.png) |
+| | When a puzzle size is selected and the Play button is pressed a new game of the selected size start | Select a puzzle size and click the play button | A new game of selected size starts when play is clicked | Test concluded and passed | ![screenshot](documentation/features/feature-puzzle.png) |
+| **New Game button** | When clicked the new game modal will open | Click the New Game button | New game modal opened when clicked | Test concluded and passed | ![screenshot](documentation/features/feature-game-buttons-mobile.png) |
+| **New game pop up** | When the modal opens the timer will pause | Click the New Game button | Timer pauses when opened | Test concluded and passed | ![screenshot](documentation/features/feature-new-game.png) |
+| | When clicking the close button the modal closes | Click close button | Modal closed when clicked | Test concluded and passed |  |
+| | When clicking anywhere outside the modal it closes | Click outside the modal | Modal closed when clicked outside | Note that this works well in Chrome and Edge and leads to a bug in Firefox, see (#open-issues) |  |
+| | When pressing the "Escape" key the modal closes | Press "Escape" key | Modal closed when pressed | Test concluded and passed |  |
+| | When closes the timer resumes and game continues | Close the modal without starting a new puzzle | Timer resumes and game is continued | Test concluded and passed |  |
+| **New game form** | When a puzzle size is selected and the Play button is pressed a new game of the selected size start | Select a puzzle size and click the play button | A new game of selected size starts when play is clicked | Test concluded and passed | ![screenshot](documentation/features/feature-puzzle.png) |
+| **Reshuffle button** | When clicked the puzzle will reshuffle randomly | Click the Reshuffle button | Puzzle reshuffled when clicked | Test concluded and passed | ![screenshot](documentation/features/feature-game-buttons-mobile.png) |
+| **Game statistics** | When a tile is moved the move counter is incremented by one | Move a tile | Moves incremented by one when tile moved | Test concluded and passed | ![screenshot](documentation/features/feature-game-stats-mobile.png) |
+|  | When new game starts timer and moves are reset | Start a new game through any of the options | Timer and Moves are reset when new game starts | Test concluded and passed | ![screenshot](documentation/features/feature-game-stats-mobile.png) |
+| **Timer** | When playing the game a timer runs | Start game | Timer runs when game starts | Test concluded and passed | ![screenshot](documentation/features/feature-game-stats-mobile.png) |
+|  | When any modal is open the timer pauses | Open modal | Timer pauses when modal open | Test concluded and passed | ![screenshot](documentation/features/feature-game-stats-mobile.png) |
+|  | When a modal is closed without starting a new game the timer resumes | Close modal | Timer resumes when modal closed | Test concluded and passed | ![screenshot](documentation/features/feature-game-stats-mobile.png) |
+| **Footer** | When social media icons are clicked the respective page will open in a new tab | Click the icons | Social media page opened in new tab when clicked | Test concluded and passed | ![screenshot](documentation/features/feature-footer.png) |
+| **Landscape mode warning for mobile devices** | When a mobile device is rotated to landscape mode the landscape warning modal will show | Rotate mobile device to landscape mode | Landscape warning modal shows when device rotated to landscape mode | Test concluded and passed | ![screenshot](documentation/features/feature-landscape-mobile.jpg) |
+| | When the modal is open the timer will pause | Rotate mobile device to landscape mode | Timer pauses when modal open | Test concluded and passed | ![screenshot](documentation/features/feature-landscape-mobile.jpg) |
+| | The modal cannot be closed without rotating the mobile device | Click outside the modal | Modal does not close when clicking outside without rotating device | Test concluded and passed | ![screenshot](documentation/features/feature-landscape-mobile.jpg) |
+| | The modal closes and the timer resumes when device is rotated to portrait mode | Rotate to portrait mode | Modal closed and timer resumed when rotated back | Test concluded and passed | ![screenshot](documentation/responsiveness/responsiveness-galaxy-main-game.jpg) |
+| **Error 404 page** | When enterin a URL that does not exist on this page an error 404 page will open | Enter a wrong URL on this page | Error page opens when wrong URL is entered | Test concluded and passed | ![screenshot](documentation/features/feature-error.png) |
+|  | When clicking on any of the links in header or main the home page is opened | Click on any of the links in header or main | Home page opens when links are clicked | Test concluded and passed | ![screenshot](documentation/responsiveness/responsiveness-lenovo-main-game.png) |
 
 ## User Story Testing
 
