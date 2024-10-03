@@ -3,16 +3,6 @@
 > [!NOTE]  
 > Return back to the [README.md](README.md) file.
 
-## Manual Testing
-
-I tested the following features of the deployed website in a manual testing process:
-
-| Feature | Expectation | Action | Outcome |
-| --- | --- | --- | --- |
-| **Logo** | When clicked the home page will open | Click the logo | Home page opened when clicked |
-| **Home navbar button** | When clicked the home page will open | Click the Home navbar button | Home page opened when clicked |
-| **Upcoming navbar button** | When clicked the upcoming talks page will open | Click the Upcoming navbar button | Upcoming talks page opened when clicked |
-
 ## Code Validation
 
 ### HTML
@@ -51,7 +41,7 @@ I have tested my deployed project on multiple browsers to check for compatibilit
 | Browser | Landing modal | Main game | Win message | New game modal | Leaderboard | Rules | 404 page | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | -- |
 | Chrome | ![screenshot](documentation/browsers/browser-chrome-landing.png) | ![screenshot](documentation/browsers/browser-chrome-main-game.png) |![screenshot](documentation/browsers/browser-chrome-win-message.png) | ![screenshot](documentation/browsers/browser-chrome-new-game.png) | ![screenshot](documentation/browsers/browser-chrome-leaderboard.png) | ![screenshot](documentation/browsers/browser-chrome-rules.png)  | ![screenshot](documentation/browsers/browser-chrome-404.png) |  Works as expected |
-| Firefox | ![screenshot](documentation/browsers/browser-firefox-landing.png) | ![screenshot](documentation/browsers/browser-firefox-main-game.png) |![screenshot](documentation/browsers/browser-firefox-win-message.png) | ![screenshot](documentation/browsers/browser-firefox-new-game.png) | ![screenshot](documentation/browsers/browser-firefox-leaderboard.png) | ![screenshot](documentation/browsers/browser-firefox-rules.png)  | ![screenshot](documentation/browsers/browser-firefox-404.png) |  There is a bug showing up in Firefox, when clicking on the select elements in the new game or win modals, the modal closes immediately without letting the user select an option. The select element can however be accessed via keyboard. I found some helpful answers on [Stackoverflow](https://stackoverflow.com/questions/77402658/why-does-clicking-a-select-dropdown-inside-a-form-embedded-in-a-modal-dialog-clo) which lead to the conclusion, that this issue comes the function that handles when a user clicks outside the modal. In other browsers clicking outside the modal closes it, however in Firefox clicking on a select element returns  e.clientX and e.clientY of 0, which leads to the modal closing. A quick solution would be to leave this functionality out as the user can close the modal by clicking the close button and pressing the escape key. However, for the purpose of this release I decided to leave this functionality in, and Firefox users can control the select elements via keyboard. |
+| Firefox | ![screenshot](documentation/browsers/browser-firefox-landing.png) | ![screenshot](documentation/browsers/browser-firefox-main-game.png) |![screenshot](documentation/browsers/browser-firefox-win-message.png) | ![screenshot](documentation/browsers/browser-firefox-new-game.png) | ![screenshot](documentation/browsers/browser-firefox-leaderboard.png) | ![screenshot](documentation/browsers/browser-firefox-rules.png)  | ![screenshot](documentation/browsers/browser-firefox-404.png) |  There is a bug showing up in Firefox: When clicking on the select elements in the new game or win modals, the modal closes immediately without letting the user select an option. The select element can however be accessed via keyboard. This issue comes from the function that handles when a user clicks outside the modal. In other browsers clicking outside the modal closes it, but nothing happens when clicking inside it. However in Firefox, clicking on a select element returns  e.clientX and e.clientY of 0, which leads to the modal closing. See also e.g. [Stackoverflow](https://stackoverflow.com/questions/77402658/why-does-clicking-a-select-dropdown-inside-a-form-embedded-in-a-modal-dialog-clo). A quick solution would be to leave this functionality out as the user can also close the modal by clicking the close button and pressing the escape key. However, for the purpose of this release I decided to leave this functionality in, and Firefox users can control the select elements via keyboard. |
 | Edge | ![screenshot](documentation/browsers/browser-edge-landing.png) | ![screenshot](documentation/browsers/browser-edge-main-game.png) |![screenshot](documentation/browsers/browser-edge-win-message.png) | ![screenshot](documentation/browsers/browser-edge-new-game.png) | ![screenshot](documentation/browsers/browser-edge-leaderboard.png) | ![screenshot](documentation/browsers/browser-edge-rules.png)  | ![screenshot](documentation/browsers/browser-edge-404.png) |  Works as expected |
 
 ## Responsiveness
@@ -191,121 +181,45 @@ When in doubt, use the above method instead, and delete the table below.
 | | Brute forcing the URL to get to another user's profile | User should be given an error | Pass | Redirects user back to own profile |
 | repeat for all remaining pages | x | x | x | x |
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Repeat for all other tests, as applicable to your own site.
-The aforementioned tests are just an example of a few different project scenarios.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 ## User Story Testing
-
-- As a user I want to play a sliding puzzle game that is functional and easy to control.
-- As a user I want to choose the puzzle size I play on.
-- As a user I want to be able to reshuffle the puzzle at any time.
-- As a user I want to be able to start a new game at any time.
-- As a user I want to see when I won the game and start a new one right away.
-- As a user I want to have access to information about the game and the controls.
-- As a user I want to see my score and have access to a leaderboard.
-
 
 | User Story | Screenshot |
 | --- | --- |
-| As a new site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/features/feature01.png) |
-| As a new site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/features/feature02.png) |
-| As a new site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/features/feature03.png) |
-| As a returning site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/features/feature04.png) |
-| As a returning site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/features/feature05.png) |
-| As a returning site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/features/feature06.png) |
-| As a site administrator, I should be able to ____________, so that I can ____________. | ![screenshot](documentation/features/feature07.png) |
-| As a site administrator, I should be able to ____________, so that I can ____________. | ![screenshot](documentation/features/feature08.png) |
-| As a site administrator, I should be able to ____________, so that I can ____________. | ![screenshot](documentation/features/feature09.png) |
-| repeat for all remaining user stories | x |
+| As a user, I would like to play a sliding puzzle game that is functional and easy to control. | ![screenshot](documentation/features/feature-game-area-mobile.png) |
+| As a user, I would like to choose the puzzle size I play on. | ![screenshot](documentation/features/feature-landing.png) ![screenshot](documentation/features/feature-new-game.png) ![screenshot](documentation/features/feature-win-message.png) |
+| As a user, I would like to be able to reshuffle the puzzle at any time. | ![screenshot](documentation/features/feature-game-buttons-mobile.png) |
+| As a user, I would like to be able to start a new game at any time. | ![screenshot](documentation/features/feature-game-buttons-mobile.png) ![screenshot](documentation/features/feature-new-game.png) |
+| As a user, I would like to see when I won the game and start a new one right away. | ![screenshot](documentation/features/feature-win-message.png) |
+| As a user, I would like to have access to information about the game and the controls. | ![screenshot](documentation/features/feature-rules.png) |
+| As a user, I would like to see my score and have access to a leaderboard. | ![screenshot](documentation/features/feature-leaderboard.png) |
 
 ## Bugs
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
+I have tracked my bugs with **GitHub Issues** :
 
-This section is primarily used for JavaScript and Python applications,
-but feel free to use this section to document any HTML/CSS bugs you might run into.
+[![GitHub issue custom search](https://img.shields.io/github/issues-search?query=repo%3Atheresaabl%2Fsliding-puzzle%20label%3Abug&label=bugs)](https://github.com/theresaabl/sliding-puzzle/issues?q=is%3Aissue+is%3Aclosed+label%3Abug)
 
-It's very important to document any bugs you've discovered while developing the project.
-Make sure to include any necessary steps you've implemented to fix the bug(s) as well.
+### Fixed Bugs
 
-**PRO TIP**: screenshots of bugs are extremely helpful, and go a long way!
+All previously closed/fixed bugs can be tracked [here](https://github.com/theresaabl/pp-seminars/issues?q=is%3Aissue+is%3Aclosed).
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+| Bug | Status |
+| --- | --- |
+| [Event listeners don't work after tiles have been moved](https://github.com/theresaabl/sliding-puzzle/issues/1) | Closed |
+| [randomShuffle creates duplicate tiles](https://github.com/theresaabl/sliding-puzzle/issues/2) | Closed |
+| [Uncaught ReferenceError: gridSize is not defined](https://github.com/theresaabl/sliding-puzzle/issues/3) | Closed |
+| [Grid columns width changes when moving tiles](https://github.com/theresaabl/sliding-puzzle/issues/4) | Closed |
+| [Puzzle not always checked for solvability](https://github.com/theresaabl/sliding-puzzle/issues/5) | Closed |
+| [Timer start when new game modal is closed](https://github.com/theresaabl/sliding-puzzle/issues/6) | Closed |
+| [Puzzle sometimes still ordered after shuffle](hhttps://github.com/theresaabl/sliding-puzzle/issues/7) | Closed |
+| [Timer continues after game ended in some cases](https://github.com/theresaabl/sliding-puzzle/issues/8) | Closed |
+| [Puzzle size 5 still sometimes not solvable](https://github.com/theresaabl/sliding-puzzle/issues/9) | Closed |
 
-- JS Uncaught ReferenceError: `foobar` is undefined/not defined
+### Open Issues
 
-    ![screenshot](documentation/bugs/bug01.png)
+[![GitHub issues](https://img.shields.io/github/issues/theresaabl/sliding-puzzle)](https://github.com/theresaabl/sliding-puzzle/issues)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/theresaabl/sliding-puzzle)](https://github.com/theresaabl/sliding-puzzle/issues?q=is%3Aissue+is%3Aclosed)
 
-    - To fix this, I _____________________.
+Any remaining open issues can be tracked [here](https://github.com/theresaabl/sliding-puzzle/issues).
 
-- JS `'let'` or `'const'` or `'template literal syntax'` or `'arrow function syntax (=>)'` is available in ES6 (use `'esversion: 11'`) or Mozilla JS extensions (use moz).
-
-    ![screenshot](documentation/bugs/bug02.png)
-
-    - To fix this, I _____________________.
-
-- Python `'ModuleNotFoundError'` when trying to import module from imported package
-
-    ![screenshot](documentation/bugs/bug03.png)
-
-    - To fix this, I _____________________.
-
-- Django `TemplateDoesNotExist` at /appname/path appname/template_name.html
-
-    ![screenshot](documentation/bugs/bug04.png)
-
-    - To fix this, I _____________________.
-
-- Python `E501 line too long` (93 > 79 characters)
-
-    ![screenshot](documentation/bugs/bug04.png)
-
-    - To fix this, I _____________________.
-
-## Unfixed Bugs
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-You will need to mention unfixed bugs and why they were not fixed.
-This section should include shortcomings of the frameworks or technologies used.
-Although time can be a big variable to consider, paucity of time and difficulty understanding
-implementation is not a valid reason to leave bugs unfixed.
-
-If you've identified any unfixed bugs, no matter how small, be sure to list them here.
-It's better to be honest and list them, because if it's not documented and an assessor finds the issue,
-they need to know whether or not you're aware of them as well, and why you've not corrected/fixed them.
-
-Some examples:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-- On devices smaller than 375px, the page starts to have `overflow-x` scrolling.
-
-    ![screenshot](documentation/bugs/unfixed-bug01.png)
-
-    - Attempted fix: I tried to add additional media queries to handle this, but things started becoming too small to read.
-
-- For PP3, when using a helper `clear()` function, any text above the height of the terminal does not clear, and remains when you scroll up.
-
-    ![screenshot](documentation/bugs/unfixed-bug02.png)
-
-    - Attempted fix: I tried to adjust the terminal size, but it only resizes the actual terminal, not the allowable area for text.
-
-- When validating HTML with a semantic `section` element, the validator warns about lacking a header `h2-h6`. This is acceptable.
-
-    ![screenshot](documentation/bugs/unfixed-bug03.png)
-
-    - Attempted fix: this is a known warning and acceptable, and my section doesn't require a header since it's dynamically added via JS.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-If you legitimately cannot find any unfixed bugs or warnings, then use the following sentence:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-> [!NOTE]  
-> There are no remaining bugs that I am aware of.
+See also the [Browser compatability](#browser-compatibility) section.
